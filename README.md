@@ -21,7 +21,7 @@ Our team consists of the following members, listed in the table below (the team 
 | 120090835  | 周欣东 🚩       | 1196698984@qq.com          |
 | 120090524  | 金彦呈           | 120090524@link.cuhk.edu.cn |
 | 120090643  | 陈启旭           | 120090643@link.cuhk.edu.cn |
-| 120040044  | 王钰涵           | 120040044@link.cuhk.edu.cn |
+| 120040044  | 王钰涵           | camilla.y.wang@gmail.com   |
 | 120090509  | 金一鑫           | 120090509@link.cuhk.edu.cn |
 | 119010529  | Yelike W Lukito | yelike0701@gmail.com       |
 
