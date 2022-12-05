@@ -36,6 +36,8 @@ After thorough discussion, our team made the choice and the specification inform
 
 As for Option 2, our topic background specification can be found in [background-specification.md](background-specification.md).
 
+## Project Abstract
+The database system is a database management system based on the combination of user's html web page and back-end flask.This project aims at allowing registered users to record information and create content related to the canteens and foods provided by CUHKSZ. The website is a platform to find ratings and reviews of canteens and foods. 
 
 ## Background Specification
 This project aims at allowing registered users to record information and create content related to the canteens and foods provided by CUHKSZ. The website is a platform to find ratings and reviews of canteens and foods. 
