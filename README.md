@@ -16,13 +16,14 @@ Our team consists of the following members, listed in the table below (the team 
 
 <!-- change the info below to be the real case -->
 
-| Student ID | Student Name | GitHub Account (in Email) |
-| ---------- | ------------ | ------------------------- |
-| 123010245  | 张三 🚩      | sanzhang@gmail.com        |
-| 123010345  | 李四         | sili@outlook.com          |
-| 123030245  | 王五         | wuwang@foxmail.com        |
-| 123020245  | 陈六         | liuchen@qq.com            |
-| 123010249  | 朱九         | jiuzhu@163.com            |
+| Student ID | Student Name    | GitHub Account (in Email)  |
+| ---------- | --------------- | -------------------------- |
+| 120090835  | 周欣东 🚩       | 1196698984@qq.com          |
+| 120090524  | 金彦呈           | 120090524@link.cuhk.edu.cn |
+| 120090643  | 陈启旭           | 120090643@link.cuhk.edu.cn |
+| 120040044  | 王钰涵           | 120040044@link.cuhk.edu.cn |
+| 120090509  | 金一鑫           | 120090509@link.cuhk.edu.cn |
+| 119010529  | Yelike W Lukito | yelike0701@gmail.com       |
 
 ## Project Specification
 
