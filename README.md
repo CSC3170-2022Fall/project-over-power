@@ -30,7 +30,7 @@ Our team consists of the following members, listed in the table below (the team 
 
 After thorough discussion, our team made the choice and the specification information is listed below:
 
-- Our option choice is: **Option 1**
+- Our option choice is: **Option 2**
 - Our branch choice is: **Branch 1**
 - The difficulty level is: **Normal**
 
@@ -39,3 +39,34 @@ As for Option 2, our topic background specification can be found in [background-
 ## Project Abstract
 
 <!-- TODO -->
+
+## Background Specification
+This project aims at allowing registered users to record information and create content related to the canteens and foods provided by CUHKSZ. The website is a platform to find ratings and reviews of canteens and foods. 
+Below are the significant concepts and corresponding settings: 
+
+User: The one who receives the service from the applications. The registered user can review the information on dishes provided by different canteens. The users can also add comments, have his/hers average spending recorded, and grade the quality of the dishes he or her has ordered.
+
+Senior user: 
+The administrator of a specific canteen. Information about his restaurant id should be included.
+
+Restaurant: provide various types of dishes. Each restaurant has its ID, name, location, providing dishes, and its average price for each person (or other analyzed information), and the average rate of one restaurant. 
+
+Rate: records storing the users' rating on the hygiene and service of the restaurants.
+
+Dish: every restaurant provides various types of dishes. Every dish has its corresponding restaurant (providing the dish), its name, its type(how it is cooked, for example, fried or boiled), price, taste( special features that might cause unpleasant feelings for certain groups of people, for example, spicy or not）and its ordered time. 
+
+Comments: records of comments added by the user for specific dishes. This should include the comment's actual content, the time the comment is added, the user’s ID of comment, and its corresponding dish’s restaurant ID and name.
+ 
+And here is our ER diagram. 
+
+The major functionalities of this platform have:
+The main features of this platform include: 1. New users can create a new account as junior or regular platform users.
+2. Clients can access their accounts.
+3. After logging in, the user is free to check the statistics on the total number of passengers, the typical rating given by customers, and other important data that may be offered to the customer.
+4. Under the directory of various regions, tastes, the initial letter of the name, and other features that are available, the user can search for the name of the dish. The user may offer feedback on the dish's flavor.
+5. The senior user is permitted to introduce fresh menu items to particular canteens.
+
+
+Some additional functionality that may be implemented:
+1. The platform may give elderly users recommendations for the cuisine’s clients love the most.
+2. The general public can get new recommendations for the kinds of new dishes they would enjoy.
