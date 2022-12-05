@@ -27,19 +27,6 @@ Our team consists of the following members, listed in the table below (the team 
 ## Project Specification
 
 <!-- You should remove the terms/sentence that is not necessary considering your option/branch/difficulty choice -->
-
-After thorough discussion, our team made the choice and the specification information is listed below:
-
-- Our option choice is: **Option 2**
-- Our branch choice is: **Branch 1**
-- The difficulty level is: **Normal**
-
-As for Option 2, our topic background specification can be found in [background-specification.md](background-specification.md).
-
-## Project Abstract
-The database system is a database management system based on the combination of user's html web page and back-end flask.This project aims at allowing registered users to record information and create content related to the canteens and foods provided by CUHKSZ. The website is a platform to find ratings and reviews of canteens and foods. 
-
-## Background Specification
 This project aims at allowing registered users to record information and create content related to the canteens and foods provided by CUHKSZ. The website is a platform to find ratings and reviews of canteens and foods. 
 Below are the significant concepts and corresponding settings: 
 
@@ -69,3 +56,15 @@ The main features of this platform include: 1. New users can create a new accoun
 Some additional functionality that may be implemented:
 1. The platform may give elderly users recommendations for the cuisine’s clients love the most.
 2. The general public can get new recommendations for the kinds of new dishes they would enjoy.
+
+After thorough discussion, our team made the choice and the specification information is listed below:
+
+- Our option choice is: **Option 2**
+- Our branch choice is: **Branch 1**
+- The difficulty level is: **Normal**
+
+As for Option 2, our topic background specification can be found in [background-specification.md](background-specification.md).
+
+## Project Abstract
+Abstract
+People’s expectations towards food is changing from avoiding hungry to enjoying the taste. It is the same for CUHKSZ students. To better find the food cater to personal taste in the canteens, our website provides detailed and up-to-date information about different canteens and dishes. Any user can post their opinions of any dishes and rate for the canteens in terms of different aspect. Senior user of the administrator of a specific canteen can also update their menus at any time. We hope this project can help people make easier and wiser choice of where to have the meal
