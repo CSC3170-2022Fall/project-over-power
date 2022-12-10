@@ -31,18 +31,17 @@ Our team consists of the following members, listed in the table below (the team 
 This project aims at allowing registered users to record information and create content related to the canteens and foods provided by CUHKSZ. The website is a platform to find ratings and reviews of canteens and foods. 
 Below are the significant concepts and corresponding settings: 
 
-User: The one who receives the service from the applications. The registered user can review the information on dishes provided by different canteens. The users can also add comments, have his/hers average spending recorded, and grade the quality of the dishes he or her has ordered.
+**User**: The one who receives the service from the applications. The registered user can review the information on dishes provided by different canteens. The users can also add comments, have his/hers average spending recorded, and grade the quality of the dishes he or her has ordered.
 
-Senior user: 
-The administrator of a specific canteen. Information about his restaurant id should be included.
+**Senior user**: The administrator of a specific canteen. Information about his restaurant id should be included.
 
-Restaurant: provide various types of dishes. Each restaurant has its ID, name, location, providing dishes, and its average price for each person (or other analyzed information), and the average rate of one restaurant. 
+**Restaurant**: provide various types of dishes. Each restaurant has its ID, name, location, providing dishes, and its average price for each person (or other analyzed information), and the average rate of one restaurant. 
 
-Rate: records storing the users' rating on the hygiene and service of the restaurants.
+**Rate**: records storing the users' rating on the hygiene and service of the restaurants.
 
-Dish: every restaurant provides various types of dishes. Every dish has its corresponding restaurant (providing the dish), its name, its type(how it is cooked, for example, fried or boiled), price, taste( special features that might cause unpleasant feelings for certain groups of people, for example, spicy or not）and its ordered time. 
+**Dish**: every restaurant provides various types of dishes. Every dish has its corresponding restaurant (providing the dish), its name, its type(how it is cooked, for example, fried or boiled), price, taste( special features that might cause unpleasant feelings for certain groups of people, for example, spicy or not）and its ordered time. 
 
-Comments: records of comments added by the user for specific dishes. This should include the comment's actual content, the time the comment is added, the user’s ID of comment, and its corresponding dish’s restaurant ID and name.
+**Comments**: records of comments added by the user for specific dishes. This should include the comment's actual content, the time the comment is added, the user’s ID of comment, and its corresponding dish’s restaurant ID and name.
  
 And here is our ER diagram. 
 
