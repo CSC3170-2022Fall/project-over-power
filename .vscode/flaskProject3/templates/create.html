@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建账户</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/login_css.css') }}">
+</head>
+<body>
+ Create a new user account here<br>
+ <div class="login_div">
+ <form method="post">{#表单的第一种实现方式，post表示用户将资源发到服务器的请求#}
+     <label>用户名：</label><input type="text" name="username"><br>{# 输入的参数名为username，类型为text #}
+     <label>密码：</label><input type="password" name="password"><br>
+     <label>确认密码：</label><input type="password" name="password2"><br>
+     <input type="submit" value="提交"><br>
+     <div style="color: cyan">
+     {% for massage in get_flashed_messages() %}
+         {{ massage }}
+     {% endfor %}
+     </div>
+ </form>
+ </div>
+ <a href="{{ url_for("info")}}">返回数据库界面</a>
+</body>
+</html>

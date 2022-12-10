@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库信息界面</title>
+</head>
+<body>
+ 专家信息录入<br>
+ <form method="post">{#表单的第一种实现#}{# form是表单类标签 #}
+     <label>专家名：</label><input type="text" name="expname"><br>{# 此处是输入数据的变量类型和设定的变量名 #}
+     <label>专家职务：</label><input type="text" name="expstatus"><br>
+     <label>项目名称：</label><input type="text" name="expproj"><br>
+     <label>工作地址：</label><input type="text" name="expaddr"><br>
+     <input type="submit" value="确认提交"><br>
+ </form>
+ <hr>{#网页分隔#}
+ 提示：<br>
+ <div style="color: cyan">
+ {% for massage in get_flashed_messages() %}{# 逻辑处理模块 #}
+ {{ massage }}{# 动态参数模块 #}
+ {% endfor %}
+ </div>
+ <hr>
+  <a href="{{ url_for("user_create")}}">创建新用户</a>{# 点击此处便会转到user_create函数及其相关页面 #}
+ <hr>
+  <a href="{{ url_for("index")}}">重新登录</a>
+ <hr>
+ 专家信息汇总<br>
+ <ul>
+     {% for i in a1 %}
+     <li>{{ i.list_name }}<a href="{{ url_for("delete_exp", rt8_nameid=i.list_name)}}">删除</a></li>{#姓名栏#}
+     <ul>
+         {% for j in i.info_ref %}{# 使用引用进入table2，在table2里遍历 #}
+             <li>{{j}} <a href="{{ url_for("delete_info", rt7_id=j.info_id)}}">删除</a> </li>{# href指向传参的目标，是一个超链接，<a>添加链接名，作用为删除 #}
+             <li>{{ j.info_item }}</li>
+             <li>{{ j.info_status }}</li>
+             <li>{{ j.info_address }}</li>
+         {% else %}{# 遍历不到任何数据时，进入else #}
+             <li style="color: red">无数据</li>
+         {% endfor %}
+     </ul>
+     {% endfor %}
+ </ul>
+</body>
+</html>
