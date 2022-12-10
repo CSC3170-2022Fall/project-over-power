@@ -33,7 +33,7 @@ Below are the significant concepts and corresponding settings:
 
 **User**: The one who receives the service from the applications. The registered user can review the information on dishes provided by different canteens. The users can also add comments, have his/hers average spending recorded, and grade the quality of the dishes he or her has ordered.
 
-**Senior user**: The administrator of a specific canteen. Information about his restaurant id should be included.
+**Senior User**: The administrator of a specific canteen. Information about his restaurant id should be included.
 
 **Restaurant**: provide various types of dishes. Each restaurant has its ID, name, location, providing dishes, and its average price for each person (or other analyzed information), and the average rate of one restaurant. 
 
