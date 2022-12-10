@@ -16,14 +16,14 @@ Our team consists of the following members, listed in the table below (the team 
 
 <!-- change the info below to be the real case -->
 
-| Student ID | Student Name    | GitHub Account (in Email)  |
-| ---------- | --------------- | -------------------------- |
-| 120090835  | 周欣东 🚩       | 1196698984@qq.com          |
-| 120090524  | 金彦呈           | 120090524@link.cuhk.edu.cn |
-| 120090643  | 陈启旭           | 120090643@link.cuhk.edu.cn |
-| 120040044  | 王钰涵           | camilla.y.wang@gmail.com   |
-| 120090509  | 金一鑫           | 120090509@link.cuhk.edu.cn |
-| 119010529  | Yelike W Lukito | yelike0701@gmail.com       |
+| Student ID | Student Name    | GitHub Account (in Email)  | GitHub Username                                |
+| ---------- | --------------- | -------------------------- | ---------------------------------------------- |
+| 120090835  | 周欣东 🚩       | 1196698984@qq.com          |                                                 |
+| 120090524  | 金彦呈           | 120090524@link.cuhk.edu.cn | [@120090524](https://www.github.com/120090524) |
+| 120090643  | 陈启旭           | 120090643@link.cuhk.edu.cn | [@bizu2001](https://www.github.com/bizu2001)   |
+| 120040044  | 王钰涵           | camilla.y.wang@gmail.com   | [@Camilla-W](https://www.github.com/Camilla)   |
+| 120090509  | 金一鑫           | 120090509@link.cuhk.edu.cn |                                                |
+| 119010529  | Yelike W Lukito | yelike0701@gmail.com       | [@YelikeWL](https://www.github.com/YelikeWL)   |
 
 ## Project Specification
 
@@ -31,18 +31,17 @@ Our team consists of the following members, listed in the table below (the team 
 This project aims at allowing registered users to record information and create content related to the canteens and foods provided by CUHKSZ. The website is a platform to find ratings and reviews of canteens and foods. 
 Below are the significant concepts and corresponding settings: 
 
-User: The one who receives the service from the applications. The registered user can review the information on dishes provided by different canteens. The users can also add comments, have his/hers average spending recorded, and grade the quality of the dishes he or her has ordered.
+**User**: The one who receives the service from the applications. The registered user can review the information on dishes provided by different canteens. The users can also add comments, have his/hers average spending recorded, and grade the quality of the dishes he or her has ordered.
 
-Senior user: 
-The administrator of a specific canteen. Information about his restaurant id should be included.
+**Senior User**: The administrator of a specific canteen. Information about his restaurant id should be included.
 
-Restaurant: provide various types of dishes. Each restaurant has its ID, name, location, providing dishes, and its average price for each person (or other analyzed information), and the average rate of one restaurant. 
+**Restaurant**: provide various types of dishes. Each restaurant has its ID, name, location, providing dishes, and its average price for each person (or other analyzed information), and the average rate of one restaurant. 
 
-Rate: records storing the users' rating on the hygiene and service of the restaurants.
+**Rate**: records storing the users' rating on the hygiene and service of the restaurants.
 
-Dish: every restaurant provides various types of dishes. Every dish has its corresponding restaurant (providing the dish), its name, its type(how it is cooked, for example, fried or boiled), price, taste( special features that might cause unpleasant feelings for certain groups of people, for example, spicy or not）and its ordered time. 
+**Dish**: every restaurant provides various types of dishes. Every dish has its corresponding restaurant (providing the dish), its name, its type(how it is cooked, for example, fried or boiled), price, taste( special features that might cause unpleasant feelings for certain groups of people, for example, spicy or not）and its ordered time. 
 
-Comments: records of comments added by the user for specific dishes. This should include the comment's actual content, the time the comment is added, the user’s ID of comment, and its corresponding dish’s restaurant ID and name.
+**Comments**: records of comments added by the user for specific dishes. This should include the comment's actual content, the time the comment is added, the user’s ID of comment, and its corresponding dish’s restaurant ID and name.
  
 And here is our ER diagram. 
 
@@ -64,7 +63,6 @@ After thorough discussion, our team made the choice and the specification inform
 - Our branch choice is: **Branch 1**
 - The difficulty level is: **Normal**
 
-As for Option 2, our topic background specification can be found in [background-specification.md](background-specification.md).
 
 ## Project Abstract
 Abstract
