@@ -19,11 +19,11 @@ Our team consists of the following members, listed in the table below (the team 
 | Student ID | Student Name    | GitHub Account (in Email)  | GitHub Username |
 | ---------- | --------------- | -------------------------- | --------------- |
 | 120090835  | 周欣东 🚩       | 1196698984@qq.com          |                  |
-| 120090524  | 金彦呈           | 120090524@link.cuhk.edu.cn | 120090524       |
-| 120090643  | 陈启旭           | 120090643@link.cuhk.edu.cn | bizu2001        |
-| 120040044  | 王钰涵           | camilla.y.wang@gmail.com   | Camilla-W       |
+| 120090524  | 金彦呈           | 120090524@link.cuhk.edu.cn | @120090524       |
+| 120090643  | 陈启旭           | 120090643@link.cuhk.edu.cn | @bizu2001        |
+| 120040044  | 王钰涵           | camilla.y.wang@gmail.com   | @Camilla-W       |
 | 120090509  | 金一鑫           | 120090509@link.cuhk.edu.cn |                 |
-| 119010529  | Yelike W Lukito | yelike0701@gmail.com       | YelikeWL        |
+| 119010529  | Yelike W Lukito | yelike0701@gmail.com       | @YelikeWL        |
 
 ## Project Specification
 
