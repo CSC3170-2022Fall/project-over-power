@@ -1,0 +1,12 @@
+header .title {
+    float:left;
+    margin: 2px 0 0 10px;
+    height: 10px;
+    text-decoration: none;
+}
+
+header .title img {
+    float:left;
+    margin-right: 27px;
+    height:63px;
+}
