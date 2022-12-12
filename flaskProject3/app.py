@@ -10,7 +10,7 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:password@127.0.0.1/flaskproj3'#进入mysql账号，进入本地回传IP，连接先前建立好的数据库”flaskproj3“
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:123456@127.0.0.1/flaskproj3'#进入mysql账号，进入本地回传IP，连接先前建立好的数据库”flaskproj3“
 app.secret_key='bilibili'#使用flash必须要设置密匙，内容随意
 
 
