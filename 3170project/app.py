@@ -33,6 +33,34 @@ class restaurants(db.Model):
     average_price_per_person = db.Column(db.Float,primary_key=True)
     rate = db.Column(db.Float,primary_key=True)
 
+@app.route('/', methods=['GET', 'POST'])
+def common_register():
+    if request.method=="POST":
+        username=request.form.get('username')
+        password=request.form.get('password')
+        check1=common_user.query.all()#read from common user
+        checka=0
+        checkb=0
+        for i in check1:
+            if i.common_name==username:#check whether the user exists
+                checka=1
+                if i.common_password==password:
+                    checkb=1
+                else:
+                    checkb=0
+            else:
+                checka=0
+            if checka==1:
+                break
+        if checka != 1:
+            flash(u'the account does not exist!')
+        elif checkb != 1:
+            flash(u"wrong password or user name!")
+        else:
+            return redirect(url_for('info'))
+    return render_template("login.html")
+
+
 
 
 
