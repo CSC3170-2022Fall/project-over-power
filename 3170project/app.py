@@ -11,17 +11,32 @@ class common_user(db.Model):#datapage model, inherited from db.Model
     #define the table name
     __tablename__="common_users"
     #define the content
-    user_id=db.Column(db.Integer,primary_key=True)
-    user_name=db.Column(db.String(32),unique=True,nullable=False)
-    user_password = db.Column(db.String(255),nullable=False)
+    common_id=db.Column(db.Integer,primary_key=True)
+    common_name=db.Column(db.String(32),unique=True,nullable=False)
+    common_password = db.Column(db.String(255),nullable=False)
     # user_type = db.Column(db.String(10))
 
-# class senior_user(db.Model):
-#      __tablename__="senior_users"
-#     #define the content
-#     user_id=db.Column(db.Integer,primary_key=True)
-#     user_name=db.Column(db.String(32),unique=True,nullable=False)
-#     user_password = db.Column(db.String(255),nullable=False)
+
+class senior_user(db.Model):#senior user is in charge of the restaurant
+    __tablename__="senior_user"
+    senior_id=db.Column(db.Integer,primary_key=True)
+    common_name=db.Column(db.String(32),unique=True,nullable=False)
+    res_id=db.Column(db.Integer, db.ForeignKey('namelist.list_id'))
+
+class restaurants(db.Model):
+    __tablename__="restaurants"
+    restaurant_id = db.Column(db.Integer,primary_key=True)
+    restaurant_name = db.Column(db.String(32),unique=True,nullable=False)
+    location = db.Column(db.String(64),unique=True,nullable=False)
+    open_hour = db.Column(db.String(64),unique=True,nullable=False)
+    meal_type = db.Column(db.String(64),unique=True,nullable=False)
+    average_price_per_person = db.Column(db.Float,primary_key=True)
+    rate = db.Column(db.Float,primary_key=True)
+
+
+
+
+
 
 
 
