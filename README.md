@@ -22,7 +22,7 @@ Our team consists of the following members, listed in the table below (the team 
 | 120090524  | 金彦呈           | 120090524@link.cuhk.edu.cn | [@120090524](https://www.github.com/120090524) |
 | 120090643  | 陈启旭           | 120090643@link.cuhk.edu.cn | [@bizu2001](https://www.github.com/bizu2001)   |
 | 120040044  | 王钰涵           | camilla.y.wang@gmail.com   | [@Camilla-W](https://www.github.com/Camilla)   |
-| 120090509  | 金一鑫           | 120090509@link.cuhk.edu.cn |                                                |
+| 120090509  | 金一鑫           | 120090509@link.cuhk.edu.cn |[@huhuhahamaster](https://www.github.com/huhuhahamaster)|
 | 119010529  | Yelike W Lukito | yelike0701@gmail.com       | [@YelikeWL](https://www.github.com/YelikeWL)   |
 
 ## Project Specification
