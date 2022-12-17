@@ -49,7 +49,7 @@ class rate(db.Model):
     service_rate = db.Column(db.Float(1), nullable=True)
     taste_rate = db.Column(db.Float(1), nullable=True)
     price_rate = db.Column(db.Float(1), nullable=True)
-    comprehensive_rate = db.Column(db.Float(1), nullable=True)
+    overall_rate = db.Column(db.Float(1), nullable=True)
 
 class comment(db.Model):
     __tablename__ = "comment"
