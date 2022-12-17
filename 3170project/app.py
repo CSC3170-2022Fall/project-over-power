@@ -37,10 +37,24 @@ class dishes(db.Model):
     __tablename__="dishes"
     list_id = db.Column(db.Integer, primary_key=True)
     list_name = db.Column(db.String(40), primary_key=True)
-    info_type = db.Column(db.String(16))
-    info_price = db.Column(db.Integer)
-    info_taste = db.Column(db.String(16))
-    info_times = db.Column(db.Integer)
+    info_type = db.Column(db.String(16),unique=False,nullable=False)
+    info_price = db.Column(db.Integer,unique=False,nullable=False)
+    info_taste = db.Column(db.String(16),unique=False,nullable=False)
+    info_times = db.Column(db.Integer,unique=False,nullable=False)
+
+class rate(db.Model):
+    __tablename__="rate"
+    restaurant_id = db.Column(db.Integer, primary_key=True)
+    hygiene_rate = db.Column(db.Float(1), nullable=True)
+    service_rate = db.Column(db.Float(1), nullable=True)
+
+class comment(db.Model):
+    __tablename__ = "comment"
+    restaurant_id = db.Column(db.Integer, primary_key=True)
+    dish_name = db.Column(db.String(32), primary_key=True)
+    common_id = db.Column(db.Integer, primary_key=True)
+    Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
+    content = db.Column(db.String(500))#free edit
 
 #needs further adjustment:other link for senior user to login
 @app.route('/', methods=['GET', 'POST'])
