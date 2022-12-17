@@ -56,6 +56,13 @@ class comment(db.Model):
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
 
+class comment(db.Model):
+    __tablename__ = "comment"
+    restaurant_id = db.Column(db.Integer, primary_key=True)
+    dish_name = db.Column(db.String(32), primary_key=True)
+    common_id = db.Column(db.Integer, primary_key=True)
+    Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
+    content = db.Column(db.String(500))#free edit
 #needs further adjustment:other link for senior user to login
 @app.route('/', methods=['GET', 'POST'])
 def common_register():
@@ -83,7 +90,6 @@ def common_register():
         else:
             return redirect(url_for('info'))
     return render_template("login.html")
-
 
 @app.route('/senior_register', methods=['GET', 'POST'])
 def senior_register():
@@ -113,14 +119,3 @@ def senior_register():
             return redirect(url_for('info'))
     #this line may be modified to return render_template("senior_login.html")
     return render_template("login.html")
-
-
-
-
-
-
-
-
-
-
-
