@@ -45,8 +45,11 @@ class dishes(db.Model):
 class rate(db.Model):
     __tablename__="rate"
     restaurant_id = db.Column(db.Integer, primary_key=True)
-    hygiene_rate = db.Column(db.Float(1), nullable=True)
+    environment_rate = db.Column(db.Float(1), nullable=True)
     service_rate = db.Column(db.Float(1), nullable=True)
+    taste_rate = db.Column(db.Float(1), nullable=True)
+    price_rate = db.Column(db.Float(1), nullable=True)
+    comprehensive_rate = db.Column(db.Float(1), nullable=True)
 
 class comment(db.Model):
     __tablename__ = "comment"
