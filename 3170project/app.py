@@ -128,7 +128,7 @@ def user_create():
         else:
             if len(username)!=0:
                 if pw==pw2 and len(pw)!=0:
-                    user=table1(user_name=username, user_password=pw)
+                    user=common_user(user_name=username, user_password=pw)
                     db.session.add_all([user])
                     db.session.commit()
                     flash('创建用户成功！')
