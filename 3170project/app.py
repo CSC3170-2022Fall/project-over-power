@@ -116,13 +116,13 @@ def senior_register():
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
-@app.route('/create account', methods=['GET', 'POST'])//*zzz,12.18 23:00*//
+@app.route('/create account', methods=['GET', 'POST'])//*zzz 12.18 23:00*//
 def user_create():
     if request.method=="POST":
         username=request.form.get('username')
         pw=request.form.get('password')
         pw2=request.form.get('password2')
-        check7=table1.query.filter_by(user_name=username).first()#筛选filter_by，检测table1中是否已存在该用户名
+        check7=common_user.query.filter_by(user_name=username).first()#筛选filter_by，检测table1中是否已存在该用户名
         if check7:
             flash('用户已存在')
         else:
