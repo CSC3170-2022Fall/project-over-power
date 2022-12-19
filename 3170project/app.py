@@ -124,19 +124,25 @@ def user_create():
         pw2=request.form.get('password2')
         check7=common_user.query.filter_by(user_name=username).first()#筛选filter_by，检测table1中是否已存在该用户名
         if check7:
-            flash('用户已存在')
+            flash('User already exist!')
         else:
             if len(username)!=0:
                 if pw==pw2 and len(pw)!=0:
                     user=common_user(user_name=username, user_password=pw)
                     db.session.add_all([user])
                     db.session.commit()
-                    flash('创建用户成功！')
+                    flash('Creating an account succeeded, you can log in with this account now!')
                 else:
-                    flash('密码确认失败！')
+                    flash('Password confirmation failed!')
             else:
-                flash('请输入用户名')
+                flash('Please enter the user name')
     return render_template('create_account.html')
+
+@app.route('/info', methods=['GET', 'POST'])//*zzz 12.19 00:05*//
+def main():#餐厅系统主界面（餐厅列表页）
+    a1=restaurants.query.all()
+
+    return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
 
 
 if __name__ == '__main__':
