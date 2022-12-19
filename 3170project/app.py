@@ -60,7 +60,7 @@ class comment(db.Model):
     content = db.Column(db.String(500))#free edit
 
 #needs further adjustment:other link for senior user to login
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/common_register', methods=['GET', 'POST'])
 def common_register():
     if request.method=="POST":
         username=request.form.get('username')
@@ -116,7 +116,7 @@ def senior_register():
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
-@app.route('/create_account', methods=['GET', 'POST'])
+@app.route('/user_create', methods=['GET', 'POST'])
 def user_create():
     if request.method=="POST":
         username=request.form.get('username')
@@ -138,7 +138,7 @@ def user_create():
                 flash('Please enter the user name')
     return render_template('create_account.html')
 
-@app.route('/info', methods=['GET', 'POST'])
+@app.route('/main', methods=['GET', 'POST'])
 def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
     return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
