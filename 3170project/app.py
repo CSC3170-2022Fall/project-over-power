@@ -122,13 +122,13 @@ def create_account():
         username=request.form.get('username')
         pw=request.form.get('password')
         pw2=request.form.get('password2')
-        check7=common_user.query.filter_by(user_name=username).first()#筛选filter_by，检测table1中是否已存在该用户名
+        check7=common_user.query.filter_by(common_name=username).first()#筛选filter_by，检测table1中是否已存在该用户名
         if check7:
             flash('User already exist!')
         else:
             if len(username)!=0:
                 if pw==pw2 and len(pw)!=0:
-                    user=common_user(user_name=username, user_password=pw)
+                    user=common_user(common_name=username, common_password=pw)
                     db.session.add_all([user])
                     db.session.commit()
                     flash('Creating an account succeeded, you can log in with this account now!')
