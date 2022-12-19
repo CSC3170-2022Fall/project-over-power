@@ -84,7 +84,7 @@ def common_register():
         elif checkb != 1:
             flash(u"wrong password or user name!")
         else:
-            return redirect(url_for('info'))
+            return redirect(url_for('main'))
     return render_template("normal_login.html")
 
 @app.route('/senior_register', methods=['GET', 'POST'])
@@ -112,7 +112,7 @@ def senior_register():
             flash(u"wrong password or user name!")
         else:
             #needs modification: leads to the users' corresponding restaurant
-            return redirect(url_for('info'))
+            return redirect(url_for('main'))
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
