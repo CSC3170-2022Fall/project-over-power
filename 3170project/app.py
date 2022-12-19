@@ -60,7 +60,7 @@ class comment(db.Model):
     content = db.Column(db.String(500))#free edit
 
 #needs further adjustment:other link for senior user to login
-@app.route('/common_register', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def common_register():
     if request.method=="POST":
         username=request.form.get('username')
