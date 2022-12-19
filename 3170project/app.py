@@ -116,7 +116,7 @@ def senior_register():
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
-@app.route('/create account', methods=['GET', 'POST'])//*zzz 12.18 23:00*//
+@app.route('/create account', methods=['GET', 'POST'])
 def user_create():
     if request.method=="POST":
         username=request.form.get('username')
