@@ -29,7 +29,8 @@
             </form>
 
             <div class="link_text">
-                <a href="/templates/senior_login.html" style="text-decoration:none">I am a senior user</a>
+                {#<a href="/templates/senior_login.html" style="text-decoration:none">I am a senior user</a>#}
+                <a href="{{ url_for("senior_register")}}">I am a senior user</a>
             </div>
             <div class="link_text">
                 <a href="/templates/create_account.html" style="text-decoration:none">Create an account</a>
