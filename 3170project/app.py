@@ -21,7 +21,7 @@ class senior_user(db.Model):#senior user is in charge of the restaurant
     __tablename__="senior_user"
     senior_id=db.Column(db.Integer,primary_key=True)
     senior_name=db.Column(db.String(32),unique=True,nullable=False)
-    res_id=db.Column(db.Integer, db.ForeignKey('namelist.list_id'))
+    res_id=db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'))
 
 class restaurants(db.Model):
     __tablename__="restaurants"
@@ -143,7 +143,13 @@ def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
     return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
 
-
+db.drop_all()
+db.create_all()
+#为table加入数据
+user1=common_user(common_name='zzz', common_password='12345')
+user2=common_user(common_name='qqq', common_password='16949')
+db.session.add_all([user1, user2])
+db.session.commit()
 
 if __name__ == '__main__':
     app.run()
