@@ -141,8 +141,8 @@ def user_create():
 @app.route('/info', methods=['GET', 'POST'])
 def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
-
     return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
+
 
 
 if __name__ == '__main__':
