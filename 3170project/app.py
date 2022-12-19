@@ -138,7 +138,7 @@ def user_create():
                 flash('Please enter the user name')
     return render_template('create_account.html')
 
-@app.route('/info', methods=['GET', 'POST'])//*zzz 12.19 00:05*//
+@app.route('/info', methods=['GET', 'POST'])
 def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
 
