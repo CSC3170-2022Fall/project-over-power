@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, url_for, redirect#requ
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
 
+
 app = Flask(__name__)
 db = SQLAlchemy(app)
 app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:password@127.0.0.1/flaskproj3'
@@ -58,6 +59,33 @@ class comment(db.Model):
     common_id = db.Column(db.Integer, primary_key=True)
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
+class preference(db.Model):
+    _tablename_="preference"
+    common_id=db.Column(db.Integer,primary_key=True)
+    A_dish_type=db.Column(db.Integer, nullable=True)
+    B_dish_type = db.Column(db.Integer, nullable=True)
+    C_dish_type = db.Column(db.Integer, nullable=True)
+    D_dish_type = db.Column(db.Integer, nullable=True)
+    M_dish_taste = db.Column(db.Integer, nullable=True)
+    N_dish_taste = db.Column(db.Integer, nullable=True)
+    X_dish_taste = db.Column(db.Integer, nullable=True)
+    Y_dish_taste = db.Column(db.Integer, nullable=True)
+    Z_dish_taste = db.Column(db.Integer, nullable=True)
+
+@app.route("/preference/",methods=["GET","POST"])
+def preference_record():
+    if request.method=="POST":
+        user_id = common_("user_id")#获取用户id
+        A_dish_type=request.form.get("A_dish_type")#获取用户dish type
+        B_dish_type = request.form.get("B_dish_type")
+        C_dish_type = request.form.get("C_dish_type")
+        D_dish_type = request.form.get("D_dish_type")
+        M_dish_taste = request.form.get("M_dish_type")#获取用户taste
+        N_dish_taste = request.form.get("N_dish_type")
+        X_dish_taste = request.form.get("X_dish_type")
+        Y_dish_taste = request.form.get("Y_dish_type")
+        Z_dish_taste = request.form.get("Z_dish_type")
+
 
 #needs further adjustment:other link for senior user to login
 @app.route('/', methods=['GET', 'POST'])
@@ -142,7 +170,13 @@ def create_account():
 def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
     return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
-
+    
+def search():
+    content = request.form.get('content') 
+    if content is None:
+        content = " "
+    dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
+    return render_template('search.html',quotes = dish_name)
 db.drop_all()
 db.create_all()
 #为table加入数据
