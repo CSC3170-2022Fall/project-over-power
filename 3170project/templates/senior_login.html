@@ -27,7 +27,11 @@
                 </div>
 
             </form>
-
+            <div style="color: red">
+                 {% for massage in get_flashed_messages() %}
+                     {{ massage }}
+                 {% endfor %}
+            </div>
             <div class="link_text">
                 {#<a href="/templates/normal_login.html" style="text-decoration:none">I am a normal user</a>#}
                 <a href="{{ url_for("common_register")}}">I am a normal user</a>
