@@ -77,6 +77,19 @@ class login_user(db.Model):#record the id of the user
     _tablename_="login_user"
     info=db.Column(db.Integer,primary_key=True)
     
+class preference(db.Model):
+    _tablename_="preference"
+    common_id=db.Column(db.Integer,primary_key=True)
+    A_type=db.Column(db.Integer, nullable=True)
+    B_type = db.Column(db.Integer, nullable=True)
+    C_type = db.Column(db.Integer, nullable=True)
+    D_type = db.Column(db.Integer, nullable=True)
+    M_taste = db.Column(db.Integer, nullable=True)
+    N_taste = db.Column(db.Integer, nullable=True)
+    X_taste = db.Column(db.Integer, nullable=True)
+    Y_taste = db.Column(db.Integer, nullable=True)
+    Z_taste = db.Column(db.Integer, nullable=True)    
+    
 # class preference(db.Model):
 #     _tablename_="preference"
 #     common_id=db.Column(db.Integer,primary_key=True)
@@ -89,38 +102,29 @@ class login_user(db.Model):#record the id of the user
 #     X_dish_taste = db.Column(db.Integer, nullable=True)
 #     Y_dish_taste = db.Column(db.Integer, nullable=True)
 #     Z_dish_taste = db.Column(db.Integer, nullable=True)
-
-class preference(db.Model):
-    _tablename_="preference"
-    common_id=db.Column(db.Integer,primary_key=True)
-    A_type=db.Column(db.Integer, nullable=True)
-    B_type = db.Column(db.Integer, nullable=True)
-    C_type = db.Column(db.Integer, nullable=True)
-    D_type = db.Column(db.Integer, nullable=True)
-    M_taste = db.Column(db.Integer, nullable=True)
-    N_taste = db.Column(db.Integer, nullable=True)
-    X_taste = db.Column(db.Integer, nullable=True)
-    Y_taste = db.Column(db.Integer, nullable=True)
-    Z_taste = db.Column(db.Integer, nullable=True)
     
 @app.route("/preference_record",methods=["GET","POST"])
 def preference_record():
     if request.method=="POST":
-        user_id = db.session.execute("select info from login_user")#get user'sid
-        A_dish_type = request.form.get("A_dish_type")#get user's dish type
-        B_dish_type = request.form.get("B_dish_type")
-        C_dish_type = request.form.get("C_dish_type")
-        D_dish_type = request.form.get("D_dish_type")
-        M_dish_taste = request.form.get("M_dish_type")#get user's taste
-        N_dish_taste = request.form.get("N_dish_type")
-        X_dish_taste = request.form.get("X_dish_type")
-        Y_dish_taste = request.form.get("Y_dish_type")
-        Z_dish_taste = request.form.get("Z_dish_type")
-        www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
-        db.session.add_all([www])
-        db.session.commit()
-        return redirect(url_for("main"))
-    # return redirect(url_for("preference"))
+        temp=request.values.get("button1")
+        temp2=request.values.get("button2")
+        if (temp2=="Back"):
+            return redirect(url_for("common_register")) 
+        else:
+            user_id = db.session.execute("select info from login_user")#get user'sid
+            A_dish_type = request.form.get("A_dish_type")#get user's dish type
+            B_dish_type = request.form.get("B_dish_type")
+            C_dish_type = request.form.get("C_dish_type")
+            D_dish_type = request.form.get("D_dish_type")
+            M_dish_taste = request.form.get("M_dish_type")#get user's taste
+            N_dish_taste = request.form.get("N_dish_type")
+            X_dish_taste = request.form.get("X_dish_type")
+            Y_dish_taste = request.form.get("Y_dish_type")
+            Z_dish_taste = request.form.get("Z_dish_type")
+            www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
+            db.session.add_all([www])
+            db.session.commit()
+            return redirect(url_for("main"))
     return render_template("preference.html")
 
 
@@ -141,23 +145,28 @@ def preference_record():
 @app.route("/edit_preference_record",methods=["GET","POST"])
 def edit_preference_record():
     if request.method=="POST":
-        user_id = db.session.execute("select info from login_user")#get user's id
-        aim_info = preference.query.get(user_id)#delete the initial information of user's preference
-        db.session.delete(aim_info)
-        db.session.commit()
-        A_dish_type = request.form.get("A_dish_type")#获取用户dish type
-        B_dish_type = request.form.get("B_dish_type")
-        C_dish_type = request.form.get("C_dish_type")
-        D_dish_type = request.form.get("D_dish_type")
-        M_dish_taste = request.form.get("M_dish_type")#获取用户taste
-        N_dish_taste = request.form.get("N_dish_type")
-        X_dish_taste = request.form.get("X_dish_type")
-        Y_dish_taste = request.form.get("Y_dish_type")
-        Z_dish_taste = request.form.get("Z_dish_type")
-        www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
-        db.session.add_all([www])#re-add the info
-        db.session.commit()
-    return redirect(url_for("preference"))
+        temp=request.values.get("button1")
+        temp2=request.values.get("button2")
+        if (temp2=="Back"):
+            return redirect(url_for("main")) 
+        else:
+            user_id = db.session.execute("select info from login_user")#get user'sid
+            check=preference.query.get(user_id)
+            db.session.delete(check)
+            A_dish_type = request.form.get("A_dish_type")#get user's dish type
+            B_dish_type = request.form.get("B_dish_type")
+            C_dish_type = request.form.get("C_dish_type")
+            D_dish_type = request.form.get("D_dish_type")
+            M_dish_taste = request.form.get("M_dish_type")#get user's taste
+            N_dish_taste = request.form.get("N_dish_type")
+            X_dish_taste = request.form.get("X_dish_type")
+            Y_dish_taste = request.form.get("Y_dish_type")
+            Z_dish_taste = request.form.get("Z_dish_type")
+            www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
+            db.session.add_all([www])
+            db.session.commit()
+            return redirect(url_for("main"))
+    return render_template("edit_preference.html")
 
 #needs further adjustment:other link for senior user to login
 @app.route('/', methods=['GET', 'POST'])
