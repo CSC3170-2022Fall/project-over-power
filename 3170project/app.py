@@ -73,6 +73,10 @@ class comment(db.Model):
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
+class login_user(db.Model):#record the id of the user
+    _tablename_="login_user"
+    info=db.Column(db.Integer,primary_key=True)
+    
 # class preference(db.Model):
 #     _tablename_="preference"
 #     common_id=db.Column(db.Integer,primary_key=True)
@@ -99,10 +103,6 @@ class preference(db.Model):
     Y_taste = db.Column(db.Integer, nullable=True)
     Z_taste = db.Column(db.Integer, nullable=True)
     
-class login_user(db.Model):#record the id of the user
-    _tablename_="login_user"
-    info=db.Column(db.Integer,primary_key=True)
-
 @app.route("/preference_record",methods=["GET","POST"])
 def preference_record():
     if request.method=="POST":
