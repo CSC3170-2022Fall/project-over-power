@@ -55,7 +55,7 @@ class dishes(db.Model):
     info_taste_Y = db.Column(db.Integer, unique=False, nullable=False)
     info_taste_Z = db.Column(db.Integer, unique=False, nullable=False)
     info_times = db.Column(db.Integer, unique=False, nullable=False)
-    restaurant_id = db.Column(db.Integer,db.Foreignkey('restaurants.restaurant_id'))
+    restaurant_id = db.Column(db.Integer,db.ForeignKey('restaurants.restaurant_id'))
 
 class rate(db.Model):
     __tablename__="rate"
@@ -69,7 +69,7 @@ class rate(db.Model):
 class comment(db.Model):
     __tablename__ = "comment"
     common_id = db.Column(db.Integer, primary_key=True)
-    dish_id = db.Column(db.String(32),db.Foreignkey(dishes.list_id))
+    dish_id = db.Column(db.String(32),db.ForeignKey(dishes.list_id))
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
