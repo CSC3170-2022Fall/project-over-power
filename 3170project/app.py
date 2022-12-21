@@ -119,6 +119,7 @@ def preference_record():
         www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
         db.session.add_all([www])
         db.session.commit()
+        return redirect(url_for("main"))
     # return redirect(url_for("preference"))
     return render_template("preference.html")
 
@@ -239,7 +240,8 @@ def create_account():
                     db.session.add_all([user])
                     db.session.commit()
                     flash('Creating an account succeeded, you can log in with this account now!')
-                    return render_template('preference.html')
+                    # return render_template('preference.html')
+                    return redirect(url_for("preference_record"))
                 else:
                     flash('Password confirmation failed!')
             else:
