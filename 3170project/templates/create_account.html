@@ -28,6 +28,11 @@
                 <div class="login_div_sub">
                     <input type="submit" value="Sign up and Sign in">
                 </div>
+                <div style="color: cyan">
+                     {% for massage in get_flashed_messages() %}
+                         {{ massage }}
+                     {% endfor %}
+                </div>
 
             </form>
 
