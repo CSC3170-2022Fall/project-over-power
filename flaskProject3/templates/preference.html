@@ -5,24 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .submit {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    div{
+        font-size: large;
+    }
+    p{
+        font-family: "宋体","仿宋",sans-serif;/*若电脑不支持宋体，则用仿宋，若不支持仿宋，则在sans-serif中找*/
+            font-weight: bold;
+            font-size: 200%;
+            font-style: italic;
+            color: red;/*字体颜色*/
+            opacity: 0.5;/*字体的透明度：1：默认样式，0：全透明*/
+    }
+    
+    </style>
 </head>
 <body>
-    <p>Meal style
-        <input type="checkbox" value="appetizer" name="Meal_appetizer">appetizer
-        <input type="checkbox" value="soup" name="Meal_soup">soup
-        <input type="checkbox" value="main course" name="Meal_course">main course
-        <input type="checkbox" value="dessert" name="Meal_dessert">dessert
+    <div>
+    <p class="meal">Meal style: 
+        <input type="checkbox" value="1" name="Meal_appetizer">appetizer
+        <input type="checkbox" value="1" name="Meal_soup">soup
+        <input type="checkbox" value="1" name="Meal_course">main course
+        <input type="checkbox" value="1" name="Meal_dessert">dessert
     </p>
 
-    <p>Taste
+    <p class="taste">Taste    : 
         <input type="checkbox" value="1" name="taste_sweet">sweet
         <input type="checkbox" value="1" name="taste_sour">sour
         <input type="checkbox" value="1" name="taste_spicy">spicy
         <input type="checkbox" value="1" name="taste_salty">salty
         <input type="checkbox" value="1" name="taste_umami">umami
     </p>
-    <button onclick="window.open('http://www.baidu.com')">
-
+    </div>
+    <button class = "submit" onclick="window.open('flaskProject3\templates\Restaurants.html')">
+        submit
     </button>
     
 
@@ -32,9 +58,9 @@
 <!-- 
 @app.rout("/test")
 def test():
-	taste_list = request.from.getlist("taste") # hobby_list = ["reading","other","dancing"]
+	taste = request.from.get("taste_sweet") 
 
 @app.rout("/test")
 def test():
-	meal_list = request.from.getlist("Meal") # hobby_list = ["reading","other","dancing"]
+	meal_list = request.from.get("Meal_appetizer") 
 -->
