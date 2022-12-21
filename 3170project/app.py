@@ -45,7 +45,7 @@ class restaurants(db.Model):
 class dishes(db.Model):
     __tablename__ = "dishes"
     list_id = db.Column(db.Integer, primary_key=True)
-    list_name = db.Column(db.String(40), primary_key=True)
+    list_name = db.Column(db.String(40),unique=False, nullable=False)
     info_type = db.Column(db.String(16), unique=False, nullable=False)
     info_price = db.Column(db.Integer, unique=False, nullable=False)
     info_taste_M = db.Column(db.Integer, unique=False, nullable=False)
@@ -54,6 +54,7 @@ class dishes(db.Model):
     info_taste_Y = db.Column(db.Integer, unique=False, nullable=False)
     info_taste_Z = db.Column(db.Integer, unique=False, nullable=False)
     info_times = db.Column(db.Integer, unique=False, nullable=False)
+    restaurant_id = db.Column(db.Integer,db.Foreignkey('restaurants.restaurant_id'))
 
 class rate(db.Model):
     __tablename__="rate"
@@ -66,9 +67,8 @@ class rate(db.Model):
 
 class comment(db.Model):
     __tablename__ = "comment"
-    restaurant_id = db.Column(db.Integer, primary_key=True)
-    dish_name = db.Column(db.String(32), primary_key=True)
     common_id = db.Column(db.Integer, primary_key=True)
+    dish_id = db.Column(db.String(32),db.Foreignkey(dishes.list_id))
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
 # class preference(db.Model):
@@ -130,6 +130,7 @@ class login_user(db.Model):#record the id of the user
 #         X_dish_taste = request.form.get("X_dish_type")
 #         Y_dish_taste = request.form.get("Y_dish_type")
 #         Z_dish_taste = request.form.get("Z_dish_type")
+
 @app.route("/edit_preference_record",methods=["GET","POST"])
 def edit_preference_record():
     if request.method=="POST":
