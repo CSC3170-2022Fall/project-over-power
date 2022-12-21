@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Good Hunter Menu</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">
+    </head>
+
+    <body>       
+        
+        <ul>
+            <li><p class="top">Home</a></li>
+           
+        </ul>
+
+
+        <div class="left">
+            <div class="resta_div">
+                <div class="resta_div_sub">
+                    <p class="title_text">Good Hunter</p>
+                </div>
+                <div class="resta_div_sub">
+                    <img src="/static/images/R1.jpg" width="200" height="200" />
+                    <span class="description">
+                        <p class="dp">It was always filled with mouthwatering aroma and a great atmosphere. If you can't get your reservations, at least orderingg take-out is still an option.</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="resta_div">
+                <p class="title_text">Rating</p>
+
+                <div class="rate" id="rating_e">
+                    <input type="radio" name="rating_e" value="5" id="1_5"><label for="1_5">☆</label>
+                    <input type="radio" name="rating_e" value="4" id="1_4"><label for="1_4">☆</label>
+                    <input type="radio" name="rating_e" value="3" id="1_3"><label for="1_3">☆</label>
+                    <input type="radio" name="rating_e" value="2" id="1_2"><label for="1_2">☆</label>
+                    <input type="radio" name="rating_e" value="1" id="1_1"><label for="1_1">☆</label> 
+                    <p class="rate_text">Environment</p>
+                </div>
+    
+                <div class="rate" id="rating_s">
+                    <input type="radio" name="rating_s" value="5" id="2_5"><label for="2_5">☆</label>
+                    <input type="radio" name="rating_s" value="4" id="2_4"><label for="2_4">☆</label>
+                    <input type="radio" name="rating_s" value="3" id="2_3"><label for="2_3">☆</label>
+                    <input type="radio" name="rating_s" value="2" id="2_2"><label for="2_2">☆</label>
+                    <input type="radio" name="rating_s" value="1" id="2_1"><label for="2_1">☆</label> 
+                    <p class="rate_text">Service</p>
+                </div>
+    
+                <div class="rate" id="rating_p">
+                    <input type="radio" name="rating_p" value="5" id="3_5"><label for="3_5">☆</label>
+                    <input type="radio" name="rating_p" value="4" id="3_4"><label for="3_4">☆</label>
+                    <input type="radio" name="rating_p" value="3" id="3_3"><label for="3_3">☆</label>
+                    <input type="radio" name="rating_p" value="2" id="3_2"><label for="3_2">☆</label>
+                    <input type="radio" name="rating_p" value="1" id="3_1"><label for="3_1">☆</label> 
+                    <p class="rate_text">Price</p>
+                </div>
+    
+                <div class="rate" id="rating_e">
+                    <input type="radio" name="rating_t" value="5" id="4_5"><label for="4_5">☆</label>
+                    <input type="radio" name="rating_t" value="4" id="4_4"><label for="4_4">☆</label>
+                    <input type="radio" name="rating_t" value="3" id="4_3"><label for="4_3">☆</label>
+                    <input type="radio" name="rating_t" value="2" id="4_2"><label for="4_2">☆</label>
+                    <input type="radio" name="rating_t" value="1" id="4_1"><label for="4_1">☆</label> 
+                    <p class="rate_text">Taste</p>
+                </div>
+            </div>
+            
+
+
+        </div>
+
+        <div class="right">
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Cream Stew</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A1.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">A meat and vegetable stew. These warm, buttery ingredients are so good that you almost want to dive into the cream stew and cuddle up with them.</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Fruit of the Festival</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A2.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">The sublime enjoyment brought by the refreshing taste is almost like a sweet, illusory dream. One small sip transports you onto a white, sandy beach, where the sparkling seawater beats with the rhythm to which the hymn of your leisurely vacation shall be composed.</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Goulash</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A3.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">A steaming-hot stew. Just one spoonful sends a down-to-earth sense of satisfaction welling up from the depth of your heart. The meat's flavor grows with every chew, bring limitless strength to the eater even in the coldest wintry wastes.</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Moon Pie</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A4.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">A traditional staple. As you cut a slice off this small meat pie, the aromas of butter and meat assault your senses simultaneously. The rustic, sweet mouthfeel reminds you of the sights and sounds of harvest festivals, bringing a smile unbidden to your face.</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Mushroom Pizza</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A5.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">A pizza covered in cheese and mushrooms. It's a party in your month and the cheese and mushrooms invited all their delicious friends.</p>
+                        </p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Sticky Honey Roast</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A6.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">A meat dish in a sweet honey sauce. The warm honey draws out the flavor of the meat, creating a flavor explosion akin to bathing in the warm summer sun.</p>
+                        </p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Sunshine Sprat</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A7.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">Gently fried fish dish. The fish melts in your mouth, melding the flavors of land and sea together as it does, making for an unforgettable experience. Little wonder, then, that such as simply-made dish can make it into restaurants of great class.</p>
+                        </p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="dish_div">
+                <div class="dish_div_sub">
+                    <p class="title_text">Sweet Madame</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img src="/static/images/A8.png" width="150" height="150" />
+                    <span class="description">
+                        <p class="dp">Honey-roasted fowl. Tender and sweet, the meat has perfectly fused with honey, ensuring the only thing left of the dish will be the cleanly-picked bones.</p>
+                        </p>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

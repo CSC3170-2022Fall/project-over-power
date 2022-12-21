@@ -44,6 +44,7 @@ Below are the significant concepts and corresponding settings:
 **Comments**: records of comments added by the user for specific dishes. This should include the comment's actual content, the time the comment is added, the user’s ID of comment, and its corresponding dish’s restaurant ID and name.
  
 And here is our ER diagram. 
+![image](https://user-images.githubusercontent.com/118099930/208231245-96c3f7ec-3ee0-4c27-87a6-89e2e822c142.png)
 
 The major functionalities of this platform:
 
