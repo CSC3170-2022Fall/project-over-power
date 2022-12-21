@@ -42,6 +42,7 @@ class restaurants(db.Model):
 #     info_price = db.Column(db.Integer,unique=False,nullable=False)
 #     info_taste = db.Column(db.String(16),unique=False,nullable=False)
 #     info_times = db.Column(db.Integer,unique=False,nullable=False)
+
 class dishes(db.Model):
     __tablename__ = "dishes"
     list_id = db.Column(db.Integer, primary_key=True)
@@ -71,6 +72,7 @@ class comment(db.Model):
     dish_id = db.Column(db.String(32),db.Foreignkey(dishes.list_id))
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
+    
 # class preference(db.Model):
 #     _tablename_="preference"
 #     common_id=db.Column(db.Integer,primary_key=True)
@@ -83,6 +85,7 @@ class comment(db.Model):
 #     X_dish_taste = db.Column(db.Integer, nullable=True)
 #     Y_dish_taste = db.Column(db.Integer, nullable=True)
 #     Z_dish_taste = db.Column(db.Integer, nullable=True)
+
 class preference(db.Model):
     _tablename_="preference"
     common_id=db.Column(db.Integer,primary_key=True)
@@ -95,6 +98,10 @@ class preference(db.Model):
     X_taste = db.Column(db.Integer, nullable=True)
     Y_taste = db.Column(db.Integer, nullable=True)
     Z_taste = db.Column(db.Integer, nullable=True)
+    
+class login_user(db.Model):#record the id of the user
+    _tablename_="login_user"
+    info=db.Column(db.Integer,primary_key=True)
 
 @app.route("/preference_record",methods=["GET","POST"])
 def preference_record():
@@ -113,9 +120,7 @@ def preference_record():
         db.session.add_all([www])
         db.session.commit()
     return redirect(url_for("preference"))
-class login_user(db.Model):#record the id of the user
-    _tablename_="login_user"
-    info=db.Column(db.Integer,primary_key=True)
+
 
 # @app.route("/preference/",methods=["GET","POST"])
 # def preference_record():
@@ -246,6 +251,7 @@ def search():
         content = " "
     dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
     return render_template('search.html',quotes = dish_name)
+
 db.drop_all()
 db.create_all()
 #为table加入数据
