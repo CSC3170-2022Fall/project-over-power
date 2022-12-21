@@ -1,0 +1,162 @@
+.title_text{
+    margin: 0px 0px 10px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000;
+    align-items: center;
+    text-align: left;
+}
+
+.dp {
+    margin: 0px 0px 0px 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #000000;
+}
+
+.rate_text {
+    margin: 4px 0px 0px 0px;
+    width: 200px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: #000000;
+    text-align: left;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    width: 40%;
+    height: 600px;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    border: 2px solid;
+    border-image: linear-gradient(to left,rgba(87, 87, 87), rgba(0, 255, 221)) 1;
+    border-radius: 10px;
+    align-items: center;
+}
+
+.right {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+}
+
+.dish_div {
+    padding: 15px 30px;
+    width: 500px;
+    height: 220px;
+    background: -webkit-linear-gradient(left,rgba(87, 87, 87, 0.3), rgba(0, 255, 221, 0.3));
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin: 0px 0px 30px;
+    border-radius: 10px;
+}
+
+.dish_div:hover {
+    background: -webkit-linear-gradient(left,rgba(87, 87, 87, 0.6), rgba(0, 255, 221, 0.6));
+}
+
+.dish_div_sub {
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+}
+
+.dish_div span.description {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    /* align-items:flex-start; */
+    /* justify-content:center; */
+    padding: 0px;
+    margin: 0px;
+}
+
+.resta_div {
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin: 0px 0px 30px;
+}
+
+.resta_div_sub {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+.rate {
+    padding: 5px 5px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+}
+
+.rate > input{
+    display:none;
+}
+   
+.rate > label {
+    position: relative;
+    width: 40px;
+    font-size: 30px;
+    color: #6ed9c2;
+    cursor: pointer;
+}
+
+.rate > label::before{
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+.rate > label:hover:before,
+.rate > label:hover ~ label:before {
+    opacity: 1 !important;
+}
+
+.rate > input:checked ~ label:before{
+    opacity:1;
+}
+
+
+ul {
+    list-style-type: none;
+    height: 42px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(66, 66, 66);
+}
+  
+li {
+    float: left;
+    margin: 0;
+    padding: 0;
+
+}
+  
+.top {
+    display: block;
+    color: white;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin: 0px;
+    background-color: #80bcaf;
+    padding: 10px 15px;
+}
+
+/* .active {
+    background-color: #00ffc8;
+} */
