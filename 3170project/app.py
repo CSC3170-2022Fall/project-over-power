@@ -69,7 +69,7 @@ class rate(db.Model):
 class comment(db.Model):
     __tablename__ = "comment"
     common_id = db.Column(db.Integer, primary_key=True)
-    dish_id = db.Column(db.String(32),db.ForeignKey(dishes.list_id))
+    dish_id = db.Column(db.Integer,db.ForeignKey(dishes.list_id))
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
