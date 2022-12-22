@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS styles for the Dish Review Form */
+        .review {
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    /* 定义菜品图片的样式 */
+    .dish-image {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #ccc;
+    }
+    /* 调整字体、颜色和布局 */
+.dish-info p {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.review p {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.dish-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* 增加边框和阴影效果 */
+.dish-image {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.review {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+/* 增加动画效果 */
+.review {
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 响应式布局，在小屏幕下调整布局 */
+@media (max-width: 600px) {
+  .dish-info {
+    flex-direction: column;
+  }
+
+  .dish-image {
+    width: 100%;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="dish-info">
+        <img class="dish-image" src="dish.jpg" alt="菜品图片">
+        <p>这是一道美味的菜品，推荐给大家品尝。</p>
+      </div>
+    
+      <!-- 过往的三个评价 -->
+      <div class="review">
+        <p>评价 1</p>
+        <p>这道菜非常好吃，味道鲜美，值得推荐。</p>
+      </div>
+      <div class="review">
+        <p>评价 2</p>
+        <p>这道菜的味道很独特，我很喜欢。</p>
+      </div>
+      <div class="review">
+        <p>评价 3</p>
+        <p>虽然不是很喜欢这道菜的味道，但是做得非常精致。</p>
+      </div>
+      <form>
+        <label for="rating">评分：</label>
+        <input type="number" id="rating" name="rating" min="1" max="5">
+        <br>
+        <label for="review">评价：</label>
+        <br>
+        <textarea id="review" name="review" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="提交">
+      </form> 
+    
+</body>
+<script>
+    // 监听表单提交事件
+document.querySelector('form').addEventListener('submit', function(event) {
+  // 阻止默认的表单提交行为
+  event.preventDefault();
+
+  // 获取表单数据
+  const rating = document.querySelector('#rating').value;
+  const review = document.querySelector('#review').value;
+
+  // 创建新的评价条目
+  const reviewElement = document.createElement('div');
+  reviewElement.classList.add('review');
+  reviewElement.innerHTML = `<p>评分：${rating}</p><p>评价：${review}</p>`;
+
+  // 将新的评价条目添加到页面中
+  document.querySelector('body').appendChild(reviewElement);
+});
+</script>
+</html>
