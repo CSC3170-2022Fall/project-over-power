@@ -71,6 +71,13 @@
     opacity: 1;
   }
 }
+.comt{
+    position: absolute;
+    top: 30%;
+    right: 40%;
+    width: 400px;
+    height: 200px;
+}
 
 /* 响应式布局，在小屏幕下调整布局 */
 @media (max-width: 600px) {
@@ -104,10 +111,7 @@
         <p>虽然不是很喜欢这道菜的味道，但是做得非常精致。</p>
       </div>
       <form class="comt">
-        <label for="rating">评分：</label>
-        <input type="number" id="rating" name="rating" min="1" max="5">
-
-        <br>
+        
         <label for="review">评价：</label>
         <br>
         <textarea id="review" name="review" rows="4" cols="50"></textarea>
@@ -118,18 +122,18 @@
 </body>
 <script>
     // 监听表单提交事件
-document.querySelector('form').addEventListener('submit', function(event) {
+  document.querySelector('form').addEventListener('submit', function(event) {
   // 阻止默认的表单提交行为
   event.preventDefault();
 
   // 获取表单数据
-  const rating = document.querySelector('#rating').value;
+  //const rating = document.querySelector('#rating').value;
   const review = document.querySelector('#review').value;
 
   // 创建新的评价条目
   const reviewElement = document.createElement('div');
   reviewElement.classList.add('review');
-  reviewElement.innerHTML = `<p>评分：${rating}</p><p>评价：${review}</p>`;
+  reviewElement.innerHTML = `<p>评价：${review}</p>`;
 
   // 将新的评价条目添加到页面中
   document.querySelector('body').appendChild(reviewElement);
