@@ -7,7 +7,10 @@
     <title>Document</title>
     <style>
         /* CSS styles for the Dish Review Form */
-        .review {
+    .review {
+        width: 400px;
+        height: 50px;
+        left: 40%;
       border: 1px solid #ccc;
       margin-bottom: 20px;
       padding: 10px;
@@ -21,9 +24,11 @@
     }
     /* 调整字体、颜色和布局 */
 .dish-info p {
+ width: 200px;
   font-size: 18px;
   color: #333;
   margin: 0;
+  left: 200px;
 }
 
 .review p {
@@ -33,6 +38,7 @@
 }
 
 .dish-info {
+    text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -97,7 +103,10 @@
         <p>评价 3</p>
         <p>虽然不是很喜欢这道菜的味道，但是做得非常精致。</p>
       </div>
-      <form>
+      <form class="comt">
+        <label for="rating">评分：</label>
+        <input type="number" id="rating" name="rating" min="1" max="5">
+
         <br>
         <label for="review">评价：</label>
         <br>
