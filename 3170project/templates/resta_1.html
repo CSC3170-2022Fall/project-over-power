@@ -11,15 +11,15 @@
     <body>       
         
         <ul>
-            <li><p class="top">Home</a></li>
-           
+            <li><a class="active_1" href="{{url_for(' ')}}">Home</a></li> <!--link to main page-->
         </ul>
 
 
-        <div class="left">
+        <div class="left_1">
             <div class="resta_div">
                 <div class="resta_div_sub">
                     <p class="title_text">Good Hunter</p>
+                    <p class="point">4.8</p>
                 </div>
                 <div class="resta_div_sub">
                     <img src="/static/images/R1.jpg" width="200" height="200" />
@@ -32,7 +32,7 @@
             <div class="resta_div">
                 <p class="title_text">Rating</p>
 
-                <div class="rate" id="rating_e">
+                <div class="rate_1" id="rating_e">
                     <input type="radio" name="rating_e" value="5" id="1_5"><label for="1_5">☆</label>
                     <input type="radio" name="rating_e" value="4" id="1_4"><label for="1_4">☆</label>
                     <input type="radio" name="rating_e" value="3" id="1_3"><label for="1_3">☆</label>
@@ -41,7 +41,7 @@
                     <p class="rate_text">Environment</p>
                 </div>
     
-                <div class="rate" id="rating_s">
+                <div class="rate_1" id="rating_s">
                     <input type="radio" name="rating_s" value="5" id="2_5"><label for="2_5">☆</label>
                     <input type="radio" name="rating_s" value="4" id="2_4"><label for="2_4">☆</label>
                     <input type="radio" name="rating_s" value="3" id="2_3"><label for="2_3">☆</label>
@@ -50,7 +50,7 @@
                     <p class="rate_text">Service</p>
                 </div>
     
-                <div class="rate" id="rating_p">
+                <div class="rate_1" id="rating_p">
                     <input type="radio" name="rating_p" value="5" id="3_5"><label for="3_5">☆</label>
                     <input type="radio" name="rating_p" value="4" id="3_4"><label for="3_4">☆</label>
                     <input type="radio" name="rating_p" value="3" id="3_3"><label for="3_3">☆</label>
@@ -59,7 +59,7 @@
                     <p class="rate_text">Price</p>
                 </div>
     
-                <div class="rate" id="rating_e">
+                <div class="rate_1" id="rating_e">
                     <input type="radio" name="rating_t" value="5" id="4_5"><label for="4_5">☆</label>
                     <input type="radio" name="rating_t" value="4" id="4_4"><label for="4_4">☆</label>
                     <input type="radio" name="rating_t" value="3" id="4_3"><label for="4_3">☆</label>
@@ -74,7 +74,21 @@
         </div>
 
         <div class="right">
-            <div class="dish_div">
+            {% for i in dish_list_1%}   <!--dish list of whose restaurant_id == 1 in dishes-->
+            <div class="dish_div_1" onclick="window.location.href='{{url_for(" ")}}'">    <!--link to comment page-->
+                <div class="dish_div_sub">
+                    <p class="title_text">i.listname</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img alt="image not found" src="{{ }}" width="150" height="150">    <!--full path of the image-->
+                    <span class="description">
+                        <p class="dp">i.description</p>
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- <div class="dish_div">
                 <div class="dish_div_sub">
                     <p class="title_text">Cream Stew</p>
                 </div>
@@ -172,7 +186,7 @@
                         </p>
                     </span>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
