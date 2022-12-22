@@ -24,12 +24,21 @@
     text-align: left;
 }
 
-main {
+.point {
+    margin: 0px 0px 10px 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: bold;
+    color: #ff0000;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    text-align: right;
 }
 
-.left {
+
+
+.left_1 {
     width: 40%;
     height: 600px;
     position: absolute;
@@ -47,7 +56,7 @@ main {
     left: 50%;
 }
 
-.dish_div {
+.dish_div_1 {
     padding: 15px 30px;
     width: 500px;
     height: 220px;
@@ -59,7 +68,7 @@ main {
     border-radius: 10px;
 }
 
-.dish_div:hover {
+.dish_div_1:hover {
     background: -webkit-linear-gradient(left,rgba(87, 87, 87, 0.6), rgba(0, 255, 221, 0.6));
 }
 
@@ -69,12 +78,10 @@ main {
     flex-direction: row;
 }
 
-.dish_div span.description {
+.dish_div_sub span.description {
     width: 350px;
     display: flex;
     flex-direction: column;
-    /* align-items:flex-start; */
-    /* justify-content:center; */
     padding: 0px;
     margin: 0px;
 }
@@ -93,46 +100,44 @@ main {
 }
 
 
-
-
-.rate {
+.rate_1 {
     padding: 5px 5px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: left;
 }
 
-.rate > input{
+.rate_1 > input{
     display:none;
 }
    
-.rate > label {
+.rate_1 > label {
     position: relative;
     width: 40px;
     font-size: 30px;
-    color: #6ed9c2;
+    color: #56c0a5;
     cursor: pointer;
 }
 
-.rate > label::before{
+.rate_1 > label::before{
     content: "\2605";
     position: absolute;
     opacity: 0;
 }
 
-.rate > label:hover:before,
-.rate > label:hover ~ label:before {
+.rate_1 > label:hover:before,
+.rate_1 > label:hover ~ label:before {
     opacity: 1 !important;
 }
 
-.rate > input:checked ~ label:before{
+.rate_1 > input:checked ~ label:before{
     opacity:1;
 }
 
 
 ul {
     list-style-type: none;
-    height: 42px;
+    height: 49px;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -143,20 +148,24 @@ li {
     float: left;
     margin: 0;
     padding: 0;
-
 }
-  
-.top {
+
+li a {
     display: block;
     color: white;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    margin: 0px;
-    background-color: #80bcaf;
     padding: 10px 15px;
+    text-decoration: none;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
 }
 
-/* .active {
-    background-color: #00ffc8;
-} */
+li a:hover:not(.active) {
+    background-color: rgb(28, 28, 28);
+}
+
+.active_1 {
+    background-color: #56c0a5;
+}
+  
