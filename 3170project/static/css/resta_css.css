@@ -169,7 +169,7 @@ li a:hover:not(.active) {
     background-color: #56c0a5;
 }
   
-.logo {
+.top_logo {
     width: 100%;
     position: absolute;
     display: flex;
