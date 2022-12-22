@@ -46,7 +46,7 @@ class restaurants(db.Model):
 
 class dishes(db.Model):
     __tablename__ = "dishes"
-    list_id = db.Column(db.String(10), primary_key=True)
+    list_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     list_name = db.Column(db.String(40),unique=False, nullable=False)
     info_type = db.Column(db.String(16), unique=False, nullable=False)
     info_price = db.Column(db.Integer, unique=False, nullable=False)
@@ -75,6 +75,11 @@ class comment(db.Model):
     content = db.Column(db.String(500))#free edit
     
 class login_user(db.Model):#record the id of the user
+    _tablename_="login_user"
+    login_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
+    login_info=db.Column(db.Integer,nullable=False)
+ 
+class current_dish(db.Model):#record the current dish that the user is viewing
     _tablename_="login_user"
     login_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     login_info=db.Column(db.Integer,nullable=False)
