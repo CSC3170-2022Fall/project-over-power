@@ -12,7 +12,7 @@ class common_user(db.Model):#datapage model, inherited from db.Model
     #define the table name
     __tablename__="common_user"
     #define the content
-    common_id=db.Column(db.Integer,primary_key=True)
+    common_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     common_name=db.Column(db.String(32),unique=True,nullable=False)
     common_password = db.Column(db.String(255),nullable=False)
     # user_type = db.Column(db.String(10))
@@ -20,13 +20,14 @@ class common_user(db.Model):#datapage model, inherited from db.Model
 
 class senior_user(db.Model):#senior user is in charge of the restaurant
     __tablename__="senior_user"
-    senior_id=db.Column(db.Integer,primary_key=True)
+    senior_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     senior_name=db.Column(db.String(32),unique=True,nullable=False)
     res_id=db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'))
+    senior_password = db.Column(db.String(255),nullable=False)
 
 class restaurants(db.Model):
     __tablename__="restaurants"
-    restaurant_id = db.Column(db.Integer,primary_key=True)
+    restaurant_id = db.Column(db.Integer,primary_key=True,autoincrement=True)
     restaurant_name = db.Column(db.String(32),unique=True,nullable=False)
     location = db.Column(db.String(64),unique=True,nullable=False)
     open_hour = db.Column(db.String(64),unique=True,nullable=False)
@@ -45,7 +46,7 @@ class restaurants(db.Model):
 
 class dishes(db.Model):
     __tablename__ = "dishes"
-    list_id = db.Column(db.Integer, primary_key=True)
+    list_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     list_name = db.Column(db.String(40),unique=False, nullable=False)
     info_type = db.Column(db.String(16), unique=False, nullable=False)
     info_price = db.Column(db.Integer, unique=False, nullable=False)
@@ -59,7 +60,7 @@ class dishes(db.Model):
 
 class rate(db.Model):
     __tablename__="rate"
-    restaurant_id = db.Column(db.Integer, primary_key=True)
+    restaurant_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     environment_rate = db.Column(db.Float(1), nullable=True)
     service_rate = db.Column(db.Float(1), nullable=True)
     taste_rate = db.Column(db.Float(1), nullable=True)
@@ -68,18 +69,18 @@ class rate(db.Model):
 
 class comment(db.Model):
     __tablename__ = "comment"
-    common_id = db.Column(db.Integer, primary_key=True)
+    common_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     dish_id = db.Column(db.Integer,db.ForeignKey(dishes.list_id))
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
 class login_user(db.Model):#record the id of the user
     _tablename_="login_user"
-    info=db.Column(db.Integer,primary_key=True)
+    info=db.Column(db.Integer,primary_key=True,autoincrement=True)
     
 class preference(db.Model):
     _tablename_="preference"
-    common_id=db.Column(db.Integer,primary_key=True)
+    common_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     A_type=db.Column(db.Integer, nullable=True)
     B_type = db.Column(db.Integer, nullable=True)
     C_type = db.Column(db.Integer, nullable=True)
@@ -229,7 +230,8 @@ def senior_register():
             flash(u"wrong password or user name!")
         else:
             #needs modification: leads to the users' corresponding restaurant
-            return redirect(url_for("preference_record"))
+            # return redirect(url_for(""))
+            return render_template('resta_1.html') 
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
@@ -274,7 +276,16 @@ db.create_all()
 #为table加入数据
 user1=common_user(common_name='zzz', common_password='12345')
 user2=common_user(common_name='qqq', common_password='16949')
+res1 = restaurants(restaurant_name = 'Membership restaurant',
+    location = 'kitazawa',
+    open_hour = '114154',
+    meal_type = '1919810',
+    average_price_per_person = 3.2,
+    rate = 3)
+senior_user1 = senior_user(senior_name='bizu',res_id=1,senior_password='114154')
 db.session.add_all([user1, user2])
+db.session.add_all([res1])
+db.session.add_all([senior_user1])
 db.session.commit()
 
 if __name__ == '__main__':
