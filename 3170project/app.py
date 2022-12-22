@@ -46,7 +46,7 @@ class restaurants(db.Model):
 
 class dishes(db.Model):
     __tablename__ = "dishes"
-    list_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    list_id = db.Column(db.String(10), primary_key=True)
     list_name = db.Column(db.String(40),unique=False, nullable=False)
     info_type = db.Column(db.String(16), unique=False, nullable=False)
     info_price = db.Column(db.Integer, unique=False, nullable=False)
