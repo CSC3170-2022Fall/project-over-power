@@ -76,7 +76,8 @@ class comment(db.Model):
     
 class login_user(db.Model):#record the id of the user
     _tablename_="login_user"
-    info=db.Column(db.Integer,primary_key=True,autoincrement=True)
+    login_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
+    login_info=db.Column(db.Integer,nullable=False)
     
 class preference(db.Model):
     _tablename_="preference"
@@ -172,6 +173,11 @@ def edit_preference_record():
 #needs further adjustment:other link for senior user to login
 @app.route('/', methods=['GET', 'POST'])
 def common_register():
+    check_login=login_user.query.all()
+    for i in check_login:
+        if i.login_info!='':
+            temp=login_user(i.login_id)
+            login_user.delete(temp)
     if request.method=="POST":
         username=request.form.get('username')
         password=request.form.get('password')
@@ -198,7 +204,7 @@ def common_register():
             flash(u"wrong password or user name!")
         else:
             # get_id = db.session.execute("select common_id from flaskproject3.common_user where common_name=username").fetchone()
-            qqq = login_user(info=get_id)
+            qqq = login_user(login_info=get_id)
             db.session.add_all([qqq])
             db.session.commit()#this should be added to all the common user login after using the username
             return redirect(url_for('main'))
@@ -237,6 +243,11 @@ def senior_register():
 
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
+    check_login=login_user.query.all()
+    for i in check_login:
+        if i.login_info!='':
+            temp=login_user(i.login_id)
+            login_user.delete(temp)
     if request.method=="POST":
         username=request.form.get('username')
         pw=request.form.get('password')
