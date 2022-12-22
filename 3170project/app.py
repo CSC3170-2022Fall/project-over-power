@@ -5,12 +5,12 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:password@127.0.0.1/flaskproj3'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:password@127.0.0.1/3170project'
 app.secret_key='bilibili'
 
 class common_user(db.Model):#datapage model, inherited from db.Model
     #define the table name
-    __tablename__="common_users"
+    __tablename__="common_user"
     #define the content
     common_id=db.Column(db.Integer,primary_key=True)
     common_name=db.Column(db.String(32),unique=True,nullable=False)
@@ -55,7 +55,7 @@ class dishes(db.Model):
     info_taste_Y = db.Column(db.Integer, unique=False, nullable=False)
     info_taste_Z = db.Column(db.Integer, unique=False, nullable=False)
     info_times = db.Column(db.Integer, unique=False, nullable=False)
-    restaurant_id = db.Column(db.Integer,db.Foreignkey('restaurants.restaurant_id'))
+    restaurant_id = db.Column(db.Integer,db.ForeignKey('restaurants.restaurant_id'))
 
 class rate(db.Model):
     __tablename__="rate"
@@ -69,13 +69,26 @@ class rate(db.Model):
 class comment(db.Model):
     __tablename__ = "comment"
     common_id = db.Column(db.Integer, primary_key=True)
-    dish_id = db.Column(db.String(32),db.Foreignkey(dishes.list_id))
+    dish_id = db.Column(db.Integer,db.ForeignKey(dishes.list_id))
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
 class login_user(db.Model):#record the id of the user
     _tablename_="login_user"
     info=db.Column(db.Integer,primary_key=True)
+    
+class preference(db.Model):
+    _tablename_="preference"
+    common_id=db.Column(db.Integer,primary_key=True)
+    A_type=db.Column(db.Integer, nullable=True)
+    B_type = db.Column(db.Integer, nullable=True)
+    C_type = db.Column(db.Integer, nullable=True)
+    D_type = db.Column(db.Integer, nullable=True)
+    M_taste = db.Column(db.Integer, nullable=True)
+    N_taste = db.Column(db.Integer, nullable=True)
+    X_taste = db.Column(db.Integer, nullable=True)
+    Y_taste = db.Column(db.Integer, nullable=True)
+    Z_taste = db.Column(db.Integer, nullable=True)    
     
 # class preference(db.Model):
 #     _tablename_="preference"
@@ -89,37 +102,30 @@ class login_user(db.Model):#record the id of the user
 #     X_dish_taste = db.Column(db.Integer, nullable=True)
 #     Y_dish_taste = db.Column(db.Integer, nullable=True)
 #     Z_dish_taste = db.Column(db.Integer, nullable=True)
-
-class preference(db.Model):
-    _tablename_="preference"
-    common_id=db.Column(db.Integer,primary_key=True)
-    A_type=db.Column(db.Integer, nullable=True)
-    B_type = db.Column(db.Integer, nullable=True)
-    C_type = db.Column(db.Integer, nullable=True)
-    D_type = db.Column(db.Integer, nullable=True)
-    M_taste = db.Column(db.Integer, nullable=True)
-    N_taste = db.Column(db.Integer, nullable=True)
-    X_taste = db.Column(db.Integer, nullable=True)
-    Y_taste = db.Column(db.Integer, nullable=True)
-    Z_taste = db.Column(db.Integer, nullable=True)
     
 @app.route("/preference_record",methods=["GET","POST"])
 def preference_record():
     if request.method=="POST":
-        user_id = db.session.execute("select info from login_user")#get user'sid
-        A_dish_type = request.form.get("A_dish_type")#get user's dish type
-        B_dish_type = request.form.get("B_dish_type")
-        C_dish_type = request.form.get("C_dish_type")
-        D_dish_type = request.form.get("D_dish_type")
-        M_dish_taste = request.form.get("M_dish_type")#get user's taste
-        N_dish_taste = request.form.get("N_dish_type")
-        X_dish_taste = request.form.get("X_dish_type")
-        Y_dish_taste = request.form.get("Y_dish_type")
-        Z_dish_taste = request.form.get("Z_dish_type")
-        www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
-        db.session.add_all([www])
-        db.session.commit()
-    return redirect(url_for("preference"))
+        temp=request.values.get("button1")
+        temp2=request.values.get("button2")
+        if (temp2=="Back"):
+            return redirect(url_for("common_register")) 
+        else:
+            user_id = db.session.execute("select info from login_user")#get user'sid
+            A_dish_type = request.form.get("A_dish_type")#get user's dish type
+            B_dish_type = request.form.get("B_dish_type")
+            C_dish_type = request.form.get("C_dish_type")
+            D_dish_type = request.form.get("D_dish_type")
+            M_dish_taste = request.form.get("M_dish_type")#get user's taste
+            N_dish_taste = request.form.get("N_dish_type")
+            X_dish_taste = request.form.get("X_dish_type")
+            Y_dish_taste = request.form.get("Y_dish_type")
+            Z_dish_taste = request.form.get("Z_dish_type")
+            www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
+            db.session.add_all([www])
+            db.session.commit()
+            return redirect(url_for("main"))
+    return render_template("preference.html")
 
 
 # @app.route("/preference/",methods=["GET","POST"])
@@ -139,23 +145,28 @@ def preference_record():
 @app.route("/edit_preference_record",methods=["GET","POST"])
 def edit_preference_record():
     if request.method=="POST":
-        user_id = db.session.execute("select info from login_user")#get user's id
-        aim_info = preference.query.get(user_id)#delete the initial information of user's preference
-        db.session.delete(aim_info)
-        db.session.commit()
-        A_dish_type = request.form.get("A_dish_type")#获取用户dish type
-        B_dish_type = request.form.get("B_dish_type")
-        C_dish_type = request.form.get("C_dish_type")
-        D_dish_type = request.form.get("D_dish_type")
-        M_dish_taste = request.form.get("M_dish_type")#获取用户taste
-        N_dish_taste = request.form.get("N_dish_type")
-        X_dish_taste = request.form.get("X_dish_type")
-        Y_dish_taste = request.form.get("Y_dish_type")
-        Z_dish_taste = request.form.get("Z_dish_type")
-        www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
-        db.session.add_all([www])#re-add the info
-        db.session.commit()
-    return redirect(url_for("preference"))
+        temp=request.values.get("button1")
+        temp2=request.values.get("button2")
+        if (temp2=="Back"):
+            return redirect(url_for("main")) 
+        else:
+            user_id = db.session.execute("select info from login_user")#get user'sid
+            check=preference.query.get(user_id)
+            db.session.delete(check)
+            A_dish_type = request.form.get("A_dish_type")#get user's dish type
+            B_dish_type = request.form.get("B_dish_type")
+            C_dish_type = request.form.get("C_dish_type")
+            D_dish_type = request.form.get("D_dish_type")
+            M_dish_taste = request.form.get("M_dish_type")#get user's taste
+            N_dish_taste = request.form.get("N_dish_type")
+            X_dish_taste = request.form.get("X_dish_type")
+            Y_dish_taste = request.form.get("Y_dish_type")
+            Z_dish_taste = request.form.get("Z_dish_type")
+            www=preference(common_id=user_id,A_type=A_dish_type,B_type=B_dish_type,C_type=C_dish_type,D_type=D_dish_type,M_taste=M_dish_taste,N_taste=N_dish_taste,X_taste=X_dish_taste,Y_taste=Y_dish_taste,Z_taste=Z_dish_taste)
+            db.session.add_all([www])
+            db.session.commit()
+            return redirect(url_for("main"))
+    return render_template("edit_preference.html")
 
 #needs further adjustment:other link for senior user to login
 @app.route('/', methods=['GET', 'POST'])
@@ -167,8 +178,11 @@ def common_register():
         checka=0
         checkb=0
         for i in check1:
+            print(username)
+            print(i.common_name)
             if i.common_name==username:#check whether the user exists
                 checka=1
+                get_id = i.common_id
                 if i.common_password==password:
                     checkb=1
                 else:
@@ -182,11 +196,12 @@ def common_register():
         elif checkb != 1:
             flash(u"wrong password or user name!")
         else:
-            get_id = db.session.execute("select common_id from common_user where common_name=username").fetchone()
+            # get_id = db.session.execute("select common_id from flaskproject3.common_user where common_name=username").fetchone()
             qqq = login_user(info=get_id)
             db.session.add_all([qqq])
             db.session.commit()#this should be added to all the common user login after using the username
             return redirect(url_for('main'))
+
     return render_template("normal_login.html")
 
 @app.route('/senior_register', methods=['GET', 'POST'])
@@ -214,7 +229,7 @@ def senior_register():
             flash(u"wrong password or user name!")
         else:
             #needs modification: leads to the users' corresponding restaurant
-            return redirect(url_for('main'))
+            return redirect(url_for("preference_record"))
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
@@ -234,6 +249,8 @@ def create_account():
                     db.session.add_all([user])
                     db.session.commit()
                     flash('Creating an account succeeded, you can log in with this account now!')
+                    # return render_template('preference.html')
+                    return redirect(url_for("preference_record"))
                 else:
                     flash('Password confirmation failed!')
             else:

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .submit {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    div{
+        font-size: large;
+    }
+    p{
+        font-family: "宋体","仿宋",sans-serif;
+            font-weight: bold;
+            font-size: 200%;
+            font-style: italic;
+            color: black;
+           
+    }
+    
+    </style>
+</head>
+<body>
+    <div>
+    <p class="meal">Meal style: 
+        <input type="checkbox" value="1" name="Meal_appetizer">appetizer
+        <input type="checkbox" value="1" name="Meal_soup">soup
+        <input type="checkbox" value="1" name="Meal_course">main course
+        <input type="checkbox" value="1" name="Meal_dessert">dessert
+    </p>
+
+    <p class="taste">Taste    : 
+        <input type="checkbox" value="1" name="taste_sweet">sweet
+        <input type="checkbox" value="1" name="taste_sour">sour
+        <input type="checkbox" value="1" name="taste_spicy">spicy
+        <input type="checkbox" value="1" name="taste_salty">salty
+        <input type="checkbox" value="1" name="taste_umami">umami
+    </p>
+    </div>
+	
+<div style=" ">
+    <form action="" method='post' style="">
+        <br><br><input type=submit value='Submit' name="button1">
+	<br><br><input type=submit value='Back' name="button2">
+    </form>
+</div>
+
+    
+</body>
+</html>
+<!-- 
+@app.rout("/test")
+def test():
+	taste = request.from.get("taste_sweet") 
+
+@app.rout("/test")
+def test():
+	meal_list = request.from.get("Meal_appetizer") 
+-->
