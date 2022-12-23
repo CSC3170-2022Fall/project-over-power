@@ -70,8 +70,8 @@ class rate(db.Model):
 
 class comment(db.Model):
     __tablename__ = "comment"
-    common_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    dish_id = db.Column(db.Integer,db.ForeignKey(dishes.list_id))
+    comment_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    dish_id = db.Column(db.String(10),db.ForeignKey(dishes.list_id))
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
@@ -280,7 +280,7 @@ def create_account():
 def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
     return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
-    
+
 @app.route("/resta_1",methods=["GET","POST"])
 def resta_1():
     if request.method=="GET":
