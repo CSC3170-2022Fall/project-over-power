@@ -382,13 +382,13 @@ def senior_add():
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
-               flash("Already have this meal")
-               flag = True
+                flash("Already have this meal")
+                flag = True
         if flag == False:
-           QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
-           db.session.add_all([QOQ])
-           db.session.commit()
-           flash("successfully create one meal!")       
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+            db.session.add_all([QOQ])
+            db.session.commit()
+            flash("successfully create one meal!")   
     return redirect(url_for('senior_r1'))
 
 @app.route("/senior_delete"<rt1>,methods=["GET","POST"])#展示
@@ -402,6 +402,11 @@ def senior_r1():
     if request.method == "GET":
         dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
     return render_template("senior_r1",dish_table_ini=dish_table_1)
+
+@app.route("/normal_r1")
+def normal_r1():
+    dish_table = dishes.query.filter_by(restaurant_id=1).all()
+    return render_template("normal_r1.html",dish_table=dish_table)
 
 db.drop_all()
 db.create_all()
