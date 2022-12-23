@@ -366,6 +366,7 @@ def comment(normal_send):
         QWQ = comment(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
+        cmt= comment.query.filter_by(dish_id=normal_send).all()
     return render_template("comment",comment_info=cmt)
 
 @app.route("/senior_add",methods=["GET","POST"])
