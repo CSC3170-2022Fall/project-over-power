@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .r{
+            width: 400px;
+            height: 250px;
+            background-color: rgb(243, 239, 234);
+            margin: 20px;
+            opacity: 60%;
+        }
+        .r:hover{
+            animation-duration: 1s;
+            box-shadow: 5px 5px 10px 5px #ccc;
+        }
+        .r1,.r2,.r3,.r4{
+            float: left;
+        }
+        .r3{
+            clear:left;
+        }
+        .title{
+            text-align: center;
+            font-size: xx-large;
+            font-style: oblique;
+        }
+        .t{
+            border: solid black 5px;
+        }
+        .container {
+
+            height: 70px;
+
+            width: 800px;
+
+            margin: 100px auto 0 auto;
+
+            }
+
+        .parent {
+
+            position: relative;
+
+            }
+
+        .search {
+
+            width: 300px;
+
+            height: 40px;
+
+            border-radius: 18px;
+
+            outline: none;
+
+            border: 1px solid #ccc;
+
+            padding-left: 20px;
+
+            position: absolute;
+
+            }
+
+        .btn {
+
+            height: 35px;
+
+            width: 35px;
+
+            position: absolute;
+
+            background: url("images/topbar.png") no-repeat -2px -99px;
+
+            top: 6px;
+
+            left: 285px;
+
+            border: none;
+
+            outline: none;
+
+            cursor: pointer;
+
+            }
+        .r1 img{
+            width: 100px;
+            height: 100px;
+            position: absolute ;
+            left: 10px;
+            top: auto;
+            bottom: auto;
+            
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="title">Restaurants</div>
+
+    <div class="r1 r" onclick="window.location.href='{{url_for("待修改"，main_r="餐厅1_ID")}}'">
+        <img id="img_1" src="{{ url_for('static',filename ='3170project\static\images\img_rest\1.jpg') }}" alt="zhaobudao" >
+    </div>
+    <div class="r2 r" onclick="window.location.href='{{url_for("待修改"，main_r="餐厅2_ID")}}'">
+        <img id="img_1" src="{{ url_for('static',filename ='3170project\static\images\img_rest\2.jpg') }}" alt="zhaobudao" >
+    </div>
+    <div class="r3 r" onclick="window.location.href='{{url_for("待修改"，main_r="餐厅3_ID")}}'">
+        <img id="img_1" src="{{ url_for('static',filename ='3170project\static\images\img_rest\3.jpg') }}" alt="zhaobudao" >
+    </div>
+    <div class="r4 r" onclick="window.location.href='{{url_for("待修改"，main_r="餐厅4_ID")}}'">
+        <img id="img_1" src="{{ url_for('static',filename ='3170project\static\images\img_rest\4.jpg') }}" alt="zhaobudao" >
+    </div>
+<!--     <a href="{{ url_for("common_register")}}">Return to login page</a> -->
+    
+    <div class="container">
+
+        <form action="" class="parent">
+    
+            <input type="text" class="search" placeholder="搜索">
+    
+            <input type="button" name="" id="" class="btn">
+    
+        </form>
+    
+    </div>
+
+    <div class="recommand">
+        
+    </div>
+
+</body>
+<script src=""></script>
+<script>
+
+</script>
+</html>
