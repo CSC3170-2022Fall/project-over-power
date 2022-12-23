@@ -389,17 +389,16 @@ def senior_add():
             flash("successfully create one meal!")   
     return redirect(url_for('senior_r1'))
 
-@app.route("/senior_delete/<senior_d>",methods=["GET","POST"])#展示
+@app.route("/senior_delete/<senior_d>")
 def senior_delete(senior_d):    
-    if request.method == "GET":
-        dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
+    dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
     return redirect(url_for('senior_r1'))
 
 @app.route("/senior_r1",methods=["GET","POST"])
 def senior_r1():
     if request.method == "GET":
         dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
-    return render_template("senior_r1",dish_table=dish_table_1)
+    return render_template("senior_r1.html",dish_table=dish_table_1)
 
 @app.route("/normal_r1")
 def normal_r1():
