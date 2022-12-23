@@ -406,6 +406,21 @@ def normal_r1():
     dish_table = dishes.query.filter_by(restaurant_id=1).all()
     return render_template("normal_r1.html",dish_table=dish_table)
 
+@app.route("/normal_r2")
+def normal_r2():
+    dish_table = dishes.query.filter_by(restaurant_id=2).all()
+    return render_template("normal_r2.html",dish_table=dish_table)
+
+@app.route("/normal_r3")
+def normal_r3():
+    dish_table = dishes.query.filter_by(restaurant_id=3).all()
+    return render_template("normal_r3.html",dish_table=dish_table)
+
+@app.route("/normal_r4")
+def normal_r4():
+    dish_table = dishes.query.filter_by(restaurant_id=4).all()
+    return render_template("normal_r4.html",dish_table=dish_table)
+
 db.drop_all()
 db.create_all()
 
