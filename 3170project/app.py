@@ -280,11 +280,11 @@ def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
     return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
 
-@app.route("/resta_1",methods=["GET","POST"])
-def resta_1():
-    if request.method=="GET":
-        dish_table = dishes.query.filter_by(restaurant_id=1).all()
-    return render_template("?resta_1.html",dish_table=dish_table) 
+# @app.route("/resta_1",methods=["GET","POST"])
+# def resta_1():
+#     if request.method=="GET":
+#         dish_table = dishes.query.filter_by(restaurant_id=1).all()
+#     return render_template("?resta_1.html",dish_table=dish_table) 
 
 
 # def search():
