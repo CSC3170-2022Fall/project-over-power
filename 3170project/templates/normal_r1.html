@@ -78,7 +78,7 @@
 
         <div class="right">
             {% for i in dish_list_1%}   <!--dish list of whose restaurant_id == 1 in dishes-->
-            <div class="dish_div_1" onclick="window.location.href='{{url_for(" ")}}'">    <!--link to comment page-->
+            <div class="dish_div_1" onclick="window.location.href='{{url_for(" ", resta_send=i.list_id)}}'">    <!--link to comment page-->
                 <div class="dish_div_sub">
                     <p class="title_text">i.listname</p>
                 </div>
