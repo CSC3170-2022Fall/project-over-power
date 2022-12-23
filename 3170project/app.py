@@ -357,7 +357,49 @@ def main():#餐厅系统主界面（餐厅列表页）
                 j.list_name=opt6
     return render_template("info.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
 
+@app.route("/comment",methods=["GET","POST"])
+def add_comment():
+    dish_id = request.form.get("dish_id")
+    if request.method=="POST":
+        comment_info = request.form.get("message")
+        current_time = datetime.datetime.now()
+        QWQ = comment(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
+        db.session.add_all([QWQ])
+        db.session.commit()
+    if request.method=="GET":
+        cmt= comment.query.filter_by(dish_id=dish_id).all()
+    return render_template("comment",comment_info=cmt)
 
+@app.route("/senior_add/<r1_a>",methods=["GET","POST"])
+def senior_add(r1_a):
+    if request.method == "POST":#add部分
+        #生成新的id
+        if r1_a == 1:
+            dish_list = dishes.query.filter_by(restaurant_id=1).all()
+            last_dish_id = dish_list[-1].list_id
+            new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+            new_dish_name = request.form.get("dish_name")
+            new_dish_description = request.form.get("dish_description")
+            for n in dish_list:
+                flag = False
+                if n.list_name == new_dish_name:
+                    flash("Already have this meal")
+                    flag = True
+            if flag == False:
+                QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+                db.session.add_all([QOQ])
+                db.session.commit()
+                flash("successfully create one meal!")
+    return redirect(url_for('senior_r1'))
+
+@app.route("/senior_delete/<r1_d>",methods=["GET","POST"])
+def senior_delete(r1_d):    
+    if request.method == "GET":
+        dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
+    return render_template("senior_r1",dish_table_ini=dish_table_1)
+
+@app.route("/senior_r1",methods=["GET","POST"])
+def senior_r1():
 
 db.drop_all()
 db.create_all()
