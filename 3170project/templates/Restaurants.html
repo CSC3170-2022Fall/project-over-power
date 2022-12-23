@@ -122,6 +122,9 @@
     </div>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="搜索..">
  
+    <!--
+
+
     <ul id="myUL">
     <li><a href="{{url_for("待修改", dish = "A1")}}">Cream Stew</a></li>
     <li><a href="{{url_for("待修改", dish = "A2")}}">Fruit of the Festival</a></li>
@@ -155,6 +158,12 @@
     <li><a href="{{url_for("待修改", dish = "D6")}}">Selva Salad</a></li>
     <li><a href="{{url_for("待修改", dish = "D7")}}">Shawarma Wrap</a></li>
     <li><a href="{{url_for("待修改", dish = "D8")}}">Tahchin</a></li>
+    </ul>
+ -->
+    <ul>
+        {% for i in a1%}
+        <li><a href="{{url_for("待修改", dish = a1.list_id)}}">{{a1.list_name}}</a></li>
+        {%end for%}
     </ul>
 
 </body>
