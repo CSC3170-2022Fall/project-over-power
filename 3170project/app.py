@@ -288,12 +288,12 @@ def resta_1():
     return render_template("?resta_1.html",dish_table=dish_table) 
 
 
-def search():
-    content = request.form.get('content') 
-    if content is None:
-        content = " "
-    dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
-    return render_template('search.html',quotes = dish_name)
+# def search():
+#     content = request.form.get('content') 
+#     if content is None:
+#         content = " "
+#     dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
+#     return render_template('search.html',quotes = dish_name)
 
 @app.route('/main', methods=['GET', 'POST'])
 def main():#餐厅系统主界面（餐厅列表页）
