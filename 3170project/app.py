@@ -276,11 +276,6 @@ def create_account():
                 flash('Please enter the user name')
     return render_template('create_account.html')
 
-@app.route('/main', methods=['GET', 'POST'])
-def main():#餐厅系统主界面（餐厅列表页）
-    a1=restaurants.query.all()
-    return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
-
 @app.route("/resta_1",methods=["GET","POST"])
 def resta_1():
     if request.method=="GET":
@@ -288,14 +283,15 @@ def resta_1():
     return render_template("?resta_1.html",dish_table=dish_table) 
 
 
-def search():
-    content = request.form.get('content') 
-    if content is None:
-        content = " "
-    dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
-    return render_template('search.html',quotes = dish_name)
+# def search():
+#     content = request.form.get('content') 
+#     if content is None:
+#         content = " "
+#     dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
+#     return render_template('search.html',quotes = dish_name)
 
-def recommendation():
+@app.route('/main', methods=['GET', 'POST'])
+def main():#餐厅系统主界面（餐厅列表页）
     if request.method=="GET":
         user = login_user.query.all()
         user_id=user.login_info
@@ -355,7 +351,7 @@ def recommendation():
                 j.list_name=opt5
             if j.list_id==opt3:
                 j.list_name=opt6
-    return render_template("main.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
+    return render_template("info.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
 
 
 
