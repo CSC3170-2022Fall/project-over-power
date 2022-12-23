@@ -370,36 +370,38 @@ def add_comment():
         cmt= comment.query.filter_by(dish_id=dish_id).all()
     return render_template("comment",comment_info=cmt)
 
-@app.route("/senior_add/<r1_a>",methods=["GET","POST"])
-def senior_add(r1_a):
+@app.route("/senior_add",methods=["GET","POST"])
+def senior_add():
     if request.method == "POST":#add部分
         #生成新的id
-        if r1_a == 1:
-            dish_list = dishes.query.filter_by(restaurant_id=1).all()
-            last_dish_id = dish_list[-1].list_id
-            new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
-            new_dish_name = request.form.get("dish_name")
-            new_dish_description = request.form.get("dish_description")
-            for n in dish_list:
-                flag = False
-                if n.list_name == new_dish_name:
-                    flash("Already have this meal")
-                    flag = True
-            if flag == False:
-                QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
-                db.session.add_all([QOQ])
-                db.session.commit()
-                flash("successfully create one meal!")
+        dish_list = dishes.query.filter_by(restaurant_id=1).all()
+        last_dish_id = dish_list[-1].list_id
+        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        new_dish_name = request.form.get("dish_name")
+        new_dish_description = request.form.get("dish_description")
+        for n in dish_list:
+            flag = False
+            if n.list_name == new_dish_name:
+               flash("Already have this meal")
+               flag = True
+        if flag == False:
+           QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+           db.session.add_all([QOQ])
+           db.session.commit()
+           flash("successfully create one meal!")       
     return redirect(url_for('senior_r1'))
 
-@app.route("/senior_delete/<r1_d>",methods=["GET","POST"])
-def senior_delete(r1_d):    
+@app.route("/senior_delete"<rt1>,methods=["GET","POST"])#展示
+def senior_delete():    
     if request.method == "GET":
         dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
-    return render_template("senior_r1",dish_table_ini=dish_table_1)
+    return redirect(url_for('senior_r1'))
 
 @app.route("/senior_r1",methods=["GET","POST"])
 def senior_r1():
+    if request.method == "GET":
+        dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
+    return render_template("senior_r1",dish_table_ini=dish_table_1)
 
 db.drop_all()
 db.create_all()
