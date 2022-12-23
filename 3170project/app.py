@@ -357,10 +357,9 @@ def main():#餐厅系统主界面（餐厅列表页）
                 j.list_name=opt6
     return render_template("info.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
 
-@app.route("/comment",methods=["GET","POST"])
-def comment():
-    cmt= comment.query.filter_by(dish_id=dish_id).all()
-    dish_id = request.form.get("dish_id")
+@app.route("/comment/<normal_send>",methods=["GET","POST"])
+def comment(normal_send):
+    cmt= comment.query.filter_by(dish_id=normal_send).all()
     if request.method=="POST":
         comment_info = request.form.get("message")
         current_time = datetime.datetime.now()
