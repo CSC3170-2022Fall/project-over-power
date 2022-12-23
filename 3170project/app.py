@@ -281,6 +281,13 @@ def main():#餐厅系统主界面（餐厅列表页）
     a1=restaurants.query.all()
     return render_template('info.html',a1=a1)#主页面为info.html，传入参数a1(restaurant列表)
     
+@app.route("/resta_1",methods=["GET","POST"])
+def resta_1():
+    if request.method=="GET":
+        dish_table = dishes.query.filter_by(restaurant_id=1).all()
+    return render_template("?resta_1.html",dish_table=dish_table) 
+
+
 def search():
     content = request.form.get('content') 
     if content is None:
@@ -288,8 +295,73 @@ def search():
     dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
     return render_template('search.html',quotes = dish_name)
 
+def recommendation():
+    if request.method=="GET":
+        user = login_user.query.all()
+        user_id=user.login_info
+        #user_id = login_user(info=get_id)  # get useflr's id
+        user_info = preference.query.get(user_id)
+        user_taste_M = user_info.M_taste
+        user_taste_N = user_info.N_taste
+        user_taste_X = user_info.X_taste
+        user_taste_Y = user_info.Y_taste
+        user_taste_Z = user_info.Z_taste
+        user_type_A = user_info.A_type
+        user_type_B = user_info.B_type
+        user_type_C = user_info.C_type
+        user_type_D = user_info.D_type
+        dish_form = dishes.query.all()
+        dish_order = {}
+        for i in dish_form:
+            point=0#计算总分
+            a=0;b=0;c=0;d=0
+            if i.info_taste_M == user_taste_M and user_taste_M==1:#compare and add point of
+                point +=1
+            if i.info_taste_N == user_taste_N and user_taste_N==1:
+                point +=1
+            if i.info_taste_X == user_taste_X and user_taste_X==1:
+                point +=1
+            if i.info_taste_Y == user_taste_Y and user_taste_Y==1:
+                point +=1
+            if i.info_taste_Z == user_taste_Z and user_taste_Z==1:
+                point +=1
+            if i.info_type == "appetizer":#record the type of dish
+                a=1
+            elif i.info_type == "soup":
+                b=1
+            elif i.info_type == "main course":
+                c=1
+            else:
+                d=1
+            if a == user_type_A and user_type_A==1:
+                point +=2
+            if b == user_type_B and user_type_B==1:
+                point +=2
+            if c == user_type_C and user_type_C==1:
+                point +=2
+            if d == user_type_D and user_type_D==1:
+                point +=2
+            dish_order[i.list_id] = point
+        #排序
+        dish_ordered = sorted(dish_order.items(),key=lambda x:x[1],reverse=True)
+        opt1=list(dish_ordered.keys()[0])
+        opt2=list(dish_ordered.keys()[1])
+        opt3=list(dish_ordered.keys()[2])
+        opt4="";opt5="";opt6=""
+        for j in dish_form:
+            if j.list_id==opt1:
+                j.list_name=opt4
+            if j.list_id==opt2:
+                j.list_name=opt5
+            if j.list_id==opt3:
+                j.list_name=opt6
+    return render_template("main.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
+
+
+
 db.drop_all()
 db.create_all()
+
 #为table加入数据
 user1=common_user(common_name='zzz', common_password='12345')
 user2=common_user(common_name='qqq', common_password='16949')
