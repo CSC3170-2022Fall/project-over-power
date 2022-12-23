@@ -358,7 +358,8 @@ def main():#餐厅系统主界面（餐厅列表页）
     return render_template("info.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
 
 @app.route("/comment",methods=["GET","POST"])
-def add_comment():
+def comment():
+    cmt= comment.query.filter_by(dish_id=dish_id).all()
     dish_id = request.form.get("dish_id")
     if request.method=="POST":
         comment_info = request.form.get("message")
@@ -366,8 +367,6 @@ def add_comment():
         QWQ = comment(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
-    if request.method=="GET":
-        cmt= comment.query.filter_by(dish_id=dish_id).all()
     return render_template("comment",comment_info=cmt)
 
 @app.route("/senior_add",methods=["GET","POST"])
@@ -401,7 +400,7 @@ def senior_delete():
 def senior_r1():
     if request.method == "GET":
         dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
-    return render_template("senior_r1",dish_table_ini=dish_table_1)
+    return render_template("senior_r1",dish_table=dish_table_1)
 
 @app.route("/normal_r1")
 def normal_r1():
