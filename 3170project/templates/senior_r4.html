@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lambad's Tavern Manage Menu</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">
+    </head>
+
+    <body>       
+        
+        <ul>
+            <div class="logo_top">
+                <img src="/static/images/logo.png" height="49">
+            </div>
+        </ul>
+
+
+        <div class="left_4">
+            <div class="resta_div">
+                <div class="resta_div_sub">
+                    <p class="title_text">Lambad's Tavern</p>
+                </div>
+                <div class="resta_div_sub">
+                    <img src="/static/images/R4.jpg" width="200" height="200" />
+                    <span class="description">
+                        <p class="dp">Its owner, Lambad, claims to be a legendary sailor who used to sail far and wide. It is rather difficult to tell how exaggerated that claim is, but juding from the food sold in the tavern, at least the part about cuisines seems credible.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="new_dish_4">
+            <p class="title_text">Add a new dish</p>
+
+            <form method="POST" enctype="multipart/form-data" action="/">
+                <label class="prompt_text">Name: </label><input type="text" name="dish_name" style="width: 100%; font-size: 15px">
+                <label class="prompt_text">Description: </label><textarea id="text" cols="65%" name="text" style="height: 150px; width: 100%; font-size: 15px"></textarea><br>
+                <label class="prompt_text">Image: </label><input type="file" name="uploaded_file" accept="image/jpeg, image/jpg, image/png" style="font-size: 15px"><br>
+                <input type="submit" value="Submit" style="font-size: 25px; margin: 10px 0px 5px; position: absolute; left: 45%;">
+            </form>
+        </div>
+            
+        
+
+        <div class="right">
+            {% for i in dish_list_4%}   <!--dish list of whose restaurant_id == 1 in dishes-->
+            <div class="dish_div_4">   
+                <div class="dish_div_sub">
+                    <p class="title_text">i.listname</p>
+                    <button type="button" class="sub_text" onclick="window.location.href='{{url_for(" ", #return_delete_dishid=i.list_id)}}">Delete</button> <!--delete function name-->
+                </div>
+                <div class="dish_div_sub">
+                    <img alt="image not found" src="{{ }}" width="150" height="150">    <!--full path of the image-->
+                    <span class="description">
+                        <p class="dp">i.description</p>
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </body>
+
+</html>
