@@ -47,16 +47,15 @@ class restaurants(db.Model):
 class dishes(db.Model):
     __tablename__ = "dishes"
     list_id = db.Column(db.String(10), primary_key=True)#已修改
-    list_name = db.Column(db.String(40),unique=False, nullable=False)
-    info_type = db.Column(db.String(16), unique=False, nullable=False)
+    list_name = db.Column(db.String(40),unique=False, nullable=True)
+    info_type = db.Column(db.String(16), unique=False, nullable=True)
     info_description = db.Column(db.String(16),unique=False,nullable=True)
-    info_price = db.Column(db.Integer, unique=False, nullable=False)
-    info_taste_M = db.Column(db.Integer, unique=False, nullable=False)
-    info_taste_N = db.Column(db.Integer, unique=False, nullable=False)
-    info_taste_X = db.Column(db.Integer, unique=False, nullable=False)
-    info_taste_Y = db.Column(db.Integer, unique=False, nullable=False)
-    info_taste_Z = db.Column(db.Integer, unique=False, nullable=False)
-    info_times = db.Column(db.Integer, unique=False, nullable=False)
+    info_price = db.Column(db.Integer, unique=False, nullable=True)
+    info_taste_M = db.Column(db.Integer, unique=False, nullable=True)
+    info_taste_N = db.Column(db.Integer, unique=False, nullable=True)
+    info_taste_X = db.Column(db.Integer, unique=False, nullable=True)
+    info_taste_Y = db.Column(db.Integer, unique=False, nullable=True)
+    info_taste_Z = db.Column(db.Integer, unique=False, nullable=True)
     restaurant_id = db.Column(db.Integer,db.ForeignKey('restaurants.restaurant_id'))
 
 class rate(db.Model):
