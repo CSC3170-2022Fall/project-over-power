@@ -295,7 +295,8 @@ def search():
     dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
     return render_template('search.html',quotes = dish_name)
 
-def recommendation():
+@app.route('/main', methods=['GET', 'POST'])
+def main():#餐厅系统主界面（餐厅列表页）
     if request.method=="GET":
         user = login_user.query.all()
         user_id=user.login_info
@@ -355,7 +356,7 @@ def recommendation():
                 j.list_name=opt5
             if j.list_id==opt3:
                 j.list_name=opt6
-    return render_template("main.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
+    return render_template("info.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
 
 
 
