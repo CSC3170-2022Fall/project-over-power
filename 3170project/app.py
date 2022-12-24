@@ -6,7 +6,7 @@ import time
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:password@127.0.0.1/3170project'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:123456@127.0.0.1/3170project'
 app.secret_key='bilibili'
 
 class common_user(db.Model):#datapage model, inherited from db.Model
@@ -68,10 +68,11 @@ class rate(db.Model):
     price_rate = db.Column(db.Float(1), nullable=True)
     overall_rate = db.Column(db.Float(1), nullable=True)
 
-class comment(db.Model):
-    __tablename__ = "comment"
+class comments(db.Model):
+    __tablename__ = "comments"
     comment_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    dish_id = db.Column(db.String(10),db.ForeignKey(dishes.list_id))
+    # dish_id = db.Column(db.String(10),db.ForeignKey(dishes.list_id))
+    dish_id = db.Column(db.String(10), unique=True, nullable=False)
     Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
@@ -245,7 +246,7 @@ def senior_register():
         else:
             #needs modification: leads to the users' corresponding restaurant
             # return redirect(url_for(""))
-            return render_template('resta_1.html') 
+            return render_template('normal_r1.html') 
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
@@ -374,16 +375,16 @@ def main():#餐厅系统主界面（餐厅列表页）
 def comment(normal_send):
     dish_id = normal_send
     dish_table = dishes.query.get(dish_id)
-    cmt= comment.query.filter_by(dish_id=normal_send).all()
+    cmt= comments.query.filter_by(dish_id=normal_send).all()
     if request.method=="POST":
         comment_info = request.form.get("message")
         current_time = time.datetime.now()
-        QWQ = comment(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
+        QWQ = comments(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
-        cmt= comment.query.filter_by(dish_id=normal_send).all()
+        cmt= comments.query.filter_by(dish_id=normal_send).all()
         dish_table = dishes.query.get(dish_id)
-    return render_template("comment.html",comment=cmt,dish_table=dish_table)
+    return render_template("comment.html",comment_table=cmt,dish_table=dish_table)
 
 #this parts correspond to the 4 pages of senior, with 4*3 = 12 functions in total
 #senior_r1
