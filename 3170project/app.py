@@ -51,13 +51,13 @@ class dishes(db.Model):
     list_name = db.Column(db.String(40),unique=False, nullable=True)
     info_type = db.Column(db.String(16), unique=False, nullable=True)
     info_description = db.Column(db.String(16),unique=False,nullable=True)
-    info_price = db.Column(db.Integer, unique=False, nullable=True)
+    info_price = db.Column(db.String(10), unique=False, nullable=True)
     info_taste_M = db.Column(db.Integer, unique=False, nullable=True)
     info_taste_N = db.Column(db.Integer, unique=False, nullable=True)
     info_taste_X = db.Column(db.Integer, unique=False, nullable=True)
     info_taste_Y = db.Column(db.Integer, unique=False, nullable=True)
     info_taste_Z = db.Column(db.Integer, unique=False, nullable=True)
-    restaurant_id = db.Column(db.Integer,db.ForeignKey('restaurants.restaurant_id'))
+    restaurant_id = db.Column(db.Integer,unique=False, nullable=True)
 
 class rate(db.Model):
     __tablename__="rate"
@@ -357,16 +357,18 @@ def main():#餐厅系统主界面（餐厅列表页）
 
 @app.route("/comment/<normal_send>",methods=["GET","POST"])
 def comment(normal_send):
+    dish_id = normal_send
+    dish_table = dishes.query.get(dish_id)
     cmt= comment.query.filter_by(dish_id=normal_send).all()
     if request.method=="POST":
         comment_info = request.form.get("message")
         current_time = time.datetime.now()
-        dish_id=normal_send
         QWQ = comment(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
         cmt= comment.query.filter_by(dish_id=normal_send).all()
-    return render_template("comment.html",comment=cmt)
+        dish_table = dishes.query.get(dish_id)
+    return render_template("comment.html",comment=cmt,dish_table=dish_table)
 
 #这一部分是对应senior的四个页面。共计4*3=12个函数
 #senior_r1
