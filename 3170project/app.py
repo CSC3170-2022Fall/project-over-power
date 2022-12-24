@@ -414,7 +414,7 @@ def comment(normal_send):
 #     return redirect(url_for('senior_r1'))
 
 @app.route("/senior_delete1/<senior_d>")
-def senior_delete(senior_d):    
+def senior_delete1(senior_d):    
     temp=dishes.query.filter_by(senior_d)
     if temp:
         try:
