@@ -93,31 +93,24 @@
 </head>
 <body>
     <div class="dish-info">
-        <img class="dish-image" src="dish.jpg" alt="菜品图片">
-        <p>这是一道美味的菜品，推荐给大家品尝。</p>
+        <img class="dish-image" src="" width="200" height="200">
+        <p>{{dish_table.info_description}}</p>
       </div>
     
-      <!-- 过往的三个评价 -->
+      <!-- 过往的评价 -->
+      {% for i in comment%}
       <div class="review">
-        <p>评价 1</p>
-        <p>这道菜非常好吃，味道鲜美，值得推荐。</p>
+          <p>{{comment.comment_info}}</p>
       </div>
-      <div class="review">
-        <p>评价 2</p>
-        <p>这道菜的味道很独特，我很喜欢。</p>
-      </div>
-      <div class="review">
-        <p>评价 3</p>
-        <p>虽然不是很喜欢这道菜的味道，但是做得非常精致。</p>
-      </div>
+      {% endfor %}
+
       <form class="comt">
-        
         <label for="review">评价：</label>
         <br>
         <textarea id="review" name="review" rows="4" cols="50"></textarea>
         <br>
         <input type="submit" value="提交">
-      </form> 
+      </form>
     
 </body>
 <script>
