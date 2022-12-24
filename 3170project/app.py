@@ -448,8 +448,9 @@ def senior_r1():
                 flag = True
         if flag == False:
             #图片保存路径
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id)
+            new_img_name = new_dish_id + ".png"
+            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
+            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
             #
             QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
             db.session.add_all([QOQ])
@@ -496,8 +497,9 @@ def senior_r2():
                 flash("Already have this meal")
                 flag = True
         if flag == False:
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id)
+            new_img_name = new_dish_id + ".png"
+            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
+            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
             QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
@@ -543,8 +545,9 @@ def senior_r3():
                 flash("Already have this meal")
                 flag = True
         if flag == False:
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id)
+            new_img_name = new_dish_id + ".png"
+            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
+            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
             QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
@@ -590,8 +593,9 @@ def senior_r4():
                 flash("Already have this meal")
                 flag = True
         if flag == False:
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id)
+            new_img_name = new_dish_id + ".png"
+            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
+            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
             QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
