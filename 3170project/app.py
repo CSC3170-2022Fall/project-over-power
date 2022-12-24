@@ -439,7 +439,7 @@ def senior_r1():
         last_dish_id = dish_list[-1].list_id
         new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
-        new_dish_description = request.form.get("dish_description")
+        new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")
         new_dish_image= request.files['uploaded_file']#传入图片的参数名
         for n in dish_list:
@@ -453,15 +453,12 @@ def senior_r1():
             base_path = basedir + "/static/uploads/"
             new_path = base_path + new_img_name
             new_dish_image.save(new_path)
-            # path = os.path.join(UPLOAD_FOLDER, new_img_name)
-            # new_dish_image.save(path)
-            # new_img_path = os.path.join(UPLOAD_FOLDER, new_img_name)
-            new_img_path = new_path
-            #
-            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
+            new_img_path = "/static/uploads/" + new_img_name
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, restaurant_id=1, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
-            flash("successfully create one meal!")    
+            flash("successfully create one meal!")  
+        dish_table_1 = dishes.query.filter_by(restaurant_id = 1).all()
     return render_template("senior_r1.html",dish_table=dish_table_1)
 #senior_r2
 # @app.route("/senior_add2",methods=["GET","POST"])
@@ -494,7 +491,7 @@ def senior_r2():
         last_dish_id = dish_list[-1].list_id
         new_dish_id = "B" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
-        new_dish_description = request.form.get("dish_description")
+        new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")
         new_dish_image= request.form.get("uploaded_file")
         for n in dish_list:
@@ -504,12 +501,15 @@ def senior_r2():
                 flag = True
         if flag == False:
             new_img_name = new_dish_id + ".png"
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
-            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
+            base_path = basedir + "/static/uploads/"
+            new_path = base_path + new_img_name
+            new_dish_image.save(new_path)
+            new_img_path = "/static/uploads/" + new_img_name
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, restaurant_id=2, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
-            flash("successfully create one meal!")      
+            flash("successfully create one meal!")  
+        dish_table_1 = dishes.query.filter_by(restaurant_id = 2).all()   
     return render_template("senior_r2.html",dish_table=dish_table_1)
 #senior_r3
 # @app.route("/senior_add3",methods=["GET","POST"])
@@ -542,7 +542,7 @@ def senior_r3():
         last_dish_id = dish_list[-1].list_id
         new_dish_id = "C" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
-        new_dish_description = request.form.get("dish_description")
+        new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")  
         new_dish_image= request.form.get("uploaded_file")      
         for n in dish_list:
@@ -552,12 +552,15 @@ def senior_r3():
                 flag = True
         if flag == False:
             new_img_name = new_dish_id + ".png"
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
-            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
+            base_path = basedir + "/static/uploads/"
+            new_path = base_path + new_img_name
+            new_dish_image.save(new_path)
+            new_img_path = "/static/uploads/" + new_img_name
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, restaurant_id=3, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
-            flash("successfully create one meal!")      
+            flash("successfully create one meal!")  
+        dish_table_1 = dishes.query.filter_by(restaurant_id = 3).all()  
     return render_template("senior_r3.html",dish_table=dish_table_1)
 #senior_r4
 # @app.route("/senior_add4",methods=["GET","POST"])
@@ -590,7 +593,7 @@ def senior_r4():
         last_dish_id = dish_list[-1].list_id
         new_dish_id = "D" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
-        new_dish_description = request.form.get("dish_description")
+        new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")  
         new_dish_image= request.form.get("uploaded_file")      
         for n in dish_list:
@@ -600,12 +603,15 @@ def senior_r4():
                 flag = True
         if flag == False:
             new_img_name = new_dish_id + ".png"
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
-            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
+            base_path = basedir + "/static/uploads/"
+            new_path = base_path + new_img_name
+            new_dish_image.save(new_path)
+            new_img_path = "/static/uploads/" + new_img_name
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, restaurant_id=4, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
-            flash("successfully create one meal!") 
+            flash("successfully create one meal!")  
+        dish_table_1 = dishes.query.filter_by(restaurant_id = 4).all()
     return render_template("senior_r4.html",dish_table=dish_table_1)
 #senior部分结束
 
