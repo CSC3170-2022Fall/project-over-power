@@ -416,7 +416,7 @@ def senior_add():
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=2).all()
         last_dish_id = dish_list[-1].list_id
-        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        new_dish_id = "B" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
         for n in dish_list:
@@ -458,7 +458,7 @@ def senior_add():
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=3).all()
         last_dish_id = dish_list[-1].list_id
-        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        new_dish_id = "C" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
         for n in dish_list:
@@ -500,7 +500,7 @@ def senior_add():
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=4).all()
         last_dish_id = dish_list[-1].list_id
-        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        new_dish_id = "D" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
         for n in dish_list:
@@ -531,7 +531,7 @@ def senior_delete(senior_d):
         flash('No this term')
     return redirect(url_for('senior_r4'))
 
-@app.route("/senior_r1",methods=["GET","POST"])
+@app.route("/senior_r4",methods=["GET","POST"])
 def senior_r4():
     dish_table_1 = dishes.query.filter_by(restaurant_id=4).all()
     return render_template("senior_r4.html",dish_table=dish_table_1)
