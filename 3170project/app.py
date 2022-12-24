@@ -312,7 +312,7 @@ def main():#餐厅系统主界面（餐厅列表页）
             b=1
         elif i.info_type == "main course":
             c=1
-        else:
+        elif i.info_type == "dessert":
             d=1
         if a == user_type_A and user_type_A==1:
             point +=2
