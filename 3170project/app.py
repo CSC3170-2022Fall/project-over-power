@@ -638,6 +638,8 @@ res1 = restaurants(restaurant_name = 'Membership restaurant',
     average_price_per_person = 3.2,
     rate = 3)
 senior_user1 = senior_user(senior_name='bizu',res_id=1,senior_password='114154')
+preference1=preference(A_type=1,B_type=0,C_type=0,D_type=0,M_taste=1,N_taste=1,X_taste=0,Y_taste=0,Z_taste=1)
+preference2=preference(A_type=0,B_type=0,C_type=0,D_type=1,M_taste=0,N_taste=0,X_taste=0,Y_taste=1,Z_taste=0)
 
 dish_a1=dishes(list_id='A1',list_name="Cream Stew", info_type="soup", info_description="A meat and vegetable stew. These warm, buttery ingredients are so good that you almost want to dive into the cream stew and cuddle up with them.",
     info_price="$25", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=1, img_path="/static/uploads/A1.png")
@@ -714,6 +716,7 @@ db.session.add_all([dish_a1,dish_a2,dish_a3,dish_a4,dish_a5,dish_a6,dish_a7,dish
 db.session.add_all([dish_b1,dish_b2,dish_b3,dish_b4,dish_b5,dish_b6,dish_b7,dish_b8])
 db.session.add_all([dish_c1,dish_c2,dish_c3,dish_c4,dish_c5,dish_c6,dish_c7,dish_c8])
 db.session.add_all([dish_d1,dish_d2,dish_d3,dish_d4,dish_d5,dish_d6,dish_d7,dish_d8])
+db.session.add_all([preference1,preference2])
 db.session.commit()
 
 if __name__ == '__main__':
