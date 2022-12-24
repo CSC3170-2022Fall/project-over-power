@@ -392,13 +392,23 @@ def senior_add():
 
 @app.route("/senior_delete/<senior_d>")
 def senior_delete(senior_d):    
-    dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
+    temp=dishes.query.filter_by(senior_d)
+    if temp:
+        try:
+            db.session.delete(temp)
+            db.session.commit()
+            flash('Successfully delete!')
+        except Exception as e:
+            print (e)
+            flash('Failed to delete')
+            db.session.rollback
+     else:
+        flash('No this term')
     return redirect(url_for('senior_r1'))
 
 @app.route("/senior_r1",methods=["GET","POST"])
 def senior_r1():
-    if request.method == "GET":
-        dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
+    dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
     return render_template("senior_r1.html",dish_table=dish_table_1)
 
 @app.route("/normal_r1")
