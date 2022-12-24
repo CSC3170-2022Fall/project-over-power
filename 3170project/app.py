@@ -385,7 +385,7 @@ def comment(normal_send):
         dish_table = dishes.query.get(dish_id)
     return render_template("comment.html",comment=cmt,dish_table=dish_table)
 
-#这一部分是对应senior的四个页面。共计4*3=12个函数
+#this parts correspond to the 4 pages of senior, with 4*3 = 12 functions in total
 #senior_r1
 # @app.route("/senior_add1",methods=["GET","POST"])
 # def senior_add1():
@@ -411,8 +411,8 @@ def senior_delete(senior_d):
 @app.route("/senior_r1",methods=["GET","POST"])
 def senior_r1():
     dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
-    if request.method == "POST":#add部分
-        #生成新的id
+    if request.method == "POST":#add part
+        #generate new id
         dish_list = dishes.query.filter_by(restaurant_id=1).all()
         last_dish_id = dish_list[-1].list_id
         new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
@@ -564,7 +564,7 @@ def senior_r4():
     return render_template("senior_r4.html",dish_table=dish_table_1)
 #senior部分结束
 
-#normal部分开始，共4*1=4个函数
+#the normal parts start，4 functions in total
 @app.route("/normal_r1")
 def normal_r1():
     dish_table = dishes.query.filter_by(restaurant_id=1).all()
@@ -589,7 +589,7 @@ def normal_r4():
 db.drop_all()
 db.create_all()
 
-#为table加入数据
+#initialized the database
 user1=common_user(common_name='zzz', common_password='12345')
 user2=common_user(common_name='qqq', common_password='16949')
 res1 = restaurants(restaurant_name = 'Membership restaurant',
