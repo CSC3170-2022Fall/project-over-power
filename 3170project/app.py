@@ -415,7 +415,7 @@ def comment(normal_send):
 
 @app.route("/senior_delete1/<senior_d>")
 def senior_delete1(senior_d):    
-    temp=dishes.query.filter_by(list_id=senior_d)
+    temp=dishes.query.filter_by(list_id=senior_d).first()
     if temp:
         try:
             db.session.delete(temp)
@@ -465,7 +465,7 @@ def senior_r1():
 
 @app.route("/senior_delete2/<senior_d>")
 def senior_delete2(senior_d):    
-    temp=dishes.query.filter_by(list_id=senior_d)
+    temp=dishes.query.filter_by(list_id=senior_d).first()
     if temp:
         try:
             db.session.delete(temp)
@@ -513,7 +513,7 @@ def senior_r2():
 
 @app.route("/senior_delete3/<senior_d>")
 def senior_delete3(senior_d):    
-    temp=dishes.query.filter_by(list_id=senior_d)
+    temp=dishes.query.filter_by(list_id=senior_d).first()
     if temp:
         try:
             db.session.delete(temp)
@@ -561,7 +561,7 @@ def senior_r3():
 
 @app.route("/senior_delete4/<senior_d>")
 def senior_delete4(senior_d):    
-    temp=dishes.query.filter_by(list_id=senior_d)
+    temp=dishes.query.filter_by(list_id=senior_d).first()
     if temp:
         try:
             db.session.delete(temp)
