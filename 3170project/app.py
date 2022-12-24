@@ -50,7 +50,7 @@ class dishes(db.Model):
     list_id = db.Column(db.String(10), primary_key=True)#已修改
     list_name = db.Column(db.String(40),unique=False, nullable=True)
     info_type = db.Column(db.String(16), unique=False, nullable=True)
-    info_description = db.Column(db.String(16),unique=False,nullable=True)
+    info_description = db.Column(db.String(500),unique=False,nullable=True)
     info_price = db.Column(db.String(10), unique=False, nullable=True)
     info_taste_M = db.Column(db.Integer, unique=False, nullable=True)
     info_taste_N = db.Column(db.Integer, unique=False, nullable=True)
@@ -81,9 +81,9 @@ class login_user(db.Model):#record the id of the user
     login_info=db.Column(db.Integer,nullable=False)
  
 class current_dish(db.Model):#record the current dish that the user is viewing
-    _tablename_="login_user"
-    login_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
-    login_info=db.Column(db.Integer,nullable=False)
+    _tablename_="current_dish"
+    dish_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
+    dish_info=db.Column(db.Integer,nullable=False)
     
 class preference(db.Model):
     _tablename_="preference"
@@ -119,7 +119,9 @@ def preference_record():
         if (temp2=="Back"):
             return redirect(url_for("common_register")) 
         else:
-            user_id = db.session.execute("select info from login_user")#get user'sid
+            # user_id = db.session.execute("select info from login_user")#get user'sid
+            user = login_user.query.first()
+            user_id = user.login_info
             A_dish_type = request.form.get("A_dish_type")#get user's dish type
             B_dish_type = request.form.get("B_dish_type")
             C_dish_type = request.form.get("C_dish_type")
@@ -269,6 +271,19 @@ def create_account():
                     db.session.commit()
                     flash('Creating an account succeeded, you can log in with this account now!')
                     # return render_template('preference.html')
+                    # user_list = common_user.query.all()
+
+                    # last_user_id = user_list[-1]
+                    # print(last_user_id)
+                    # login_temp = common_user.query.filter_by(common_name=username).order_by(common_user.common_id.desc()).first()
+                    # print(login_temp)
+                    sub=common_user.query.all()
+                    for x in sub:
+                        if x.common_name == username:
+                            id = x.common_id
+                    login_status = login_user(login_info = id)
+                    db.session.add_all([login_status])
+                    db.session.commit()
                     return redirect(url_for("preference_record"))
                 else:
                     flash('Password confirmation failed!')
@@ -326,9 +341,11 @@ def main():#餐厅系统主界面（餐厅列表页）
         dish_order[i.list_id] = point
     #排序
     dish_ordered = sorted(dish_order.items(),key=lambda x:x[1],reverse=True)
-    opt1=list(dish_ordered.keys()[0])
-    opt2=list(dish_ordered.keys()[1])
-    opt3=list(dish_ordered.keys()[2])
+    print('bizu')
+    print(dish_ordered)
+    opt1=list(dish_ordered[0][0])
+    opt2=list(dish_ordered[1][0])
+    opt3=list(dish_ordered[2][0])
     opt4="";opt5="";opt6=""
     for j in dish_form:
         if j.list_id==opt1:
@@ -585,77 +602,81 @@ res1 = restaurants(restaurant_name = 'Membership restaurant',
     rate = 3)
 senior_user1 = senior_user(senior_name='bizu',res_id=1,senior_password='114154')
 
-dish_a1=dishes(list_name="Cream Stew", info_type="soup", info_description="A meat and vegetable stew. These warm, buttery ingredients are so good that you almost want to dive into the cream stew and cuddle up with them.",
+dish_a1=dishes(list_id='A1',list_name="Cream Stew", info_type="soup", info_description="A meat and vegetable stew. These warm, buttery ingredients are so good that you almost want to dive into the cream stew and cuddle up with them.",
     info_price="$25", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=1)
-dish_a2=dishes(list_name="Fruit of the Festival", info_type="dessert", info_description="A brightly colored non-alcoholic beverage. The sublime enjoyment brought by the refreshing taste is almost like a sweet, illusory dream. One small sip transports you onto a white, sandy beach, where the sparkling seawater beats with the rhythm to which the hymn of your leisurely vacation shall be composed.",
+dish_a2=dishes(list_id='A2',list_name="Fruit of the Festival", info_type="dessert", info_description="A brightly colored non-alcoholic beverage. The sublime enjoyment brought by the refreshing taste is almost like a sweet, illusory dream. One small sip transports you onto a white, sandy beach, where the sparkling seawater beats with the rhythm to which the hymn of your leisurely vacation shall be composed.",
     info_price="$12", info_taste_M=1, info_taste_N=1, info_taste_X=0, info_taste_Y=0, info_taste_Z=0, restaurant_id=1)
-dish_a3=dishes(list_name="Goulash", info_type="soup", info_description="A steaming-hot stew. Just one spoonful sends a down-to-earth sense of satisfaction welling up from the depth of your heart. The meat's flavor grows with every chew, bring limitless strength to the eater even in the coldest wintry wastes.",
+dish_a3=dishes(list_id='A3',list_name="Goulash", info_type="soup", info_description="A steaming-hot stew. Just one spoonful sends a down-to-earth sense of satisfaction welling up from the depth of your heart. The meat's flavor grows with every chew, bring limitless strength to the eater even in the coldest wintry wastes.",
     info_price="$25", info_taste_M=0, info_taste_N=1, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=1)
-dish_a4=dishes(list_name="Moon Pie", info_type="appetizer", info_description="A traditional staple. As you cut a slice off this small meat pie, the aromas of butter and meat assault your senses simultaneously. The rustic, sweet mouthfeel reminds you of the sights and sounds of harvest festivals, bringing a smile unbidden to your face.",
+dish_a4=dishes(list_id='A4',list_name="Moon Pie", info_type="appetizer", info_description="A traditional staple. As you cut a slice off this small meat pie, the aromas of butter and meat assault your senses simultaneously. The rustic, sweet mouthfeel reminds you of the sights and sounds of harvest festivals, bringing a smile unbidden to your face.",
     info_price="$20", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=1)
-dish_a5=dishes(list_name="Mushroom Pizza", info_type="main course", info_description="A pizza covered in cheese and mushrooms. It's a party in your month and the cheese and mushrooms invited all their delicious friends.",
+dish_a5=dishes(list_id='A5',list_name="Mushroom Pizza", info_type="main course", info_description="A pizza covered in cheese and mushrooms. It's a party in your month and the cheese and mushrooms invited all their delicious friends.",
     info_price="$25", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=1)
-dish_a6=dishes(list_name="Sticky Honey Roast", info_type="main course", info_description="A meat dish in a sweet honey sauce. The warm honey draws out the flavor of the meat, creating a flavor explosion akin to bathing in the warm summer sun.",
+dish_a6=dishes(list_id='A6',list_name="Sticky Honey Roast", info_type="main course", info_description="A meat dish in a sweet honey sauce. The warm honey draws out the flavor of the meat, creating a flavor explosion akin to bathing in the warm summer sun.",
     info_price="$27", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=1)
-dish_a7=dishes(list_name="Sunshine Sprat", info_type="main course", info_description="Gently fried fish dish. The fish melts in your mouth, melding the flavors of land and sea together as it does, making for an unforgettable experience. Little wonder, then, that such as simply-made dish can make it into restaurants of great class.",
+dish_a7=dishes(list_id='A7',list_name="Sunshine Sprat", info_type="main course", info_description="Gently fried fish dish. The fish melts in your mouth, melding the flavors of land and sea together as it does, making for an unforgettable experience. Little wonder, then, that such as simply-made dish can make it into restaurants of great class.",
     info_price="$12", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=1)
-dish_a8=dishes(list_name="Sweet Madame", info_type="main course", info_description="Honey-roasted fowl. Tender and sweet, the meat has perfectly fused with honey, ensuring the only thing left of the dish will be the cleanly-picked bones.",
+dish_a8=dishes(list_id='A8',list_name="Sweet Madame", info_type="main course", info_description="Honey-roasted fowl. Tender and sweet, the meat has perfectly fused with honey, ensuring the only thing left of the dish will be the cleanly-picked bones.",
     info_price="$23", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=1)
 
-dish_b1=dishes(list_name="Adeptus' Temptation", info_type="soup", info_description="The dish is a rare and exquisite mix of both land and the sea, combining countless delicious delicacies in one flavor-filled pot. Each mouthful is a moment to remember - it's even irresistible enough to entice the adepti down from their celestial abode.",
+dish_b1=dishes(list_id='B1',list_name="Adeptus' Temptation", info_type="soup", info_description="The dish is a rare and exquisite mix of both land and the sea, combining countless delicious delicacies in one flavor-filled pot. Each mouthful is a moment to remember - it's even irresistible enough to entice the adepti down from their celestial abode.",
     info_price="$59", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=2)
-dish_b2=dishes(list_name="Almond Tofu", info_type="dessert", info_description="The dish is a rare and exquisite mix of both land and the sea, combining countless delicious delicacies in one flavor-filled pot. Each mouthful is a moment to remember - it's even irresistible enough to entice the adepti down from their celestial abode.",
+dish_b2=dishes(list_id='B2',list_name="Almond Tofu", info_type="dessert", info_description="The dish is a rare and exquisite mix of both land and the sea, combining countless delicious delicacies in one flavor-filled pot. Each mouthful is a moment to remember - it's even irresistible enough to entice the adepti down from their celestial abode.",
     info_price="$12", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=0, info_taste_Z=0, restaurant_id=2)
-dish_b3=dishes(list_name="Bamboo Shoot Soup", info_type="soup", info_description="A soup dish that's been stewed for a long while. One whiff is enough to whet one's appetite greatly, and the concentrated flavors fill you body with every spoonful of soup. It is almost like spreading a pair of wings and walking on clouds.",
+dish_b3=dishes(list_id='B3',list_name="Bamboo Shoot Soup", info_type="soup", info_description="A soup dish that's been stewed for a long while. One whiff is enough to whet one's appetite greatly, and the concentrated flavors fill you body with every spoonful of soup. It is almost like spreading a pair of wings and walking on clouds.",
     info_price="$14", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=2)
-dish_b4=dishes(list_name="Black-Back Perch Stew", info_type="appetizer", info_description="A poached fish dish. The fish fillets are so tender and juicy that they almost seem to come alive in your mouth. The sense of loss is so unbearable that when you swallow a piece down, you just have to treat yourself to another.",
+dish_b4=dishes(list_id='B4',list_name="Black-Back Perch Stew", info_type="appetizer", info_description="A poached fish dish. The fish fillets are so tender and juicy that they almost seem to come alive in your mouth. The sense of loss is so unbearable that when you swallow a piece down, you just have to treat yourself to another.",
     info_price="$22", info_taste_M=0, info_taste_N=0, info_taste_X=1, info_taste_Y=1, info_taste_Z=1, restaurant_id=2)
-dish_b5=dishes(list_name="Chili-Mince Cornbread Buns", info_type="main course", info_description="The intense charred aroma of the wok sits on the condiments, which are shoveled into the fluffy buns, filling the air with a fragrance that itself worth rave reviews. No wonder such a dish could even awaken a sleeping god…",
+dish_b5=dishes(list_id='B5',list_name="Chili-Mince Cornbread Buns", info_type="main course", info_description="The intense charred aroma of the wok sits on the condiments, which are shoveled into the fluffy buns, filling the air with a fragrance that itself worth rave reviews. No wonder such a dish could even awaken a sleeping god…",
     info_price="$30", info_taste_M=0, info_taste_N=0, info_taste_X=1, info_taste_Y=1, info_taste_Z=0, restaurant_id=2)
-dish_b6=dishes(list_name="Crystal Shrimp", info_type="appetizer", info_description="The outer skin is as clear its crystal namesake, and when it enters the mouth, one's tongue could be forgiven for thing that the fresh shrimp within is still alive. Those who eat it can only lament that four pieces per serving is far, far too few.",
+dish_b6=dishes(list_id='B6',list_name="Crystal Shrimp", info_type="appetizer", info_description="The outer skin is as clear its crystal namesake, and when it enters the mouth, one's tongue could be forgiven for thing that the fresh shrimp within is still alive. Those who eat it can only lament that four pieces per serving is far, far too few.",
     info_price="$19", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=2)
-dish_b7=dishes(list_name="Noodles with Mountain Deliciacies", info_type="main course", info_description="Noodles in a meat and vegetable sauce. The seemingly ordinary noodles have absorbed the essence of the mountainous delicacies. A single mouthful is enough to taste its extreme freshness.",
+dish_b7=dishes(list_id='B7',list_name="Noodles with Mountain Deliciacies", info_type="main course", info_description="Noodles in a meat and vegetable sauce. The seemingly ordinary noodles have absorbed the essence of the mountainous delicacies. A single mouthful is enough to taste its extreme freshness.",
     info_price="$13", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=2)
-dish_b8=dishes(list_name="Vegetarian Abalone", info_type="appetizer", info_description="A vegetarian dish with a rich flavor. With the aid of the sauce, the matsutake has achieved an excellent, elegant mouth-feel that so rivals scallop in tenderness and abalone in freshness that you can hardly tell them apart. If you left your customer guessing before revealing the truth later, you would be sure to earn their astonished praise.",
+dish_b8=dishes(list_id='B8',list_name="Vegetarian Abalone", info_type="appetizer", info_description="A vegetarian dish with a rich flavor. With the aid of the sauce, the matsutake has achieved an excellent, elegant mouth-feel that so rivals scallop in tenderness and abalone in freshness that you can hardly tell them apart. If you left your customer guessing before revealing the truth later, you would be sure to earn their astonished praise.",
     info_price="$12", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=2)
     
-dish_c1=dishes(list_name="Imported Poultry", info_type="appetizer", info_description="A meat dish drizzled with sauce. Having been marinated beforehand, the fowl has had several layers of flavor added to it, keeping its oiliness in perfect moderation. Bite down on that crispy, crackling, flour-skin, and feel the rich juices of the fowl rush into your mouth and whet your appetite.",
+dish_c1=dishes(list_id='C1',list_name="Imported Poultry", info_type="appetizer", info_description="A meat dish drizzled with sauce. Having been marinated beforehand, the fowl has had several layers of flavor added to it, keeping its oiliness in perfect moderation. Bite down on that crispy, crackling, flour-skin, and feel the rich juices of the fowl rush into your mouth and whet your appetite.",
     info_price="$18", info_taste_M=0, info_taste_N=1, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=3)
-dish_c2=dishes(list_name="More-and-More", info_type="main course", info_description="A snack grilled on an iron plate. The rich ingredients have been stacked atop one another. One bite into the crisp outer layer reveals the soft tenderness within. The lovely sauce clothes the condiments luxuriously, flowing between lips and teeth alike en route to the stomach. Even the aroma that lingers in the air has ascended to become part of its unforgettable deliciousness.",
+dish_c2=dishes(list_id='C2',list_name="More-and-More", info_type="main course", info_description="A snack grilled on an iron plate. The rich ingredients have been stacked atop one another. One bite into the crisp outer layer reveals the soft tenderness within. The lovely sauce clothes the condiments luxuriously, flowing between lips and teeth alike en route to the stomach. Even the aroma that lingers in the air has ascended to become part of its unforgettable deliciousness.",
     info_price="$19", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=3)
-dish_c3=dishes(list_name="Rice Cake Soup", info_type="soup", info_description="Commonly-seen city cuisine. The freshness of light soup forms the perfect backdrop for the original flavor of the ingredients to stand out. This back-to-basics cuisine is sure to make you feel warm inside when eaten on a snowy night.",
+dish_c3=dishes(list_id='C3',list_name="Rice Cake Soup", info_type="soup", info_description="Commonly-seen city cuisine. The freshness of light soup forms the perfect backdrop for the original flavor of the ingredients to stand out. This back-to-basics cuisine is sure to make you feel warm inside when eaten on a snowy night.",
     info_price="$26", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=3)
-dish_c4=dishes(list_name="Sakura Mochi", info_type="dessert", info_description="A delicate and elegant snack. It is surrounded by the fragrance of sakura, and its elegant exterior hides a loveliness that comes forth and disappears in the a single instant. In a moment when all is silent, a single taste returns you to the moment when the sakura were as a blizzard all about you.",
+dish_c4=dishes(list_id='C4',list_name="Sakura Mochi", info_type="dessert", info_description="A delicate and elegant snack. It is surrounded by the fragrance of sakura, and its elegant exterior hides a loveliness that comes forth and disappears in the a single instant. In a moment when all is silent, a single taste returns you to the moment when the sakura were as a blizzard all about you.",
     info_price="$12", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=0, info_taste_Z=0, restaurant_id=3)
-dish_c5=dishes(list_name="Sakura Tempura", info_type="appetizer", info_description="A dish deep-fried in oil. The batter is thin and sheer, like as set of luxurious clothes over the ingredients. The outside crispness and freshness within form amazing layers of texture, leading those who eat it to marvel at just how this delicacy was created.",
+dish_c5=dishes(list_id='C5',list_name="Sakura Tempura", info_type="appetizer", info_description="A dish deep-fried in oil. The batter is thin and sheer, like as set of luxurious clothes over the ingredients. The outside crispness and freshness within form amazing layers of texture, leading those who eat it to marvel at just how this delicacy was created.",
     info_price="$20", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=3)
-dish_c6=dishes(list_name="Sashimi Platter", info_type="appetizer", info_description="A seafood dish made using fresh ingredients. The plate spread before you is like a work of art, almost too beautiful to shatter. The surpassing knife-work has imparted the greatest mouthfeel upon the ingredients possible. The delicate texture, the exquisite springiness, the natural sweetness… it is like something inside your mouth - straight from the ocean and into your heart.",
+dish_c6=dishes(list_id='C6',list_name="Sashimi Platter", info_type="appetizer", info_description="A seafood dish made using fresh ingredients. The plate spread before you is like a work of art, almost too beautiful to shatter. The surpassing knife-work has imparted the greatest mouthfeel upon the ingredients possible. The delicate texture, the exquisite springiness, the natural sweetness… it is like something inside your mouth - straight from the ocean and into your heart.",
     info_price="$19", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=3)
-dish_c7=dishes(list_name="Tonkotsu Ramen", info_type="main course", info_description="A steaming-hot noodle dish. The springy noodles have absorbed the essence of the soup, and the accoutrements have added all manner of variation to the mouthfeel. The soup has preserved the strong fragrance of the bones used to make it, yet does down gently without that greasy feeling. Before you know it, the bowls all gone, and you've still got room for more.",
+dish_c7=dishes(list_id='C7',list_name="Tonkotsu Ramen", info_type="main course", info_description="A steaming-hot noodle dish. The springy noodles have absorbed the essence of the soup, and the accoutrements have added all manner of variation to the mouthfeel. The soup has preserved the strong fragrance of the bones used to make it, yet does down gently without that greasy feeling. Before you know it, the bowls all gone, and you've still got room for more.",
     info_price="$15", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=3)
-dish_c8=dishes(list_name="Unagi Chazuke", info_type="main course", info_description="A light and tasty main dish. The tea and soup weave an elegant, fragrant melody punctuated by the pure white grains, while the unagi, baptized in coal-fired, provides tender, gentle decoration to the mix. The various aromas of eel and tea and the light sweetness of rice mix well on your tongue into something truly sublime. A triple threat not to be trifled with, indeed.",
+dish_c8=dishes(list_id='C8',list_name="Unagi Chazuke", info_type="main course", info_description="A light and tasty main dish. The tea and soup weave an elegant, fragrant melody punctuated by the pure white grains, while the unagi, baptized in coal-fired, provides tender, gentle decoration to the mix. The various aromas of eel and tea and the light sweetness of rice mix well on your tongue into something truly sublime. A triple threat not to be trifled with, indeed.",
     info_price="$13", info_taste_M=0, info_taste_N=0, info_taste_X=0, info_taste_Y=1, info_taste_Z=1, restaurant_id=3)
 
-dish_d1=dishes(list_name="Butter Chicken", info_type="appetizer", info_description="A flavorful dish. Juicy chicken is saturated with silky sauce. Every bite orchestrates an “elemental symphony of flavors” … Oops, before you even knew it, you had already emptied the plate. Dip the flatbread in the sauce - every last drop of this must go!",
+dish_d1=dishes(list_id='D1',list_name="Butter Chicken", info_type="appetizer", info_description="A flavorful dish. Juicy chicken is saturated with silky sauce. Every bite orchestrates an “elemental symphony of flavors” … Oops, before you even knew it, you had already emptied the plate. Dip the flatbread in the sauce - every last drop of this must go!",
     info_price="$15", info_taste_M=0, info_taste_N=0, info_taste_X=1, info_taste_Y=1, info_taste_Z=0, restaurant_id=4)
-dish_d2=dishes(list_name="Masala Cheese Ball", info_type="soup", info_description="The spices were mixed with the other ingredients in a special way to bring out the most original scents. They awaken your taste buds and create a multi-layered flavor profile. The cheese balls are crispy on the outside and soft on the inside. They go deliciously well with steamy hot potatoes.",
+dish_d2=dishes(list_id='D2',list_name="Masala Cheese Ball", info_type="soup", info_description="The spices were mixed with the other ingredients in a special way to bring out the most original scents. They awaken your taste buds and create a multi-layered flavor profile. The cheese balls are crispy on the outside and soft on the inside. They go deliciously well with steamy hot potatoes.",
     info_price="$17", info_taste_M=0, info_taste_N=0, info_taste_X=1, info_taste_Y=1, info_taste_Z=0, restaurant_id=4)
-dish_d3=dishes(list_name="Padisarah Pudding", info_type="dessert", info_description="The moment it enters your mouth, the springy mouthfeel makes you feel like you're wandering atop milk-flavored clouds. As you savor its flavors, the blended fragrance of Padisarah and rose fills the air. When you finally do reach that very last bite, it feels like something has been left unfinished.",
+dish_d3=dishes(list_id='D3',list_name="Padisarah Pudding", info_type="dessert", info_description="The moment it enters your mouth, the springy mouthfeel makes you feel like you're wandering atop milk-flavored clouds. As you savor its flavors, the blended fragrance of Padisarah and rose fills the air. When you finally do reach that very last bite, it feels like something has been left unfinished.",
     info_price="$10", info_taste_M=1, info_taste_N=0, info_taste_X=0, info_taste_Y=0, info_taste_Z=0, restaurant_id=4)
-dish_d4=dishes(list_name="Panipuri", info_type="appetizer", info_description="A delicacy that is served with dipping sauce. Anticipate the mysterious, bright-colored juice within, and bring it to your mouth - the coolness, sourness, and tingling sensation re bouncing freely on your tongue as if someone has ignited a stick of dreamy dynamite.",
+dish_d4=dishes(list_id='D4',list_name="Panipuri", info_type="appetizer", info_description="A delicacy that is served with dipping sauce. Anticipate the mysterious, bright-colored juice within, and bring it to your mouth - the coolness, sourness, and tingling sensation re bouncing freely on your tongue as if someone has ignited a stick of dreamy dynamite.",
     info_price="$20", info_taste_M=0, info_taste_N=1, info_taste_X=1, info_taste_Y=1, info_taste_Z=0, restaurant_id=4)
-dish_d5=dishes(list_name="Samosa", info_type="appetizer", info_description="A deep-fried snack. Each golden, crispy pocket is stuffed full with a soft, glutinous filling. You can't help but wolf one down immediately, and then reach out for a second one, taking your time to savor it… Piece by piece, you become lost in the dish's enticing aroma, and before you know it, you are only left with an empty plate.",
+dish_d5=dishes(list_id='D5',list_name="Samosa", info_type="appetizer", info_description="A deep-fried snack. Each golden, crispy pocket is stuffed full with a soft, glutinous filling. You can't help but wolf one down immediately, and then reach out for a second one, taking your time to savor it… Piece by piece, you become lost in the dish's enticing aroma, and before you know it, you are only left with an empty plate.",
     info_price="$19", info_taste_M=0, info_taste_N=1, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=4)
-dish_d6=dishes(list_name="Selva Salad", info_type="appetizer", info_description="Crispy and juicy Zaytun Peaches are served with fresh mints and blooming roses. This delicacy tastes refreshingly sweet and feels pleasantly cool on the tongue.",
+dish_d6=dishes(list_id='D6',list_name="Selva Salad", info_type="appetizer", info_description="Crispy and juicy Zaytun Peaches are served with fresh mints and blooming roses. This delicacy tastes refreshingly sweet and feels pleasantly cool on the tongue.",
     info_price="$10", info_taste_M=1, info_taste_N=1, info_taste_X=0, info_taste_Y=0, info_taste_Z=0, restaurant_id=4)
-dish_d7=dishes(list_name="Shawarma Wrap", info_type="appetizer", info_description="A wrap filled with roasted meat. On the thin, soft flatbread lies the tender meat covered in a crispy exterior, and the flavor is enriched by spices and balanced by vegetables. A small mouthful is enough to please one's picky taste buds. Eat carefully, now! You don't want to miss out on a single drop of the juice.",
+dish_d7=dishes(list_id='D7',list_name="Shawarma Wrap", info_type="appetizer", info_description="A wrap filled with roasted meat. On the thin, soft flatbread lies the tender meat covered in a crispy exterior, and the flavor is enriched by spices and balanced by vegetables. A small mouthful is enough to please one's picky taste buds. Eat carefully, now! You don't want to miss out on a single drop of the juice.",
     info_price="$12", info_taste_M=0, info_taste_N=0, info_taste_X=1, info_taste_Y=1, info_taste_Z=0, restaurant_id=4)
-dish_d8=dishes(list_name="Tahchin", info_type="main course", info_description="A classic rice dish served in large quantities. With the first bite, the crispy outside cracks with delightful crunching sounds. The second bite combines the soft and moist rice with juicy meat in your mouth. The last bite, however, leaves your heart empty. What a pity it is, that you are too full to continue this wondrous experience. Well then, why not have another serving tomorrow?",
+dish_d8=dishes(list_id='D8',list_name="Tahchin", info_type="main course", info_description="A classic rice dish served in large quantities. With the first bite, the crispy outside cracks with delightful crunching sounds. The second bite combines the soft and moist rice with juicy meat in your mouth. The last bite, however, leaves your heart empty. What a pity it is, that you are too full to continue this wondrous experience. Well then, why not have another serving tomorrow?",
     info_price="$18", info_taste_M=0, info_taste_N=1, info_taste_X=0, info_taste_Y=1, info_taste_Z=0, restaurant_id=4)
     
 db.session.add_all([user1, user2])
 db.session.add_all([res1])
 db.session.add_all([senior_user1])
+db.session.add_all([dish_a1,dish_a2,dish_a3,dish_a4,dish_a5,dish_a6,dish_a7,dish_a8])
+db.session.add_all([dish_b1,dish_b2,dish_b3,dish_b4,dish_b5,dish_b6,dish_b7,dish_b8])
+db.session.add_all([dish_c1,dish_c2,dish_c3,dish_c4,dish_c5,dish_c6,dish_c7,dish_c8])
+db.session.add_all([dish_d1,dish_d2,dish_d3,dish_d4,dish_d5,dish_d6,dish_d7,dish_d8])
 db.session.commit()
 
 if __name__ == '__main__':
