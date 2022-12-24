@@ -361,6 +361,7 @@ def comment(normal_send):
     if request.method=="POST":
         comment_info = request.form.get("message")
         current_time = time.datetime.now()
+        dish_id=normal_send
         QWQ = comment(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
