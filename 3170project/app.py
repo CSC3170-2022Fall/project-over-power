@@ -260,13 +260,13 @@ def senior_register():
                     resta_id = y.res_id
             dish_list=dishes.query.filter_by(restaurant_id=resta_id)
             if resta_id ==1:
-                return redirect(url_for('senior_r1'), dish_table=dish_list)
+                return redirect(url_for('senior_r1', dish_table=dish_list))
             if resta_id == 2:
-                return redirect(url_for('senior_r2)', dish_table=dish_list)
+                return redirect(url_for('senior_r2', dish_table=dish_list))
             if resta_id ==3:
-                return redirect(url_for('senior_r3'), dish_table=dish_list)
+                return redirect(url_for('senior_r3', dish_table=dish_list))
             if resta_id ==4:
-                return redirect(url_for('senior_r4'), dish_table=dish_list)
+                return redirect(url_for('senior_r4', dish_table=dish_list))
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
