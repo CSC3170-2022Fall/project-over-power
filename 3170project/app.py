@@ -280,7 +280,7 @@ def create_account():
 def main():#餐厅系统主界面（餐厅列表页）
     a1=dishes.query.all()
     user = login_user.query.all()
-    user_id=user.login_info
+    user_id=user[0].login_info
     #user_id = login_user(info=get_id)  # get useflr's id
     user_info = preference.query.get(user_id)
     user_taste_M = user_info.M_taste
