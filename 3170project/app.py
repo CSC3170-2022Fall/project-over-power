@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, url_for, redirect#request是一个请求对象
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
+import time
 
 
 app = Flask(__name__)
@@ -359,7 +360,7 @@ def comment(normal_send):
     cmt= comment.query.filter_by(dish_id=normal_send).all()
     if request.method=="POST":
         comment_info = request.form.get("message")
-        current_time = datetime.datetime.now()
+        current_time = time.datetime.now()
         QWQ = comment(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
@@ -401,7 +402,7 @@ def senior_delete(senior_d):
             print (e)
             flash('Failed to delete')
             db.session.rollback
-     else:
+    else:
         flash('No this term')
     return redirect(url_for('senior_r1'))
 
@@ -443,7 +444,7 @@ def senior_delete(senior_d):
             print (e)
             flash('Failed to delete')
             db.session.rollback
-     else:
+    else:
         flash('No this term')
     return redirect(url_for('senior_r2'))
 
@@ -485,7 +486,7 @@ def senior_delete(senior_d):
             print (e)
             flash('Failed to delete')
             db.session.rollback
-     else:
+    else:
         flash('No this term')
     return redirect(url_for('senior_r3'))
 
@@ -527,7 +528,7 @@ def senior_delete(senior_d):
             print (e)
             flash('Failed to delete')
             db.session.rollback
-     else:
+    else:
         flash('No this term')
     return redirect(url_for('senior_r4'))
 
