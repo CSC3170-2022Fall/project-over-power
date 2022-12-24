@@ -54,14 +54,14 @@
             {% for i in dish_table%}   <!--dish list of whose restaurant_id == 1 in dishes-->
             <div class="dish_div_3">   
                 <div class="dish_div_sub">
-                    <p class="title_text">i.listname</p>
-                    <p class="price">i.info_price</p>
+                    <p class="title_text">{{i.list_name}}</p>
+                    <p class="price">{{i.info_price}}</p>
                     <button type="button" class="sub_text" onclick="window.location.href='{{url_for("senior_delete3", senior_d=i.list_id)}}">Delete</button> <!--delete function name-->
                 </div>
                 <div class="dish_div_sub">
-                    <img alt="image not found" src="{{ }}" width="150" height="150">    <!--full path of the image-->
+                    <img alt="image not found" src="{{i.img_path}}" width="150" height="150">    <!--full path of the image-->
                     <span class="description">
-                        <p class="dp">i.info_description</p>
+                        <p class="dp">{{i.info_description}}</p>
                     </span>
                 </div>
             </div>
