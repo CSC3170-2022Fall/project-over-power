@@ -227,7 +227,7 @@
  -->
     <ul id="myUL">
         {% for i in a1%}
-        <li><a href="{{url_for("comment", normal_send=a1.list_id)}}">{{i.list_name}}</a></li>
+        <li><a href="{{url_for("comment", normal_send=i.list_id)}}">{{i.list_name}}</a></li>
         {%endfor%}
     </ul>
 
