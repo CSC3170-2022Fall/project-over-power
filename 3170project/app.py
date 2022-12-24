@@ -352,68 +352,7 @@ def main():#餐厅系统主界面（餐厅列表页）
 #     dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
 #     return render_template('search.html',quotes = dish_name)
 
-# @app.route('/main', methods=['GET', 'POST'])
-# def main():#餐厅系统主界面（餐厅列表页）
-#     if request.method=="GET":
-#         user = login_user.query.all()
-#         user_id=user.login_info
-#         #user_id = login_user(info=get_id)  # get useflr's id
-#         user_info = preference.query.get(user_id)
-#         user_taste_M = user_info.M_taste
-#         user_taste_N = user_info.N_taste
-#         user_taste_X = user_info.X_taste
-#         user_taste_Y = user_info.Y_taste
-#         user_taste_Z = user_info.Z_taste
-#         user_type_A = user_info.A_type
-#         user_type_B = user_info.B_type
-#         user_type_C = user_info.C_type
-#         user_type_D = user_info.D_type
-#         dish_form = dishes.query.all()
-#         dish_order = {}
-#         for i in dish_form:
-#             point=0#计算总分
-#             a=0;b=0;c=0;d=0
-#             if i.info_taste_M == user_taste_M and user_taste_M==1:#compare and add point of
-#                 point +=1
-#             if i.info_taste_N == user_taste_N and user_taste_N==1:
-#                 point +=1
-#             if i.info_taste_X == user_taste_X and user_taste_X==1:
-#                 point +=1
-#             if i.info_taste_Y == user_taste_Y and user_taste_Y==1:
-#                 point +=1
-#             if i.info_taste_Z == user_taste_Z and user_taste_Z==1:
-#                 point +=1
-#             if i.info_type == "appetizer":#record the type of dish
-#                 a=1
-#             elif i.info_type == "soup":
-#                 b=1
-#             elif i.info_type == "main course":
-#                 c=1
-#             else:
-#                 d=1
-#             if a == user_type_A and user_type_A==1:
-#                 point +=2
-#             if b == user_type_B and user_type_B==1:
-#                 point +=2
-#             if c == user_type_C and user_type_C==1:
-#                 point +=2
-#             if d == user_type_D and user_type_D==1:
-#                 point +=2
-#             dish_order[i.list_id] = point
-#         #排序
-#         dish_ordered = sorted(dish_order.items(),key=lambda x:x[1],reverse=True)
-#         opt1=list(dish_ordered.keys()[0])
-#         opt2=list(dish_ordered.keys()[1])
-#         opt3=list(dish_ordered.keys()[2])
-#         opt4="";opt5="";opt6=""
-#         for j in dish_form:
-#             if j.list_id==opt1:
-#                 j.list_name=opt4
-#             if j.list_id==opt2:
-#                 j.list_name=opt5
-#             if j.list_id==opt3:
-#                 j.list_name=opt6
-#     return render_template("info.html",dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)
+
 
 @app.route("/comment/<normal_send>",methods=["GET","POST"])
 def comment(normal_send):
@@ -427,6 +366,8 @@ def comment(normal_send):
         cmt= comment.query.filter_by(dish_id=normal_send).all()
     return render_template("comment.html",comment=cmt)
 
+#这一部分是对应senior的四个页面。共计4*3=12个函数
+#senior_r1
 @app.route("/senior_add",methods=["GET","POST"])
 def senior_add():
     if request.method == "POST":#add部分
@@ -468,7 +409,135 @@ def senior_delete(senior_d):
 def senior_r1():
     dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
     return render_template("senior_r1.html",dish_table=dish_table_1)
+#senior_r2
+@app.route("/senior_add",methods=["GET","POST"])
+def senior_add():
+    if request.method == "POST":#add部分
+        #生成新的id
+        dish_list = dishes.query.filter_by(restaurant_id=2).all()
+        last_dish_id = dish_list[-1].list_id
+        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        new_dish_name = request.form.get("dish_name")
+        new_dish_description = request.form.get("dish_description")
+        for n in dish_list:
+            flag = False
+            if n.list_name == new_dish_name:
+                flash("Already have this meal")
+                flag = True
+        if flag == False:
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+            db.session.add_all([QOQ])
+            db.session.commit()
+            flash("successfully create one meal!")   
+    return redirect(url_for('senior_r2'))
 
+@app.route("/senior_delete/<senior_d>")
+def senior_delete(senior_d):    
+    temp=dishes.query.filter_by(senior_d)
+    if temp:
+        try:
+            db.session.delete(temp)
+            db.session.commit()
+            flash('Successfully delete!')
+        except Exception as e:
+            print (e)
+            flash('Failed to delete')
+            db.session.rollback
+     else:
+        flash('No this term')
+    return redirect(url_for('senior_r2'))
+
+@app.route("/senior_r2",methods=["GET","POST"])
+def senior_r2():
+    dish_table_1 = dishes.query.filter_by(restaurant_id=2).all()
+    return render_template("senior_r2.html",dish_table=dish_table_1)
+#senior_r3
+@app.route("/senior_add",methods=["GET","POST"])
+def senior_add():
+    if request.method == "POST":#add部分
+        #生成新的id
+        dish_list = dishes.query.filter_by(restaurant_id=3).all()
+        last_dish_id = dish_list[-1].list_id
+        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        new_dish_name = request.form.get("dish_name")
+        new_dish_description = request.form.get("dish_description")
+        for n in dish_list:
+            flag = False
+            if n.list_name == new_dish_name:
+                flash("Already have this meal")
+                flag = True
+        if flag == False:
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+            db.session.add_all([QOQ])
+            db.session.commit()
+            flash("successfully create one meal!")   
+    return redirect(url_for('senior_r3'))
+
+@app.route("/senior_delete/<senior_d>")
+def senior_delete(senior_d):    
+    temp=dishes.query.filter_by(senior_d)
+    if temp:
+        try:
+            db.session.delete(temp)
+            db.session.commit()
+            flash('Successfully delete!')
+        except Exception as e:
+            print (e)
+            flash('Failed to delete')
+            db.session.rollback
+     else:
+        flash('No this term')
+    return redirect(url_for('senior_r3'))
+
+@app.route("/senior_r3",methods=["GET","POST"])
+def senior_r3():
+    dish_table_1 = dishes.query.filter_by(restaurant_id=3).all()
+    return render_template("senior_r3.html",dish_table=dish_table_1)
+#senior_r4
+@app.route("/senior_add",methods=["GET","POST"])
+def senior_add():
+    if request.method == "POST":#add部分
+        #生成新的id
+        dish_list = dishes.query.filter_by(restaurant_id=4).all()
+        last_dish_id = dish_list[-1].list_id
+        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        new_dish_name = request.form.get("dish_name")
+        new_dish_description = request.form.get("dish_description")
+        for n in dish_list:
+            flag = False
+            if n.list_name == new_dish_name:
+                flash("Already have this meal")
+                flag = True
+        if flag == False:
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+            db.session.add_all([QOQ])
+            db.session.commit()
+            flash("successfully create one meal!")   
+    return redirect(url_for('senior_r4'))
+
+@app.route("/senior_delete/<senior_d>")
+def senior_delete(senior_d):    
+    temp=dishes.query.filter_by(senior_d)
+    if temp:
+        try:
+            db.session.delete(temp)
+            db.session.commit()
+            flash('Successfully delete!')
+        except Exception as e:
+            print (e)
+            flash('Failed to delete')
+            db.session.rollback
+     else:
+        flash('No this term')
+    return redirect(url_for('senior_r4'))
+
+@app.route("/senior_r1",methods=["GET","POST"])
+def senior_r4():
+    dish_table_1 = dishes.query.filter_by(restaurant_id=4).all()
+    return render_template("senior_r4.html",dish_table=dish_table_1)
+#senior部分结束
+
+#normal部分开始，共4*1=4个函数
 @app.route("/normal_r1")
 def normal_r1():
     dish_table = dishes.query.filter_by(restaurant_id=1).all()
@@ -488,6 +557,7 @@ def normal_r3():
 def normal_r4():
     dish_table = dishes.query.filter_by(restaurant_id=4).all()
     return render_template("normal_r4.html",dish_table=dish_table)
+#normal部分结束
 
 db.drop_all()
 db.create_all()
