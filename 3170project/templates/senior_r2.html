@@ -36,6 +36,7 @@
 
             <form method="POST" enctype="multipart/form-data" action="/">
                 <label class="prompt_text">Name: </label><input type="text" name="dish_name" style="width: 100%; font-size: 15px">
+                <label class="prompt_text">Price: (e.g. "$20")</label><input type="text" name="dish_price" style="width: 100%; font-size: 15px">
                 <label class="prompt_text">Description: </label><textarea id="text" cols="65%" name="text" style="height: 150px; width: 100%; font-size: 15px"></textarea><br>
                 <label class="prompt_text">Image: </label><input type="file" name="uploaded_file" accept="image/jpeg, image/jpg, image/png" style="font-size: 15px"><br>
                 <input type="submit" value="Submit" style="font-size: 25px; margin: 10px 0px 5px; position: absolute; left: 45%;">
@@ -49,6 +50,7 @@
             <div class="dish_div_2">   
                 <div class="dish_div_sub">
                     <p class="title_text">i.listname</p>
+                    <p class="price">i.info_price</p>
                     <button type="button" class="sub_text" onclick="window.location.href='{{url_for("senior_delete", senior_d=i.list_id)}}">Delete</button> <!--delete function name-->
                 </div>
                 <div class="dish_div_sub">
