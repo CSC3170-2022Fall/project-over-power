@@ -11,6 +11,7 @@ UPLOAD_FOLDER = os.path.join('static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app = Flask(__name__, template_folder='template', static_folder='static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+basedir = os.path.abspath(os.path.dirname(__file__))
 #
 
 app = Flask(__name__)
@@ -67,7 +68,7 @@ class dishes(db.Model):
     info_taste_Y = db.Column(db.Integer, unique=False, nullable=True)
     info_taste_Z = db.Column(db.Integer, unique=False, nullable=True)
     restaurant_id = db.Column(db.Integer,unique=False, nullable=True)
-    img_path = db.Column(db.String(60), unique=False, nullable=True)
+    img_path = db.Column(db.String(128), unique=False, nullable=True)
 
 class rate(db.Model):
     __tablename__="rate"
@@ -440,7 +441,7 @@ def senior_r1():
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
         new_dish_price=request.form.get("dish_price")
-        new_dish_image= request.form.get("uploaded_file")#传入图片的参数名
+        new_dish_image= request.files['uploaded_file']#传入图片的参数名
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
@@ -449,8 +450,13 @@ def senior_r1():
         if flag == False:
             #图片保存路径
             new_img_name = new_dish_id + ".png"
-            new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_img_name))
-            new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_img_name)
+            base_path = basedir + "/static/uploads/"
+            new_path = base_path + new_img_name
+            new_dish_image.save(new_path)
+            # path = os.path.join(UPLOAD_FOLDER, new_img_name)
+            # new_dish_image.save(path)
+            # new_img_path = os.path.join(UPLOAD_FOLDER, new_img_name)
+            new_img_path = new_path
             #
             QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
             db.session.add_all([QOQ])
