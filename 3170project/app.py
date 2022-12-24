@@ -424,13 +424,14 @@ def senior_add():
         new_dish_id = "B" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
+        new_dish_price=request.form.get("dish_price")
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
                 flash("Already have this meal")
                 flag = True
         if flag == False:
-            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price)
             db.session.add_all([QOQ])
             db.session.commit()
             flash("successfully create one meal!")   
@@ -466,13 +467,14 @@ def senior_add():
         new_dish_id = "C" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
+        new_dish_price=request.form.get("dish_price")        
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
                 flash("Already have this meal")
                 flag = True
         if flag == False:
-            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price)
             db.session.add_all([QOQ])
             db.session.commit()
             flash("successfully create one meal!")   
@@ -508,13 +510,14 @@ def senior_add():
         new_dish_id = "D" + str(eval(last_dish_id[1:] + "+" + "1"))
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
+        new_dish_price=request.form.get("dish_price")        
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
                 flash("Already have this meal")
                 flag = True
         if flag == False:
-            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description)
+            QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description,info_price=new_dish_price)
             db.session.add_all([QOQ])
             db.session.commit()
             flash("successfully create one meal!")   
