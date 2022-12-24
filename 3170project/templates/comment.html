@@ -99,18 +99,18 @@
     
     
       <!-- 过往的评价 -->
-      {% for i in comment_table%}
+      {% for i in comment%}
       <div class="review">
           <p>{{i.comment_info}}</p>
       </div>
       {% endfor %}
 
-      <form class="comt">
-        <label for="review">评价：</label>
+      <form class="comt" method="post">
+        <label for="review">Comment: </label>
         <br>
         <textarea id="review" name="review" rows="4" cols="50"></textarea>
         <br>
-        <input type="submit" value="提交">
+        <input type="submit" value="提交" name = "normal_send">
       </form> 
     
 </body>
