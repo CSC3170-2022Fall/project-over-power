@@ -33,7 +33,8 @@ class senior_user(db.Model):#senior user is in charge of the restaurant
     __tablename__="senior_user"
     senior_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     senior_name=db.Column(db.String(32),unique=True,nullable=False)
-    res_id=db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'))
+    # res_id=db.Column(db.Integer, db.ForeignKey('restaurants.restaurant_id'))
+    res_id=db.Column(db.Integer,unique=True,nullable=False)
     senior_password = db.Column(db.String(255),nullable=False)
 
 class restaurants(db.Model):
@@ -493,7 +494,7 @@ def senior_r2():
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")
-        new_dish_image= request.form.get("uploaded_file")
+        new_dish_image= request.files['uploaded_file']
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
@@ -544,7 +545,7 @@ def senior_r3():
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")  
-        new_dish_image= request.form.get("uploaded_file")      
+        new_dish_image= request.files['uploaded_file']     
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
@@ -595,7 +596,7 @@ def senior_r4():
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")  
-        new_dish_image= request.form.get("uploaded_file")      
+        new_dish_image= request.files['uploaded_file']   
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
@@ -649,7 +650,28 @@ res1 = restaurants(restaurant_name = 'Membership restaurant',
     meal_type = '1919810',
     average_price_per_person = 3.2,
     rate = 3)
+res2 = restaurants(restaurant_name = 'Membership 2',
+    location = 'kitazawa',
+    open_hour = '114154',
+    meal_type = '1919810',
+    average_price_per_person = 3.2,
+    rate = 3)
+res3 = restaurants(restaurant_name = 'Membership 3',
+    location = 'kitazawa',
+    open_hour = '114154',
+    meal_type = '1919810',
+    average_price_per_person = 3.2,
+    rate = 3)
+res4 = restaurants(restaurant_name = 'Membership 4',
+    location = 'kitazawa',
+    open_hour = '114154',
+    meal_type = '1919810',
+    average_price_per_person = 3.2,
+    rate = 3)
 senior_user1 = senior_user(senior_name='bizu',res_id=1,senior_password='114154')
+senior_user2 = senior_user(senior_name='r2',res_id=2,senior_password='123456')
+senior_user3 = senior_user(senior_name='r3',res_id=3,senior_password='123456')
+senior_user4 = senior_user(senior_name='r4',res_id=4,senior_password='123456')
 preference1=preference(A_type=1,B_type=0,C_type=0,D_type=0,M_taste=1,N_taste=1,X_taste=0,Y_taste=0,Z_taste=1)
 preference2=preference(A_type=0,B_type=0,C_type=0,D_type=1,M_taste=0,N_taste=0,X_taste=0,Y_taste=1,Z_taste=0)
 
@@ -723,7 +745,7 @@ dish_d8=dishes(list_id='D8',list_name="Tahchin", info_type="main course", info_d
     
 db.session.add_all([user1, user2])
 db.session.add_all([res1])
-db.session.add_all([senior_user1])
+db.session.add_all([senior_user1, senior_user2, senior_user3, senior_user4])
 db.session.add_all([dish_a1,dish_a2,dish_a3,dish_a4,dish_a5,dish_a6,dish_a7,dish_a8])
 db.session.add_all([dish_b1,dish_b2,dish_b3,dish_b4,dish_b5,dish_b6,dish_b7,dish_b8])
 db.session.add_all([dish_c1,dish_c2,dish_c3,dish_c4,dish_c5,dish_c6,dish_c7,dish_c8])
