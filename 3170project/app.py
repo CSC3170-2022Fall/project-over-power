@@ -6,11 +6,12 @@ from flask import session
 import os
 from werkzeug.utils import secure_filename
 
-
+#实现图片传输的设置
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app = Flask(__name__, template_folder='template', static_folder='static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -429,15 +430,17 @@ def senior_r1():
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("dish_description")
         new_dish_price=request.form.get("dish_price")
-        new_dish_image= request.form.get("uploaded_file")
+        new_dish_image= request.form.get("uploaded_file")#传入图片的参数名
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
                 flash("Already have this meal")
                 flag = True
         if flag == False:
+            #图片保存路径
             new_dish_image.save(os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id))
             new_img_path = os.path.join(app.config['UPLOAD_FOLDER'], new_dish_id)
+            #
             QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
