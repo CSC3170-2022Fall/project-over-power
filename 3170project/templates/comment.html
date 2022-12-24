@@ -6,62 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
+        .dish{
+            width: 800px;
+            height: 250px;
+            background-color: rgb(243, 239, 234);
+            border: 2px solid;
+            border-image: linear-gradient(to left,rgba(87, 87, 87), rgba(0, 255, 221)) 1;
+            border-radius: 10px;
+            margin: 20px;
+            opacity: 60%;
+        }
+        .dish_text{
+            margin: 0px 0px 10px 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000;
+            align-items: center;
+            text-align: left;
+        }
+        .dish_sub {
+            display: flex;
+            flex-direction: row;
+        }
+        .dp {
+            margin: 0px 0px 0px 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color: #000000;
+        }
+        span.description {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            padding: 0px;
+            margin: 0px;
+        }
         /* CSS styles for the Dish Review Form */
     .review {
-        width: 400px;
-        height: 50px;
-        left: 40%;
+      position: absolute;
+      left: 50px;
+      width: 400px;
+      height: 50px;
       border: 1px solid #ccc;
       margin-bottom: 20px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
       padding: 10px;
+      animation: fadein 0.5s;
     }
 
-    /* 定义菜品图片的样式 */
-    .dish-image {
-      width: 200px;
-      height: 200px;
-      border: 1px solid #ccc;
+    
+    .review p {
+      font-size: 16px;
+      color: #555;
+      margin: 0;
     }
-    /* 调整字体、颜色和布局 */
-.dish-info p {
- width: 200px;
-  font-size: 18px;
-  color: #333;
-  margin: 0;
-  left: 200px;
-}
 
-.review p {
-  font-size: 16px;
-  color: #555;
-  margin: 0;
-}
 
-.dish-info {
-    text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-/* 增加边框和阴影效果 */
-.dish-image {
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.review {
-  border: 1px solid #ccc;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  padding: 10px;
-}
-
-/* 增加动画效果 */
-.review {
-  animation: fadein 0.5s;
-}
 
 @keyframes fadein {
   from {
@@ -73,29 +75,28 @@
 }
 .comt{
     position: absolute;
-    top: 30%;
+    top: 40%;
     right: 40%;
     width: 400px;
     height: 200px;
 }
 
-/* 响应式布局，在小屏幕下调整布局 */
-@media (max-width: 600px) {
-  .dish-info {
-    flex-direction: column;
-  }
-
-  .dish-image {
-    width: 100%;
-  }
-}
     </style>
 </head>
 <body>
-    <div class="dish-info">
-        <img class="dish-image" src="" width="200" height="200">
-        <p>{{dish_table.info_description}}</p>
-      </div>
+
+    <div class="dish">
+      <div class="dish_sub">
+        <p class="dish_text">{{dish_table.list_name}}</p>
+    </div>
+    <div class="dish_sub">
+        <img src="{{ url_for('static',filename ='') }}"  width="200" height="200">
+        <span class="description">
+            <p class="dp">{{dish_table.info_description}}</p>
+        </span>
+    </div>
+    </div>
+    
     
       <!-- 过往的评价 -->
       {% for i in comment%}
@@ -110,7 +111,7 @@
         <textarea id="review" name="review" rows="4" cols="50"></textarea>
         <br>
         <input type="submit" value="提交">
-      </form>
+      </form> 
     
 </body>
 <script>
