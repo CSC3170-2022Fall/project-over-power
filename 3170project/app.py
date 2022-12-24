@@ -253,9 +253,19 @@ def senior_register():
         elif checkb != 1:
             flash(u"wrong password or user name!")
         else:
-            #needs modification: leads to the users' corresponding restaurant
-            # return redirect(url_for(""))
-            return render_template('normal_r1.html') 
+            senior_info=senior_user.query.all()
+            for y in senior_info:
+                if y.senior_name == username:
+                    resta_id = y.res_id
+            dish_list=dishes.query.filter_by(restaurant_id=resta_id)
+            if resta_id ==1:
+                return render_template('senior_r1.html', dish_table=dish_list)
+            if resta_id == 2:
+                return render_template('senior_r2.html', dish_table=dish_list)
+            if resta_id ==3:
+                return render_template('senior_r3.html', dish_table=dish_list)
+            if resta_id ==4:
+                return render_template('senior_r4.html', dish_table=dish_list)
     #this line may be modified to return render_template("senior_login.html")
     return render_template("senior_login.html")
 
