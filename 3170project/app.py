@@ -367,7 +367,7 @@ def comment(normal_send):
         db.session.add_all([QWQ])
         db.session.commit()
         cmt= comment.query.filter_by(dish_id=normal_send).all()
-    return render_template("comment",comment_info=cmt)
+    return render_template("comment.html",comment=cmt)
 
 @app.route("/senior_add",methods=["GET","POST"])
 def senior_add():
