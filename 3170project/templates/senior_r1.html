@@ -56,7 +56,7 @@
                 <div class="dish_div_sub">
                     <p class="title_text">{{i.list_name}}</p>
                     <p class="price">{{i.info_price}}</p>
-                    <button type="button" class="sub_text" onclick="window.location.href='{{url_for("senior_delete1", senior_d=i.list_id)}}">Delete</button> <!--delete function name-->
+                    <button type="button" class="sub_text" onclick="window.location.href='{{url_for("senior_delete1", senior_d=i.list_id)}}'">Delete</button> <!--delete function name-->
                 </div>
                 <div class="dish_div_sub">
                     <img alt="image not found" src="{{i.img_path}}" width="150" height="150">    <!--full path of the image-->
