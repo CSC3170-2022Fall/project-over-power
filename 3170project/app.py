@@ -372,8 +372,8 @@ def comment(normal_send):
 
 #这一部分是对应senior的四个页面。共计4*3=12个函数
 #senior_r1
-@app.route("/senior_add",methods=["GET","POST"])
-def senior_add():
+@app.route("/senior_add1",methods=["GET","POST"])
+def senior_add1():
     if request.method == "POST":#add部分
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=1).all()
@@ -394,7 +394,7 @@ def senior_add():
             flash("successfully create one meal!")   
     return redirect(url_for('senior_r1'))
 
-@app.route("/senior_delete/<senior_d>")
+@app.route("/senior_delete1/<senior_d>")
 def senior_delete(senior_d):    
     temp=dishes.query.filter_by(senior_d)
     if temp:
@@ -415,8 +415,8 @@ def senior_r1():
     dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
     return render_template("senior_r1.html",dish_table=dish_table_1)
 #senior_r2
-@app.route("/senior_add",methods=["GET","POST"])
-def senior_add():
+@app.route("/senior_add2",methods=["GET","POST"])
+def senior_add2():
     if request.method == "POST":#add部分
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=2).all()
@@ -437,8 +437,8 @@ def senior_add():
             flash("successfully create one meal!")   
     return redirect(url_for('senior_r2'))
 
-@app.route("/senior_delete/<senior_d>")
-def senior_delete(senior_d):    
+@app.route("/senior_delete2/<senior_d>")
+def senior_delete2(senior_d):    
     temp=dishes.query.filter_by(senior_d)
     if temp:
         try:
@@ -458,8 +458,8 @@ def senior_r2():
     dish_table_1 = dishes.query.filter_by(restaurant_id=2).all()
     return render_template("senior_r2.html",dish_table=dish_table_1)
 #senior_r3
-@app.route("/senior_add",methods=["GET","POST"])
-def senior_add():
+@app.route("/senior_add3",methods=["GET","POST"])
+def senior_add3():
     if request.method == "POST":#add部分
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=3).all()
@@ -480,8 +480,8 @@ def senior_add():
             flash("successfully create one meal!")   
     return redirect(url_for('senior_r3'))
 
-@app.route("/senior_delete/<senior_d>")
-def senior_delete(senior_d):    
+@app.route("/senior_delete3/<senior_d>")
+def senior_delete3(senior_d):    
     temp=dishes.query.filter_by(senior_d)
     if temp:
         try:
@@ -501,8 +501,8 @@ def senior_r3():
     dish_table_1 = dishes.query.filter_by(restaurant_id=3).all()
     return render_template("senior_r3.html",dish_table=dish_table_1)
 #senior_r4
-@app.route("/senior_add",methods=["GET","POST"])
-def senior_add():
+@app.route("/senior_add4",methods=["GET","POST"])
+def senior_add4():
     if request.method == "POST":#add部分
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=4).all()
@@ -523,8 +523,8 @@ def senior_add():
             flash("successfully create one meal!")   
     return redirect(url_for('senior_r4'))
 
-@app.route("/senior_delete/<senior_d>")
-def senior_delete(senior_d):    
+@app.route("/senior_delete4/<senior_d>")
+def senior_delete4(senior_d):    
     temp=dishes.query.filter_by(senior_d)
     if temp:
         try:
