@@ -163,26 +163,26 @@
 
     <div class="recommand">
         <div class="remd_meal">
-            <p class="meal_name">name1formeal</p>
+            <p class="meal_name">{{dish_name_1}}</p>
         </div>
         <div class="meal">
-            <img src="" width="150" height="150" />
+            <img id="img1" onload="change_rcmd()" d = "{{dish_id_1}}" src="" width="150" height="150" />
         </div>
     </div>
     <div class="recommand">
         <div class="remd_meal">
-            <p class="meal_name">name2formeal</p>
+            <p class="meal_name">{{dish_name_2}}</p>
         </div>
         <div class="meal">
-            <img src="" width="150" height="150" />
+            <img id="img2" onload="change_rcmd()" d = "{{dish_id_2}}" src="" width="150" height="150" />
         </div>
     </div>
     <div class="recommand">
         <div class="remd_meal">
-            <p class="meal_name">name3formeal</p>
+            <p class="meal_name">{{dish_name_3}}</p>
         </div>
         <div class="meal">
-            <img src="" width="150" height="150" />
+            <img id="img3" onload="change_rcmd()" d = "{{dish_id_3}}" src="" width="150" height="150" />
         </div>
     </div>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="搜索..">
@@ -234,6 +234,56 @@
 </body>
 <script>
 function myFunction() {
+    var dict = {
+    "A1" : "3170project\static\images\A1.png",
+    "A2" : "3170project\static\images\A2.png",
+    "A3" : "3170project\static\images\A3.png",
+    "A4" : "3170project\static\images\A4.png",
+    "A5" : "3170project\static\images\A5.png",
+    "A6" : "3170project\static\images\A6.png",
+    "A7" : "3170project\static\images\A7.png",
+    "A8" : "3170project\static\images\A8.png",
+    "B1" : "3170project\static\images\B1.png",
+    "B2" : "3170project\static\images\B2.png",
+    "B3" : "3170project\static\images\B3.png",
+    "B4" : "3170project\static\images\B4.png",
+    "B5" : "3170project\static\images\B5.png",
+    "B6" : "3170project\static\images\B6.png",
+    "B7" : "3170project\static\images\B7.png",
+    "B8" : "3170project\static\images\B8.png",
+    "C1" : "3170project\static\images\C1.png",
+    "C2" : "3170project\static\images\C2.png",
+    "C3" : "3170project\static\images\C3.png",
+    "C4" : "3170project\static\images\C4.png",
+    "C5" : "3170project\static\images\C5.png",
+    "C6" : "3170project\static\images\C6.png",
+    "C7" : "3170project\static\images\C7.png",
+    "C8" : "3170project\static\images\C8.png",
+    "D1" : "3170project\static\images\D1.png",
+    "D2" : "3170project\static\images\D2.png",
+    "D3" : "3170project\static\images\D3.png",
+    "D4" : "3170project\static\images\D4.png",
+    "D5" : "3170project\static\images\D5.png",
+    "D6" : "3170project\static\images\D6.png",
+    "D7" : "3170project\static\images\D7.png",
+    "D8" : "3170project\static\images\D8.png",
+};
+
+function change_rcmd(){
+    var index1 = document.getElementById("img1").getAttribute('d');
+    var img1 = document.getElementById("img1");
+    img1.setAttribute("src", dict.p)
+
+    var index2 = document.getElementById("img2").getAttribute('d');
+    var img1 = document.getElementById("img1");
+    img1.setAttribute("src", dict.p)
+
+    var index3 = document.getElementById("img3").getAttribute('d');
+    var img3 = document.getElementById("img3");
+    img1.setAttribute("src", dict.p)
+}
+    
+    
   // 声明变量
   var input, filter, ul, li, a, i, txtValue;
   input = document.getElementById('myInput');
