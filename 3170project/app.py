@@ -341,8 +341,6 @@ def main():#餐厅系统主界面（餐厅列表页）
         dish_order[i.list_id] = point
     #排序
     dish_ordered = sorted(dish_order.items(),key=lambda x:x[1],reverse=True)
-    print('bizu')
-    print(dish_ordered)
     opt1=list(dish_ordered[0][0])
     opt2=list(dish_ordered[1][0])
     opt3=list(dish_ordered[2][0])
