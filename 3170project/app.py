@@ -97,7 +97,7 @@ class login_user(db.Model):#record the id of the user
 class current_dish(db.Model):#record the current dish that the user is viewing
     _tablename_="current_dish"
     dish_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
-    dish_info=db.Column(db.Integer,nullable=False)
+    dish_info=db.Column(db.String(10),nullable=False)
     
 class preference(db.Model):
     _tablename_="preference"
