@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preference Form</title>
     <link rel="stylesheet" href="{{ url_for('static',filename ='css/preference_css.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">
     <style>
         body{
             margin-left: 15%;
@@ -83,12 +84,11 @@
 </head>
 
 <body>
-    <ul>
+    <div class="top">
         <div class="logo_top">
             <img src="/static/images/logo.png" height="49">
         </div>
-        <li><a class="active_1" href="{{url_for('main')}}">Home</a></li> 
-    </ul>
+    </div>
     
     <div class="pref">
         
