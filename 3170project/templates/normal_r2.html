@@ -10,12 +10,15 @@
 
     <body>       
         
-        <ul>
-            <li><a class="active_2" href="{{url_for('main')}}">Home</a></li> <!--link to main page-->
+        <div class="top">
             <div class="logo_top">
                 <img src="/static/images/logo.png" height="49">
             </div>
-        </ul>
+        </div>
+
+        <div class="active_2">
+            <a class="home" href="{{url_for('main')}}">Home</a>
+        </div>
 
 
         <div class="left_2">
