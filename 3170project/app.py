@@ -415,6 +415,7 @@ def comment(normal_send):
     db.session.add_all([comment_status])
     db.session.commit()
     cmt= comments.query.filter_by(dish_id=normal_send).all()
+    dish_table = dishes.query.get(dish_id)
 #     if request.method=="POST":
 #         comment_info = request.form.get("message")
 #         # current_time = time.datetime.now()
@@ -428,7 +429,14 @@ def comment(normal_send):
 
 @app.route("/comment_add/<comment_send>",methods=["GET","POST"])
 def comment_add(comment_send):
+    user = login_user.query.first()
+    user_id = user.login_info
+    sub=common_user.query.all()
+    for x in sub:
+        if x.common_id == user_id:
+            name = x.common_name 
     if request.method=="POST":
+        dish_id=current_dish().query.first()
         comment_info = request.form.get("message")
         # current_time = time.datetime.now()
         current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
