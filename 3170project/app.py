@@ -400,7 +400,7 @@ def main():#餐厅系统主界面（餐厅列表页）
 
 
 @app.route("/comment/<normal_send>",methods=["GET","POST"])
-def comment(normal_send, comment_send):
+def comment(normal_send):
     user = login_user.query.first()
     user_id = user.login_info
     sub=common_user.query.all()
