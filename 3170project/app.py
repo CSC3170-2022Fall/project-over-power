@@ -194,11 +194,13 @@ def edit_preference_record():
 #needs further adjustment:other link for senior user to login
 @app.route('/', methods=['GET', 'POST'])
 def common_register():
-    check_login=login_user.query.all()
-    for i in check_login:
-        if i.login_info!='':
-            temp=login_user(i.login_id)
-            login_user.delete(temp)
+    # check_login=login_user.query.all()
+    # for i in check_login:
+    #     if i.login_info!='':
+    #         temp=login_user(i.login_id)
+    #         login_user.delete(temp)
+    db.reflect(app=app)
+    db.get_engine().execute(f"truncate table login_user")
     if request.method=="POST":
         username=request.form.get('username')
         password=request.form.get('password')
@@ -274,11 +276,14 @@ def senior_register():
 
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
-    check_login=login_user.query.all()
-    for i in check_login:
-        if i.login_info!='':
-            temp=login_user(i.login_id)
-            login_user.delete(temp)
+    # check_login=login_user.query.all()
+    # for i in check_login:
+    #     if i.login_info!='':
+    #         print(i.login_id)
+    #         temp=login_user(i.login_id)
+    #         login_user.delete(temp)
+    db.reflect(app=app)
+    db.get_engine().execute(f"truncate table login_user")
     if request.method=="POST":
         username=request.form.get('username')
         pw=request.form.get('password')
