@@ -399,18 +399,30 @@ def main():#餐厅系统主界面（餐厅列表页）
 
 
 
-@app.route("/comment/<normal_send><comment_send>",methods=["GET","POST"])
+@app.route("/comment/<normal_send>",methods=["GET","POST"])
 def comment(normal_send, comment_send):
     user = login_user.query.first()
     user_id = user.login_info
     sub=common_user.query.all()
     for x in sub:
         if x.common_id == user_id:
-            name = x.common_name
-    
+            name = x.common_name 
     dish_id = normal_send
     dish_table = dishes.query.get(dish_id)
     cmt= comments.query.filter_by(dish_id=normal_send).all()
+#     if request.method=="POST":
+#         comment_info = request.form.get("message")
+#         # current_time = time.datetime.now()
+#         current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+#         QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_send)
+#         db.session.add_all([QWQ])
+#         db.session.commit()
+#         cmt= comments.query.filter_by(dish_id=normal_send).all()
+#         dish_table = dishes.query.get(dish_id)
+    return render_template("comment.html",comment_table=cmt,dish_table=dish_table)
+
+@app.route("/comment_add/<comment_send>",methods=["GET","POST"])
+def comment_add(comment_send):
     if request.method=="POST":
         comment_info = request.form.get("message")
         # current_time = time.datetime.now()
@@ -418,9 +430,7 @@ def comment(normal_send, comment_send):
         QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_send)
         db.session.add_all([QWQ])
         db.session.commit()
-        cmt= comments.query.filter_by(dish_id=normal_send).all()
-        dish_table = dishes.query.get(dish_id)
-    return render_template("comment.html",comment_table=cmt,dish_table=dish_table)
+     return redirect(url_for('comment'))
 
 #this parts correspond to the 4 pages of senior, with 4*3 = 12 functions in total
 #senior_r1
