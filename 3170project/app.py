@@ -409,11 +409,11 @@ def comment(normal_send):
             name = x.common_name 
     dish_id = normal_send
     dish_table = dishes.query.get(dish_id)
-    db.reflect(app=app)
-    db.get_engine().execute(f"truncate table current_dish")   
+    db.reflect(app=app)
+    db.get_engine().execute(f"truncate table current_dish")   
     comment_status = current_dish(dish_info = dish_id)
     db.session.add_all([comment_status])
-    db.session.commit()
+    db.session.commit()
     cmt= comments.query.filter_by(dish_id=normal_send).all()
     dish_table = dishes.query.get(dish_id)
 #     if request.method=="POST":
@@ -427,8 +427,8 @@ def comment(normal_send):
 #         dish_table = dishes.query.get(dish_id)
     return render_template("comment.html",comment_table=cmt,dish_table=dish_table)
 
-@app.route("/comment_add/<comment_send>",methods=["GET","POST"])
-def comment_add(comment_send):
+@app.route("/comment_add",methods=["GET","POST"])
+def comment_add():
     user = login_user.query.first()
     user_id = user.login_info
     sub=common_user.query.all()
@@ -437,13 +437,13 @@ def comment_add(comment_send):
             name = x.common_name 
     if request.method=="POST":
         dish_id=current_dish().query.first()
-        comment_info = request.form.get("message")
+        comment_info = request.form.get("comment_send")
         # current_time = time.datetime.now()
         current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_send)
+        QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
-     return redirect(url_for('comment'))
+    return redirect(url_for('comment'))
 
 #this parts correspond to the 4 pages of senior, with 4*3 = 12 functions in total
 #senior_r1
