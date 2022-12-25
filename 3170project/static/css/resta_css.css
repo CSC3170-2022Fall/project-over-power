@@ -163,6 +163,7 @@
 
 .dish_div_1:hover {
     background: -webkit-linear-gradient(left,rgba(87, 87, 87, 0.6), rgba(0, 255, 221, 0.6));
+    cursor: pointer;
 }
 
 .dish_div_2 {
@@ -179,6 +180,7 @@
 
 .dish_div_2:hover {
     background: -webkit-linear-gradient(left,rgba(87, 87, 87, 0.6), rgba(255, 217, 0, 0.6));
+    cursor: pointer;
 }
 
 .dish_div_3 {
@@ -195,6 +197,7 @@
 
 .dish_div_3:hover {
     background: -webkit-linear-gradient(left,rgba(87, 87, 87, 0.6), rgba(136, 0, 255, 0.6));
+    cursor: pointer;
 }
 
 .dish_div_4 {
@@ -211,6 +214,7 @@
 
 .dish_div_4:hover {
     background: -webkit-linear-gradient(left,rgba(87, 87, 87, 0.6), rgba(81, 255, 0, 0.6));
+    cursor: pointer;
 }
 
 .dish_div_sub {
@@ -403,25 +407,24 @@ li a {
     font-size: 25px;
 }
 
-li a:hover:not(.active) {
-    background-color: rgb(28, 28, 28);
-}
-
-
 .active_1 {
     background-color: #52cebb;
+    cursor: pointer;
 }
 
 .active_2 {
     background-color: #ffd500;
+    cursor: pointer;
 }
 
 .active_3 {
     background-color: #6d0bb8;
+    cursor: pointer;
 }
 
 .active_4 {
     background-color: #04c11d;
+    cursor: pointer;
 }
 
 .logo_top {
