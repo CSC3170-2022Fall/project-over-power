@@ -432,13 +432,22 @@ def senior_delete1(senior_d):
     return redirect(url_for('senior_r1'))
 
 @app.route("/senior_r1",methods=["GET","POST"])
+@app.route("/senior_r1",methods=["GET","POST"])
 def senior_r1():
     dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
     if request.method == "POST":#add part
         #generate new id
+        # dish_list = dishes.query.filter_by(restaurant_id=1).all()
+        # last_dish_id = dish_list[-1].list_id
+        # new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
         dish_list = dishes.query.filter_by(restaurant_id=1).all()
-        last_dish_id = dish_list[-1].list_id
-        new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
+        max_id = 0
+        for z in dish_list:
+            id1 = z.list_id
+            id = eval(id1[1:])
+            if max_id <= id:
+                max_id = id
+        new_dish_id = "A" + str(max_id + 1)
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")
@@ -458,7 +467,7 @@ def senior_r1():
             QOQ = dishes(list_id=new_dish_id, list_name=new_dish_name, info_description=new_dish_description, info_price=new_dish_price, restaurant_id=1, img_path=new_img_path)
             db.session.add_all([QOQ])
             db.session.commit()
-            flash("successfully create one meal!")  
+            flash("successfully create one meal!")
         dish_table_1 = dishes.query.filter_by(restaurant_id = 1).all()
     return render_template("senior_r1.html",dish_table=dish_table_1)
 #senior_r2
@@ -489,8 +498,13 @@ def senior_r2():
     if request.method == "POST":#add部分
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=2).all()
-        last_dish_id = dish_list[-1].list_id
-        new_dish_id = "B" + str(eval(last_dish_id[1:] + "+" + "1"))
+        max_id = 0
+        for z in dish_list:
+            id1 = z.list_id
+            id = eval(id1[1:])
+            if max_id <= id:
+                max_id = id
+        new_dish_id = "A" + str(max_id + 1)
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")
@@ -540,8 +554,13 @@ def senior_r3():
     if request.method == "POST":#add部分
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=3).all()
-        last_dish_id = dish_list[-1].list_id
-        new_dish_id = "C" + str(eval(last_dish_id[1:] + "+" + "1"))
+        max_id = 0
+        for z in dish_list:
+            id1 = z.list_id
+            id = eval(id1[1:])
+            if max_id <= id:
+                max_id = id
+        new_dish_id = "A" + str(max_id + 1)
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")  
@@ -591,8 +610,13 @@ def senior_r4():
     if request.method == "POST":#add部分
         #生成新的id
         dish_list = dishes.query.filter_by(restaurant_id=4).all()
-        last_dish_id = dish_list[-1].list_id
-        new_dish_id = "D" + str(eval(last_dish_id[1:] + "+" + "1"))
+        max_id = 0
+        for z in dish_list:
+            id1 = z.list_id
+            id = eval(id1[1:])
+            if max_id <= id:
+                max_id = id
+        new_dish_id = "A" + str(max_id + 1)
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")  
