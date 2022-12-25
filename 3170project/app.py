@@ -70,7 +70,7 @@ class dishes(db.Model):
     info_taste_Z = db.Column(db.Integer, unique=False, nullable=True)
     restaurant_id = db.Column(db.Integer,unique=False, nullable=True)
     img_path = db.Column(db.String(128), unique=False, nullable=True)
-
+    
 class rate(db.Model):
     __tablename__="rate"
     restaurant_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
@@ -409,6 +409,11 @@ def comment(normal_send):
             name = x.common_name 
     dish_id = normal_send
     dish_table = dishes.query.get(dish_id)
+    db.reflect(app=app)
+    db.get_engine().execute(f"truncate table current_dish")   
+    comment_status = current_dish(dish_info = dish_id)
+    db.session.add_all([comment_status])
+    db.session.commit()
     cmt= comments.query.filter_by(dish_id=normal_send).all()
 #     if request.method=="POST":
 #         comment_info = request.form.get("message")
