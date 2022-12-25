@@ -399,8 +399,8 @@ def main():#餐厅系统主界面（餐厅列表页）
 
 
 
-@app.route("/comment/<normal_send>",methods=["GET","POST"])
-def comment(normal_send):
+@app.route("/comment/<normal_send><comment_send>",methods=["GET","POST"])
+def comment(normal_send, comment_send):
     user = login_user.query.first()
     user_id = user.login_info
     sub=common_user.query.all()
@@ -415,7 +415,7 @@ def comment(normal_send):
         comment_info = request.form.get("message")
         # current_time = time.datetime.now()
         current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_info)
+        QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_send)
         db.session.add_all([QWQ])
         db.session.commit()
         cmt= comments.query.filter_by(dish_id=normal_send).all()
