@@ -80,6 +80,16 @@
     width: 400px;
     height: 200px;
 }
+        .time{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.name{
+  position: absolute;
+  top:0;
+  left: 0;
+}
 
     </style>
 </head>
@@ -101,7 +111,9 @@
       <!-- 过往的评价 -->
       {% for i in comment%}
       <div class="review">
+          <p class="name" >{{i.comment_name}}</p>
           <p>{{i.comment_info}}</p>
+          <p class="time">{{i.current_time}}</p>
       </div>
       {% endfor %}
 
