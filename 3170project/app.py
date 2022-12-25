@@ -16,7 +16,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:123456@127.0.0.1/3170project'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:password@127.0.0.1/3170project'
 app.secret_key='bilibili'
 
 class common_user(db.Model):#datapage model, inherited from db.Model
@@ -83,9 +83,10 @@ class rate(db.Model):
 class comments(db.Model):
     __tablename__ = "comments"
     comment_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
+    comment_user_name = db.Column(db.String(32),unique = False,nullable = False)
     # dish_id = db.Column(db.String(10),db.ForeignKey(dishes.list_id))
-    dish_id = db.Column(db.String(10), unique=True, nullable=False)
-    Comment_Time = db.Column(db.String(48), unique=True, nullable=False)#using the system time, you should import "datetime" and "time"
+    dish_id = db.Column(db.String(10), unique=False, nullable=False)
+    Comment_Time = db.Column(db.String(48), unique=False, nullable=False)#using the system time, you should import "datetime" and "time"
     content = db.Column(db.String(500))#free edit
     
 class login_user(db.Model):#record the id of the user
@@ -400,13 +401,21 @@ def main():#餐厅系统主界面（餐厅列表页）
 
 @app.route("/comment/<normal_send>",methods=["GET","POST"])
 def comment(normal_send):
+    user = login_user.query.first()
+    user_id = user.login_info
+    sub=common_user.query.all()
+    for x in sub:
+        if x.common_id == user_id:
+            name = x.common_name
+    
     dish_id = normal_send
     dish_table = dishes.query.get(dish_id)
     cmt= comments.query.filter_by(dish_id=normal_send).all()
     if request.method=="POST":
         comment_info = request.form.get("message")
-        current_time = time.datetime.now()
-        QWQ = comments(dish_id=dish_id, Comment_Time=current_time, content=comment_info)
+        # current_time = time.datetime.now()
+        current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_info)
         db.session.add_all([QWQ])
         db.session.commit()
         cmt= comments.query.filter_by(dish_id=normal_send).all()
@@ -436,7 +445,6 @@ def senior_delete1(senior_d):
         flash('No this term')
     return redirect(url_for('senior_r1'))
 
-@app.route("/senior_r1",methods=["GET","POST"])
 @app.route("/senior_r1",methods=["GET","POST"])
 def senior_r1():
     dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
