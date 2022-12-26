@@ -4,57 +4,132 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modify Food Preferences</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">    
     <style>
-        .submit {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-    div{
-        font-size: large;
-    }
-    p{
-        font-family: "宋体","仿宋",sans-serif;
+        body{
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+        
+        p{
+            font-family: "宋体","仿宋",sans-serif;
             font-weight: bold;
             font-size: 200%;
             font-style: italic;
-            color: black;
-           
-    }
-    
+            color: black;      
+        }
+
+        .pref {
+            position: relative;
+            top: 90px;
+            margin: auto;
+            font-size: medium;
+            border-radius: 25px;
+            border: 3px solid #209a4d;
+            padding: 20px;
+            text-align: center;
+        }
+  
+        .checklist {
+            margin-left: 5%;
+            padding: auto;
+            display: contents;
+            font-size: 21px;
+        }
+
+        @media screen and (max-width: 800px) {
+            .checklist {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        .submit-button {
+            background-image: linear-gradient(to right, #348F50 0%, #56B4D3  51%, #348F50  100%);
+            border: none;
+            color: white;            
+            margin: 10px;
+            padding: 15px 32px;
+            text-align: center;
+            transition: 0.5s;
+            background-size: 200% auto;
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+            font-size: 16px;
+        }
+
+        .submit-button:hover {
+            background-position: right center;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .back-button {
+            background-image: linear-gradient(to right, #283048 0%, #5b6366  51%, #283048  100%);
+            border: none;
+            margin: 10px;
+            padding: 15px 32px;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .button:active {
+            transform: translateY(4px);
+        }
+        div.hint{
+            position: absolute;
+            top: 60px;
+            font-size: 25px;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+
     </style>
+    
 </head>
+
 <body>
-    <div>
-    <p class="meal">Meal style: 
-        <input type="checkbox" value="1" name="Meal_appetizer">appetizer
-        <input type="checkbox" value="1" name="Meal_soup">soup
-        <input type="checkbox" value="1" name="Meal_course">main course
-        <input type="checkbox" value="1" name="Meal_dessert">dessert
-    </p>
-
-    <p class="taste">Taste    : 
-        <input type="checkbox" value="1" name="taste_sweet">sweet
-        <input type="checkbox" value="1" name="taste_sour">sour
-        <input type="checkbox" value="1" name="taste_spicy">spicy
-        <input type="checkbox" value="1" name="taste_salty">salty
-        <input type="checkbox" value="1" name="taste_umami">umami
-    </p>
+    <div class="top">
+        <div class="logo_top">
+            <img src="/static/images/logo.png" height="49">
+        </div>
     </div>
-	
-<div style=" ">
-    <form action="" method='post' style="">
-        <br><br><input type=submit value='Submit' name="button1">
-	<br><br><input type=submit value='Back' name="button2">
-    </form>
-</div>
 
+    <div class="hint">
+        Modify Your Preferences:  
+    </div>
+
+    <div class="pref">
+        
+        <!--     <button class = "submit" onclick="window.open('3170project\templates\Restaurants.html')">
+            submit
+        </button> -->
+        
+        <div class="center">
+            <form action="" method='post'>
+    <!--         <input type=file name=file> -->
+                <p class="meal">Meal Style : </p>
+                <p class = "checklist"><input type="checkbox" value="1" name="A_dish_type">Appetizer</p>
+                <p class = "checklist"><input type="checkbox" value="1" name="B_dish_type">Soup</p>
+                <p class = "checklist"><input type="checkbox" value="1" name="C_dish_type">Main Course</p>
+                <p class = "checklist"><input type="checkbox" value="1" name="D_dish_type">Dessert</p>
+                
+
+                <p class="taste">Taste : </p>
+                <p class = "checklist"><input type="checkbox" value="1" name="M_dish_type">Sweet</p>
+                <p class = "checklist"><input type="checkbox" value="1" name="N_dish_type">Sour</p>
+                <p class = "checklist"><input type="checkbox" value="1" name="X_dish_type">Spicy</p>
+                <p class = "checklist"><input type="checkbox" value="1" name="Y_dish_type">Salty</p>
+                <p class = "checklist"><input type="checkbox" value="1" name="Z_dish_type">Umami</p>
+                <br><br><input type=submit class = "submit-button button" value='Submit' name="button1">
+            </form>
+        </div>
+    </div>
     
 </body>
 </html>
