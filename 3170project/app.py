@@ -376,11 +376,11 @@ def main():#餐厅系统主界面（餐厅列表页）
     opt4="";opt5="";opt6=""
     for j in dish_form:
         if j.list_id==opt1:
-            j.list_name=opt4
+            opt4=j.list_name
         if j.list_id==opt2:
-            j.list_name=opt5
+            opt5=j.list_name
         if j.list_id==opt3:
-            j.list_name=opt6
+            opt6=j.list_name
     return render_template('info.html',a1=a1,dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)#主页面为info.html，传入参数a1(restaurant列表)
 
 # @app.route("/resta_1",methods=["GET","POST"])
