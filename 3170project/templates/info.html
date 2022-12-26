@@ -94,6 +94,11 @@
             background-color: #eee; 
         }
 
+        .title{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 
@@ -148,71 +153,36 @@
         </div>
         
     </div>
-
-    <div class="recommand">
-        <div class="remd_meal">
-            <p class="meal_name">{{dish_name_1}}</p>
+    <div>
+        <p class="title">Recommand Dishes:</p>
+        <div class="recommand">
+            <div class="remd_meal">
+                <p class="meal_name">{{dish_name_1}}</p>
+            </div>
+            <div class="meal">
+                <img id="img1" src="{{dish_path_1}}" width="140" height="140" />
+            </div>
         </div>
-        <div class="meal">
-            <img id="img1" src="{{dish_path_1}}" width="150" height="150" />
+        <div class="recommand">
+            <div class="remd_meal">
+                <p class="meal_name">{{dish_name_2}}</p>
+            </div>
+            <div class="meal">
+                <img id="img2"  src="{{dish_path_2}}" width="140" height="140" />
+            </div>
         </div>
-    </div>
-    <div class="recommand">
-        <div class="remd_meal">
-            <p class="meal_name">{{dish_name_2}}</p>
-        </div>
-        <div class="meal">
-            <img id="img2"  src="{{dish_path_2}}" width="150" height="150" />
-        </div>
-    </div>
-    <div class="recommand">
-        <div class="remd_meal">
-            <p class="meal_name">{{dish_name_3}}</p>
-        </div>
-        <div class="meal">
-            <img id="img3" src="{{dish_path_3}}" width="150" height="150" />
+        <div class="recommand">
+            <div class="remd_meal">
+                <p class="meal_name">{{dish_name_3}}</p>
+            </div>
+            <div class="meal">
+                <img id="img3" src="{{dish_path_3}}" width="140" height="140" />
+            </div>
         </div>
     </div>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="搜索..">
  
-    <!--
-
-
-    <ul id="myUL">
-    <li><a href="{{url_for("main", dish = "A1")}}">Cream Stew</a></li>
-    <li><a href="{{url_for("main", dish = "A2")}}">Fruit of the Festival</a></li>
-    <li><a href="{{url_for("main", dish = "A3")}}">Goulash</a></li>
-    <li><a href="{{url_for("main", dish = "A4")}}">Moon Pie</a></li>
-    <li><a href="{{url_for("main", dish = "A5")}}">Mushroom Pizza</a></li>
-    <li><a href="{{url_for("main", dish = "A6")}}">Sticky Honey Roast</a></li>
-    <li><a href="{{url_for("main", dish = "A7")}}">Sunshine Sprat</a></li>
-    <li><a href="{{url_for("main", dish = "A8")}}"> Sweet Madame</a></li>
-    <li><a href="{{url_for("main", dish = "B1")}}">Adeptus’ Temptation</a></li>
-    <li><a href="{{url_for("main", dish = "B2")}}">Almond Tofu</a></li>
-    <li><a href="{{url_for("main", dish = "B3")}}">Bamboo Shoot Soup</a></li>
-    <li><a href="{{url_for("main", dish = "B4")}}">Black-Back Perch Stew</a></li>
-    <li><a href="{{url_for("main", dish = "B5")}}">Chili-Mince Cornbread Buns</a></li>
-    <li><a href="{{url_for("main", dish = "B6")}}">Crystal Shrimp</a></li>
-    <li><a href="{{url_for("main", dish = "B7")}}">Noodles with Mountain Deliciacies</a></li>
-    <li><a href="{{url_for("main", dish = "B8")}}">Vegetarian Abalone</a></li>
-    <li><a href="{{url_for("main", dish = "C1")}}">Imported Poultry</a></li>
-    <li><a href="{{url_for("main", dish = "C2")}}">More-and-More</a></li>
-    <li><a href="{{url_for("main", dish = "C3")}}">Rice Cake Soup</a></li>
-    <li><a href="{{url_for("main", dish = "C4")}}">Sakura Mochi</a></li>
-    <li><a href="{{url_for("main", dish = "C5")}}">Sakura Tempura</a></li>
-    <li><a href="{{url_for("main", dish = "C6")}}">Sashimi Platter</a></li>
-    <li><a href="{{url_for("main", dish = "C7")}}">Tonkotsu Ramen</a></li>
-    <li><a href="{{url_for("main", dish = "C8")}}">Unagi Chazuke</a></li>
-    <li><a href="{{url_for("main", dish = "D1")}}">Butter Chicken</a></li>
-    <li><a href="{{url_for("main", dish = "D2")}}">Masala Cheese Ball</a></li>
-    <li><a href="{{url_for("main", dish = "D3")}}">Padisarah Pudding</a></li>
-    <li><a href="{{url_for("main", dish = "D4")}}">Panipuri</a></li>
-    <li><a href="{{url_for("main", dish = "D5")}}">Samosa</a></li>
-    <li><a href="{{url_for("main", dish = "D6")}}">Selva Salad</a></li>
-    <li><a href="{{url_for("main", dish = "D7")}}">Shawarma Wrap</a></li>
-    <li><a href="{{url_for("main", dish = "D8")}}">Tahchin</a></li>
-    </ul>
- -->
+  
     <ul id="myUL">
         {% for i in a1%}
         <li><a href="{{url_for("comment", normal_send=i.list_id)}}">{{i.list_name}}</a></li>
@@ -221,57 +191,7 @@
 
 </body>
 <script>
-    var dict = {
-    "A1" : "3170project/static/images/A1.png",
-    "A2" : "3170project/static/images/A2.png",
-    "A3" : "3170project/static/images/A3.png",
-    "A4" : "3170project/static/images/A4.png",
-    "A5" : "3170project/static/images/A5.png",
-    "A6" : "3170project/static/images/A6.png",
-    "A7" : "3170project/static/images/A7.png",
-    "A8" : "3170project/static/images/A8.png",
-    "B1" : "3170project/static/images/B1.png",
-    "B2" : "3170project/static/images/B2.png",
-    "B3" : "3170project/static/images/B3.png",
-    "B4" : "3170project/static/images/B4.png",
-    "B5" : "3170project/static/images/B5.png",
-    "B6" : "3170project/static/images/B6.png",
-    "B7" : "3170project/static/images/B7.png",
-    "B8" : "3170project/static/images/B8.png",
-    "C1" : "3170project/static/images/C1.png",
-    "C2" : "3170project/static/images/C2.png",
-    "C3" : "3170project/static/images/C3.png",
-    "C4" : "3170project/static/images/C4.png",
-    "C5" : "3170project/static/images/C5.png",
-    "C6" : "3170project/static/images/C6.png",
-    "C7" : "3170project/static/images/C7.png",
-    "C8" : "3170project/static/images/C8.png",
-    "D1" : "3170project/static/images/D1.png",
-    "D2" : "3170project/static/images/D2.png",
-    "D3" : "3170project/static/images/D3.png",
-    "D4" : "3170project/static/images/D4.png",
-    "D5" : "3170project/static/images/D5.png",
-    "D6" : "3170project/static/images/D6.png",
-    "D7" : "3170project/static/images/D7.png",
-    "D8" : "3170project/static/images/D8.png",
-};
-
-function change_rcmd(){
-    var index1 = document.getElementById("img1").getAttribute('d');
-    var img1 = document.getElementById("img1");
-    img1.setAttribute("src", dict.p)
-
-    var index2 = document.getElementById("img2").getAttribute('d');
-    var img1 = document.getElementById("img1");
-    img1.setAttribute("src", dict.p)
-
-    var index3 = document.getElementById("img3").getAttribute('d');
-    var img3 = document.getElementById("img3");
-    img1.setAttribute("src", dict.p)
-
-
-
-}
+    
 
 
 function myFunction() {
