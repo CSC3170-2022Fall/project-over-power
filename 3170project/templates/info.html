@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Food Advisor: Main Page</title>
     <style>
 
         .r{
@@ -15,6 +15,7 @@
             border-image: linear-gradient(to left,rgba(87, 87, 87), rgba(0, 255, 221)) 1;
             border-radius: 10px;
             margin: 20px;
+            padding:15px;
         }
         .title_text{
             margin: 0px 0px 10px 5px;
@@ -53,13 +54,20 @@
         .r3{
             clear:left;
         }
-        .title{
+        .resta{
             text-align: center;
+        }
+        .title{
             font-size: xx-large;
             font-style: oblique;
+            font-size: 30px;
+            font-weight: bold;
         }
         .t{
             border: solid black 5px;
+        }
+        .center{
+            text-align: center;
         }
         
         #myInput {
@@ -94,16 +102,11 @@
             background-color: #eee; 
         }
 
-        .title{
-            font-size: 20px;
-            font-weight: bold;
-        }
-
     </style>
 </head>
 
 <body>
-    <div class="title">Restaurants</div>
+    <div class="title resta">Restaurants</div>
 
     <div class="r1 r" onclick="window.location.href='{{url_for("normal_r1")}}'">
         <div class="r_sub">
@@ -112,7 +115,7 @@
         <div class="r_sub">
             <img src="{{ url_for('static',filename ='/images/R1.jpg') }}"  width="200" height="200">
             <span class="description">
-                <p class="dp">It was always filled with mouthwatering aroma and a great atmosphere. If you can't get your reservations, at least orderingg take-out is still an option.</p>
+                <p class="dp">It is always filled with mouthwatering aroma and a great atmosphere. If you can't get your reservations, at least ordering take-out is still an option.</p>
             </span>
         </div>
     </div>
@@ -124,7 +127,7 @@
         <div class="r_sub">
             <img src="{{ url_for('static',filename ='/images/R2.jpg') }}"  width="200" height="200">
             <span class="description">
-                <p class="dp">Some say that the goal of this restaurant is to keep everyone on earth well fed, while others believe that it strives to unify all regional cuisine of the world. Either way, with its unique dished, it is surely a place worth visiting.</p>
+                <p class="dp">Some say that the goal of this restaurant is to keep everyone on earth well-fed, while others believe that it strives to unify all regional cuisine of the world. Either way, with its unique dishes, it is surely a place worth visiting.</p>
             </span>
         </div>
         
@@ -136,7 +139,7 @@
         <div class="r_sub">
             <img src="{{ url_for('static',filename ='/images/R3.jpg') }}"  width="200" height="200">
             <span class="description">
-                <p class="dp">They say that this is one of the most popular food stores in the shopping district. Though the boss was never able to make it big despite a lifetime of work, he was at last able to gain a little relif of his own here in the shopping district.</p>
+                <p class="dp">They say that this is one of the most popular food stores in the shopping district. Though the boss was never able to make it big despite a lifetime of work, he was at last able to gain a little relief of his own here in the shopping district.</p>
             </span>
         </div>
     
@@ -148,13 +151,13 @@
         <div class="r_sub">
             <img src="{{ url_for('static',filename ='/images/R4.jpg') }}"  width="200" height="200">
             <span class="description">
-                <p class="dp">Its owner, Lambad, claims to be a legendary sailor who used to sail far and wide. It is rather difficult to tell how exaggerated that claim is, but juding from the food sold in the tavern, at least the part about cuisines seems credible.</p>
+                <p class="dp">Its owner, Lambad, claims to be a legendary sailor who used to sail far and wide. It is rather difficult to tell how exaggerated the claim is, but judging from the food sold in the tavern, at least the part about cuisines seems credible.</p>
             </span>
         </div>
         
     </div>
-    <div>
-        <p class="title">Recommand Dishes:</p>
+    <div class="center">
+        <p class="title">Dish Recommendations:</p>
         <div class="recommand">
             <div class="remd_meal">
                 <p class="meal_name">{{dish_name_1}}</p>
