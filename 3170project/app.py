@@ -373,15 +373,26 @@ def main():#餐厅系统主界面（餐厅列表页）
     opt1=list(dish_ordered[0][0])
     opt2=list(dish_ordered[1][0])
     opt3=list(dish_ordered[2][0])
-    opt4="";opt5="";opt6=""
+    opt4=""
+    opt4_path =""
+    opt5=""
+    opt5_path =""
+    opt6=""
+    opt6_path =""
     for j in dish_form:
-        if j.list_id==opt1:
+        if j.list_id==opt1[0]+opt1[1]:
             opt4=j.list_name
-        if j.list_id==opt2:
+            opt4_path = j.img_path
+        if j.list_id==opt2[0]+opt2[1]:
             opt5=j.list_name
-        if j.list_id==opt3:
+            opt5_path = j.img_path
+        if j.list_id==opt3[0]+opt3[1]:
             opt6=j.list_name
-    return render_template('info.html',a1=a1,dish_id_1=opt1,dish_id_2=opt2,dish_id_3=opt3,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)#主页面为info.html，传入参数a1(restaurant列表)
+            opt6_path = j.img_path
+    print(opt4)
+    print(opt5)
+    print(opt6)
+    return render_template('info.html',a1=a1,dish_path_1=opt4_path,dish_path_2=opt5_path,dish_path_3=opt6_path,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)#主页面为info.html，传入参数a1(restaurant列表)
 
 # @app.route("/resta_1",methods=["GET","POST"])
 # def resta_1():
