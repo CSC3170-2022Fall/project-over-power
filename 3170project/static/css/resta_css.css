@@ -450,6 +450,18 @@
     cursor: pointer;
 }
 
+.active_5 {
+    width: 100px;
+    height: 49px;
+    position: absolute;
+    left: 0px;
+    display: flex;
+    justify-items: center;
+    text-align: center;
+    background-color: #54a9e9;
+    cursor: pointer;
+}
+
 .logo_top {
     width: 100%;
     position: absolute;
