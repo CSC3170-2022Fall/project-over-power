@@ -69,3 +69,7 @@ After thorough discussion, our team made the choice and the specification inform
 ## Project Abstract
 
 People’s expectations of food change from avoiding hunger to enjoying the taste. It is the same for CUHKSZ students. To better find the food that caters to personal preferences in the canteens, our website provides detailed and up-to-date information about different canteens and dishes. Users can post their opinions of any words and rate the canteens in another aspect. A senior user of the administrator of a specific canteen can also update their menus at any time. We hope this project can help people make more accessible and wiser choices of where to have a meal.
+
+
+## Presentation Video
+https://cuhko365-my.sharepoint.com/:v:/g/personal/119010529_link_cuhk_edu_cn/ETo4RxJ_dBBOsfau4Ocgvu8BrKr-b59kgajuVVd9Lc0aDQ?e=QuVt5c
