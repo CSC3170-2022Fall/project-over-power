@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">
     <title>About the Dish</title>
     <style>
       .dish{
@@ -120,6 +121,9 @@
 </head>
 
 <body>
+  <div class="log_out">
+    <a class="out" href="{{url_for('common_register')}}">Log Out</a>
+  </div>
 
     <div class="dish">
       <div class="dish_sub">
