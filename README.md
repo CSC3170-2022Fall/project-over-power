@@ -57,6 +57,7 @@ After thorough discussion, our team made the choice and the specification inform
 
  ## ER diagram 
 ![image](https://user-images.githubusercontent.com/118099930/208231245-96c3f7ec-3ee0-4c27-87a6-89e2e822c142.png)
+
 **Common User**: The common users who receive service from this application. This table stores the username and password collected from front-end and the ID is automatically generated. 
 **Preference**: Users’ information about the dietary preference. Application will recommend some dishes in the main interface according to users’ choices. 
 **Senior User**: The administrator of a specific restaurant. Information about his restaurant id should be included.
@@ -89,12 +90,12 @@ After all, the user can choose from one of the three branches:
 - senior_login.html: The login page for senior users, including the function of reading and checking the username and password. 
 - preference.html: The page for user preference setting after registering which provides options for meal tastes and types. 
 - info.html: The main interface for users, including search module, dish recommendation module and restaurant module. 
-- normal_r(1~4).html: The menu interface of each restaurant which presents several dishes and restaurant information. 
-- senior_r(1~4).html: The management interface for senior users where managers can delete dishes and add new dishes’ information (containing image uploading)
+- normal_r(1-4).html: The menu interface of each restaurant which presents several dishes and restaurant information. 
+- senior_r(1-4).html: The management interface for senior users where managers can delete dishes and add new dishes’ information (containing image uploading)
 - comment.html: The detailed dish page for common user, including dish information, comment-adding module and comment presenting part. 
 
 **Other materials**
-- images folder contains 6 pictures, 4 restaurants photos used in normal/senior r(1~4).html , 1 logo and 1 login background picture used in normal_login/senior_login/create_account.html. 
+- images folder contains 6 pictures, 4 restaurants photos used in normal/senior r(1-4).html , 1 logo and 1 login background picture used in normal_login/senior_login/create_account.html. 
 uploads folder contains 32 initial meals pictures which can collect new photos uploaded by senior users. 
 
 
@@ -122,7 +123,7 @@ Following is the core function we have realized in our program
 - On the left side of the dish page are other user reviews of the menu, including username, content and date of evaluation. Users can enter their comments in the comments field and submit them, and the information is passed to the back end, where it is saved in the comment table of the database and refreshed on the left.
 
 6. **Dish management**: add or delete a dish: (senior_r1(r1_r4).html, each for one restaurant)           
-- This feature is only available to senior accounts at specified restaurant. After logging in using the senior account, managers will straightly come to senior_r(1~4).html which are the edited interface for corresponding restaurant. The entire page is similar to normal_r(1~4), except for the add module and multiple delete buttons. 
+- This feature is only available to senior accounts at specified restaurant. After logging in using the senior account, managers will straightly come to senior_r(1-4).html which are the edited interface for corresponding restaurant. The entire page is similar to normal_r(1-4), except for the add module and multiple delete buttons. 
 - In the lower left corner of the page is the add module which manager need to type the new dish name, description and upload the pictures. After submission, text information will be saved to the database and the image will be upload to the “uploads” folder while storing the path to database. In this case, new dishes can be displayed. 
 - On the right side of the page are the existing dishes with “delete” button on each one. If manager click selected dish’s delete button, the information will also be removed from “dishes” table. Thus, expurgated dishes will not be displayed anymore. 
 
