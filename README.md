@@ -56,7 +56,7 @@ After thorough discussion, our team made the choice and the specification inform
  
 
  ## ER diagram 
-![image](https://user-images.githubusercontent.com/118099930/208231245-96c3f7ec-3ee0-4c27-87a6-89e2e822c142.png)
+![image](https://raw.githubusercontent.com/CSC3170-2022Fall/project-over-power/main/image/er.png?token=GHSAT0AAAAAAB2JC56742DJPOYCG7ZMRXEYY5MFOIA)
 
 **Common User**: The common users who receive service from this application. This table stores the username and password collected from front-end and the ID is automatically generated. 
 
