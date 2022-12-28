@@ -89,7 +89,7 @@ The program will provide the following service:
 
 ## File structure
 **Back-end**
-- app.py: The main back-end program, including database establishment, data storage, management, and interaction with the front pages, having several functions and data. 
+- [app.py](3170project/app.py): The main back-end program, including database establishment, data storage, management, and interaction with the front pages, having several functions and data. 
 
 **Front-end**
 
@@ -100,7 +100,7 @@ In [templates](3170project/templates),
 - preference.html: The page for user preference setting after registering which provides options for meal tastes and types. 
 - info.html: The main interface for users, including search module, dish recommendation module and restaurant module. 
 - normal_r(1-4).html: The menu interface of each restaurant which presents several dishes and restaurant information. 
-- senior_r(1-4).html: The management interface for senior users where managers can delete dishes and add new dishes’ information (containing image uploading)
+- senior_r(1-4).html: The management interface for senior users where managers can delete dishes and add new dishes’ information (containing image uploading).
 - comment.html: The detailed dish page for common user, including dish information, comment-adding module and comment presenting part. 
 
 In [css](3170project/static/css),
@@ -108,6 +108,8 @@ In [css](3170project/static/css),
 
 **Other materials**
 - In [static](3170project/static), [images](3170project/static/images) contains 6 pictures, 4 restaurants photos used in normal/senior r(1-4).html, 1 logo and 1 login background picture used in normal_login/senior_login/create_account.html. [uploads](3170project/static/uploads)  contains 32 initial meals pictures which can collect new photos uploaded by senior users. 
+- [ER_Diagram.png](ER_Diagram.png): The image file of ER diagram.
+- [presentation_sildes.pdf](presentation_slides.pdf): The PDF version of presentation sildes.
 
 
 ## Functionality Implementation
