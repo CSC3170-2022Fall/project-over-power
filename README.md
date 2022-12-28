@@ -77,19 +77,19 @@ Make sure that you run the program under the same directory as app.py.
 ## Accounts
 It is easy to register and log in as a common user. While for senior user, we have pre-setted different accounts for all of the restaurants available. You can use the accounts below to try it out:
 
-**Restaurant 1**: 
+**Senior User 1**: 
 - Username: r1
 - Password: 123456
 
-**Restaurant 2**: 
+**Senior User 2**: 
 - Username: r2
 - Password: 123456
 
-**Restaurant 3**: 
+**Senior User 3**: 
 - Username: r3
 - Password: 123456
 
-**Restaurant 4**: 
+**Senior User 4**: 
 - Username: r4
 - Password: 123456
 
