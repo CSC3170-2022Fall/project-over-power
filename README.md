@@ -55,6 +55,45 @@ After thorough discussion, our team made the choice and the specification inform
 - The difficulty level is: **Normal**
  
 
+## How To Run
+1. Setting up Environment
+We have several libraries used in our project. Thus to run the website on your PC, you need to run:
+```
+$ pip install -r requirements.txt
+```
+or install the packages manually.
+
+2. Database Configuration
+Our program database is set up to connect with a mysql account whose password is "password" (without the quotation mark). Therefore, you will need to either modify the password on the code to suit yours, or make a mysql account with "password" as its password. Finally, create a database named "3170project" (without the quotation mark).
+
+3. Run The Program
+Enter the commands below in the terminal:
+```
+$ set FLASK_APP = app.py
+$ flask run
+```
+Make sure that you run the program under the same directory as app.py.
+
+## Accounts
+It is easy to register and log in as a common user. While for senior user, we have pre-setted different accounts for all of the restaurants available. You can use the accounts below to try it out:
+
+**Restaurant 1**: 
+- Username: r1
+- Password: 123456
+
+**Restaurant 2**: 
+- Username: r2
+- Password: 123456
+
+**Restaurant 3**: 
+- Username: r3
+- Password: 123456
+
+**Restaurant 4**: 
+- Username: r4
+- Password: 123456
+
+
  ## ER diagram 
 ![image](ER_Diagram.png)
 
@@ -140,23 +179,6 @@ Following is the core function we have realized in our program
 - In the lower left corner of the page is the add module which manager need to type the new dish name, description and upload the pictures. After submission, text information will be saved to the database and the image will be upload to the “uploads” folder while storing the path to database. In this case, new dishes can be displayed. 
 - On the right side of the page are the existing dishes with “delete” button on each one. If manager click selected dish’s delete button, the information will also be removed from “dishes” table. Thus, expurgated dishes will not be displayed anymore. 
 
-
-## Senior User Account
-**Restaurant 1**: 
-- Username: r1
-- Password: 123456
-
-**Restaurant 2**: 
-- Username: r2
-- Password: 123456
-
-**Restaurant 3**: 
-- Username: r3
-- Password: 123456
-
-**Restaurant 4**: 
-- Username: r4
-- Password: 123456
 
 ## Difficulties
 1. The most significant difficulty we have encountered is that, during our application development, three of our members contracted covid19 and had very severe symptoms. We prioritize the health and well-being of your team members and do our best to support those who have been affected by it. We communicate online with our team and about the situation and any potential delays or changes in our project plan. By keeping everyone informed and involved, we work together to find ways to overcome the obstacles by redistributing the task.
