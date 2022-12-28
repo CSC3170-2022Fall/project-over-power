@@ -154,6 +154,7 @@ Following is the core function we have realized in our program
 - Yelike W Lukito: page decoration, back-end development, presentation
 
 ## Presentation Slides
+[Presentation Slides](presentation_slides.pdf)
 
 ## Presentation Video
 https://cuhko365-my.sharepoint.com/:v:/g/personal/119010529_link_cuhk_edu_cn/ETo4RxJ_dBBOsfau4Ocgvu8BrKr-b59kgajuVVd9Lc0aDQ?e=QuVt5c
