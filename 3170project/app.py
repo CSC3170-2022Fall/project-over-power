@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, url_for, redirect#request是一个请求对象
+from flask import Flask, render_template, request, flash, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_mysqldb import MySQL
 import time
@@ -6,13 +6,13 @@ from flask import session
 import os
 from werkzeug.utils import secure_filename
 
-#实现图片传输的设置
+#prepare for images storing
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app = Flask(__name__, template_folder='template', static_folder='static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 basedir = os.path.abspath(os.path.dirname(__file__))
-#
+
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -50,7 +50,7 @@ class restaurants(db.Model):
 
 class dishes(db.Model):
     __tablename__ = "dishes"
-    list_id = db.Column(db.String(10), primary_key=True)#已修改
+    list_id = db.Column(db.String(10), primary_key=True)
     list_name = db.Column(db.String(40),unique=False, nullable=True)
     info_type = db.Column(db.String(16), unique=False, nullable=True)
     info_description = db.Column(db.String(500),unique=False,nullable=True)
@@ -243,7 +243,7 @@ def create_account():
         username=request.form.get('username')
         pw=request.form.get('password')
         pw2=request.form.get('password2')
-        check7=common_user.query.filter_by(common_name=username).first()#筛选filter_by，检测table1中是否已存在该用户名
+        check7=common_user.query.filter_by(common_name=username).first()#check whether table1 has stored the username
         if check7:
             flash('User already exist!')
         else:
@@ -269,7 +269,7 @@ def create_account():
     return render_template('create_account.html')
 
 @app.route('/main', methods=['GET', 'POST'])
-def main():#餐厅系统主界面（餐厅列表页）
+def main():#home page of all restaurants including recommendation and search
     a1=dishes.query.all()
     user = login_user.query.all()
     user_id=user[0].login_info
@@ -387,8 +387,8 @@ def senior_delete1(senior_d):
 @app.route("/senior_r1",methods=["GET","POST"])
 def senior_r1():
     dish_table_1 = dishes.query.filter_by(restaurant_id=1).all()
-    if request.method == "POST":#add part
-        #generate new id
+    if request.method == "POST":#add dish
+        #generate new dish id
         # dish_list = dishes.query.filter_by(restaurant_id=1).all()
         # last_dish_id = dish_list[-1].list_id
         # new_dish_id = "A" + str(eval(last_dish_id[1:] + "+" + "1"))
@@ -403,14 +403,14 @@ def senior_r1():
         new_dish_name = request.form.get("dish_name")
         new_dish_description = request.form.get("text")
         new_dish_price=request.form.get("dish_price")
-        new_dish_image= request.files['uploaded_file']#传入图片的参数名
+        new_dish_image= request.files['uploaded_file']#file of the uploaded image
         for n in dish_list:
             flag = False
             if n.list_name == new_dish_name:
                 flash("Already have this meal")
                 flag = True
         if flag == False:
-            #图片保存路径
+            #path for storing image
             new_img_name = new_dish_id + ".png"
             base_path = basedir + "/static/uploads/"
             new_path = base_path + new_img_name
@@ -447,8 +447,8 @@ def senior_delete2(senior_d):
 @app.route("/senior_r2",methods=["GET","POST"])
 def senior_r2():
     dish_table_1 = dishes.query.filter_by(restaurant_id=2).all()
-    if request.method == "POST":#add部分
-        #生成新的id
+    if request.method == "POST":#add dish
+        #generate new dish id
         dish_list = dishes.query.filter_by(restaurant_id=2).all()
         max_id = 0
         for z in dish_list:
@@ -498,8 +498,8 @@ def senior_delete3(senior_d):
 @app.route("/senior_r3",methods=["GET","POST"])
 def senior_r3():
     dish_table_1 = dishes.query.filter_by(restaurant_id=3).all()
-    if request.method == "POST":#add part
-        #form new id
+    if request.method == "POST":#add dish
+        #generate new dish id
         dish_list = dishes.query.filter_by(restaurant_id=3).all()
         max_id = 0
         for z in dish_list:
@@ -549,8 +549,8 @@ def senior_delete4(senior_d):
 @app.route("/senior_r4",methods=["GET","POST"])
 def senior_r4():
     dish_table_1 = dishes.query.filter_by(restaurant_id=4).all()
-    if request.method == "POST":#add part
-        #form new id
+    if request.method == "POST":#add dish
+        #generate new dish id
         dish_list = dishes.query.filter_by(restaurant_id=4).all()
         max_id = 0
         for z in dish_list:
@@ -614,25 +614,25 @@ res1 = restaurants(restaurant_name = 'Good Hunter',
     location = 'A',
     open_hour = '8:00',
     meal_type = '1',
-    average_price_per_person = 3.2,
+    average_price_per_person = 60,
     rate = 4.8)
 res2 = restaurants(restaurant_name = 'Wanmin Restaurant',
     location = 'B',
     open_hour = '7:00',
     meal_type = '2',
-    average_price_per_person = 3.2,
+    average_price_per_person = 70,
     rate = 4.9)
 res3 = restaurants(restaurant_name = "Shimura's",
     location = 'C',
     open_hour = '8:00',
     meal_type = '3',
-    average_price_per_person = 3.2,
+    average_price_per_person = 70,
     rate = 4.8)
 res4 = restaurants(restaurant_name = "Lambad's Tavern",
     location = 'D',
     open_hour = '9:00',
     meal_type = '4',
-    average_price_per_person = 3.2,
+    average_price_per_person = 50,
     rate = 4.7)
 senior_user1 = senior_user(senior_name='r1',res_id=1,senior_password='123456')
 senior_user2 = senior_user(senior_name='r2',res_id=2,senior_password='123456')
