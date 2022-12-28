@@ -141,6 +141,23 @@ Following is the core function we have realized in our program
 - On the right side of the page are the existing dishes with “delete” button on each one. If manager click selected dish’s delete button, the information will also be removed from “dishes” table. Thus, expurgated dishes will not be displayed anymore. 
 
 
+## Senior User Account
+**Restaurant 1**: 
+- Username: r1
+- Password: 123456
+
+**Restaurant 2**: 
+- Username: r2
+- Password: 123456
+
+**Restaurant 3**: 
+- Username: r3
+- Password: 123456
+
+**Restaurant 4**: 
+- Username: r4
+- Password: 123456
+
 ## Difficulties
 1. The most significant difficulty we have encountered is that, during our application development, three of our members contracted covid19 and had very severe symptoms. We prioritize the health and well-being of your team members and do our best to support those who have been affected by it. We communicate online with our team and about the situation and any potential delays or changes in our project plan. By keeping everyone informed and involved, we work together to find ways to overcome the obstacles by redistributing the task.
 2. Most of our team is not familiar with Flask and front-end development, we invest some time in learning and training in these areas through tutorials, documentation, and online courses. When we encountered difficult problems in development, we actively exchanged ideas and solutions, which benefited us a lot.

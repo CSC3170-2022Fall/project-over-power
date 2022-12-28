@@ -610,31 +610,31 @@ db.create_all()
 #initialized the database
 user1=common_user(common_name='zzz', common_password='12345')
 user2=common_user(common_name='qqq', common_password='16949')
-res1 = restaurants(restaurant_name = 'Membership restaurant',
-    location = 'kitazawa',
-    open_hour = '114154',
-    meal_type = '1919810',
+res1 = restaurants(restaurant_name = 'Good Hunter',
+    location = 'A',
+    open_hour = '8:00',
+    meal_type = '1',
     average_price_per_person = 3.2,
-    rate = 3)
-res2 = restaurants(restaurant_name = 'Membership 2',
-    location = 'kitazawa',
-    open_hour = '114154',
-    meal_type = '1919810',
+    rate = 4.8)
+res2 = restaurants(restaurant_name = 'Wanmin Restaurant',
+    location = 'B',
+    open_hour = '7:00',
+    meal_type = '2',
     average_price_per_person = 3.2,
-    rate = 3)
-res3 = restaurants(restaurant_name = 'Membership 3',
-    location = 'kitazawa',
-    open_hour = '114154',
-    meal_type = '1919810',
+    rate = 4.9)
+res3 = restaurants(restaurant_name = "Shimura's",
+    location = 'C',
+    open_hour = '8:00',
+    meal_type = '3',
     average_price_per_person = 3.2,
-    rate = 3)
-res4 = restaurants(restaurant_name = 'Membership 4',
-    location = 'kitazawa',
-    open_hour = '114154',
-    meal_type = '1919810',
+    rate = 4.8)
+res4 = restaurants(restaurant_name = "Lambad's Tavern",
+    location = 'D',
+    open_hour = '9:00',
+    meal_type = '4',
     average_price_per_person = 3.2,
-    rate = 3)
-senior_user1 = senior_user(senior_name='bizu',res_id=1,senior_password='114154')
+    rate = 4.7)
+senior_user1 = senior_user(senior_name='r1',res_id=1,senior_password='123456')
 senior_user2 = senior_user(senior_name='r2',res_id=2,senior_password='123456')
 senior_user3 = senior_user(senior_name='r3',res_id=3,senior_password='123456')
 senior_user4 = senior_user(senior_name='r4',res_id=4,senior_password='123456')
