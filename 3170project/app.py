@@ -47,14 +47,6 @@ class restaurants(db.Model):
     average_price_per_person = db.Column(db.Float,primary_key=True)
     rate = db.Column(db.Float,primary_key=True)
 
-# class dishes(db.Model):
-#     __tablename__="dishes"
-#     list_id = db.Column(db.Integer, primary_key=True)
-#     list_name = db.Column(db.String(40), primary_key=True)
-#     info_type = db.Column(db.String(16),unique=False,nullable=False)
-#     info_price = db.Column(db.Integer,unique=False,nullable=False)
-#     info_taste = db.Column(db.String(16),unique=False,nullable=False)
-#     info_times = db.Column(db.Integer,unique=False,nullable=False)
 
 class dishes(db.Model):
     __tablename__ = "dishes"
@@ -94,10 +86,6 @@ class login_user(db.Model):#record the id of the user
     login_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
     login_info=db.Column(db.Integer,nullable=False)
  
-# class current_dish(db.Model):#record the current dish that the user is viewing
-#     _tablename_="current_dish"
-#     dish_id=db.Column(db.Integer,primary_key=True,autoincrement=True)
-#     dish_info=db.Column(db.String(10),nullable=False)
     
 class preference(db.Model):
     _tablename_="preference"
@@ -111,19 +99,6 @@ class preference(db.Model):
     X_taste = db.Column(db.Integer, nullable=True)
     Y_taste = db.Column(db.Integer, nullable=True)
     Z_taste = db.Column(db.Integer, nullable=True)    
-    
-# class preference(db.Model):
-#     _tablename_="preference"
-#     common_id=db.Column(db.Integer,primary_key=True)
-#     A_dish_type=db.Column(db.Integer, nullable=True)
-#     B_dish_type = db.Column(db.Integer, nullable=True)
-#     C_dish_type = db.Column(db.Integer, nullable=True)
-#     D_dish_type = db.Column(db.Integer, nullable=True)
-#     M_dish_taste = db.Column(db.Integer, nullable=True)
-#     N_dish_taste = db.Column(db.Integer, nullable=True)
-#     X_dish_taste = db.Column(db.Integer, nullable=True)
-#     Y_dish_taste = db.Column(db.Integer, nullable=True)
-#     Z_dish_taste = db.Column(db.Integer, nullable=True)
     
 @app.route("/preference_record",methods=["GET","POST"])
 def preference_record():
@@ -150,21 +125,6 @@ def preference_record():
             db.session.commit()
             return redirect(url_for("main"))
     return render_template("preference.html")
-
-
-# @app.route("/preference/",methods=["GET","POST"])
-# def preference_record():
-#     if request.method=="POST":
-#         user_id = common_("user_id")#获取用户id
-#         A_dish_type=request.form.get("A_dish_type")#获取用户dish type
-#         B_dish_type = request.form.get("B_dish_type")
-#         C_dish_type = request.form.get("C_dish_type")
-#         D_dish_type = request.form.get("D_dish_type")
-#         M_dish_taste = request.form.get("M_dish_type")#获取用户taste
-#         N_dish_taste = request.form.get("N_dish_type")
-#         X_dish_taste = request.form.get("X_dish_type")
-#         Y_dish_taste = request.form.get("Y_dish_type")
-#         Z_dish_taste = request.form.get("Z_dish_type")
 
 @app.route("/edit_preference_record",methods=["GET","POST"])
 def edit_preference_record():
@@ -277,12 +237,6 @@ def senior_register():
 
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
-    # check_login=login_user.query.all()
-    # for i in check_login:
-    #     if i.login_info!='':
-    #         print(i.login_id)
-    #         temp=login_user(i.login_id)
-    #         login_user.delete(temp)
     db.reflect(app=app)
     db.get_engine().execute(f"truncate table login_user")
     if request.method=="POST":
@@ -299,13 +253,7 @@ def create_account():
                     db.session.add_all([user])
                     db.session.commit()
                     flash('Creating an account succeeded, you can log in with this account now!')
-                    # return render_template('preference.html')
-                    # user_list = common_user.query.all()
 
-                    # last_user_id = user_list[-1]
-                    # print(last_user_id)
-                    # login_temp = common_user.query.filter_by(common_name=username).order_by(common_user.common_id.desc()).first()
-                    # print(login_temp)
                     sub=common_user.query.all()
                     for x in sub:
                         if x.common_name == username:
@@ -394,20 +342,6 @@ def main():#餐厅系统主界面（餐厅列表页）
     print(opt6)
     return render_template('info.html',a1=a1,dish_path_1=opt4_path,dish_path_2=opt5_path,dish_path_3=opt6_path,dish_name_1 =opt4,dish_name_2=opt5,dish_name_3=opt6)#主页面为info.html，传入参数a1(restaurant列表)
 
-# @app.route("/resta_1",methods=["GET","POST"])
-# def resta_1():
-#     if request.method=="GET":
-#         dish_table = dishes.query.filter_by(restaurant_id=1).all()
-#     return render_template("?resta_1.html",dish_table=dish_table) 
-
-
-# def search():
-#     content = request.form.get('content') 
-#     if content is None:
-#         content = " "
-#     dish_name = dishes.query.filter(dishes.list_name.like("%"+content+"%")if content is not None else "").all() 
-#     return render_template('search.html',quotes = dish_name)
-
 
 
 @app.route("/comment/<normal_send>",methods=["GET","POST"])
@@ -420,11 +354,6 @@ def comment(normal_send):
             name = x.common_name 
     dish_id = normal_send
     dish_table = dishes.query.get(dish_id)
-#     db.reflect(app=app)
-#     db.get_engine().execute(f"truncate table current_dish")   
-#     comment_status = current_dish(dish_info = dish_id)
-#     db.session.add_all([comment_status])
-#     db.session.commit()
     cmt= comments.query.filter_by(dish_id=normal_send).all()
     dish_table = dishes.query.get(dish_id)
     if request.method=="POST":
@@ -438,30 +367,6 @@ def comment(normal_send):
         dish_table = dishes.query.get(dish_id)
     return render_template("comment.html",comment_table=cmt,dish_table=dish_table)
 
-# @app.route("/comment_add",methods=["GET","POST"])
-# def comment_add():
-#     user = login_user.query.first()
-#     user_id = user.login_info
-#     sub=common_user.query.all()
-#     for x in sub:
-#         if x.common_id == user_id:
-#             name = x.common_name 
-#     if request.method=="POST":
-#         dish_id=current_dish().query.first()
-#         comment_info = request.form.get("comment_send")
-#         # current_time = time.datetime.now()
-#         current_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-#         QWQ = comments(dish_id=dish_id,comment_user_name=name,Comment_Time=current_time, content=comment_info)
-#         db.session.add_all([QWQ])
-#         db.session.commit()
-#     return redirect(url_for('comment'))
-
-#this parts correspond to the 4 pages of senior, with 4*3 = 12 functions in total
-#senior_r1
-# @app.route("/senior_add1",methods=["GET","POST"])
-# def senior_add1():
-   
-#     return redirect(url_for('senior_r1'))
 
 @app.route("/senior_delete1/<senior_d>")
 def senior_delete1(senior_d):    
@@ -574,11 +479,6 @@ def senior_r2():
         dish_table_1 = dishes.query.filter_by(restaurant_id = 2).all()   
     return render_template("senior_r2.html",dish_table=dish_table_1)
 #senior_r3
-# @app.route("/senior_add3",methods=["GET","POST"])
-# def senior_add3():
- 
-#     return redirect(url_for('senior_r3'))
-
 @app.route("/senior_delete3/<senior_d>")
 def senior_delete3(senior_d):    
     temp=dishes.query.filter_by(list_id=senior_d).first()
@@ -598,8 +498,8 @@ def senior_delete3(senior_d):
 @app.route("/senior_r3",methods=["GET","POST"])
 def senior_r3():
     dish_table_1 = dishes.query.filter_by(restaurant_id=3).all()
-    if request.method == "POST":#add部分
-        #生成新的id
+    if request.method == "POST":#add part
+        #form new id
         dish_list = dishes.query.filter_by(restaurant_id=3).all()
         max_id = 0
         for z in dish_list:
@@ -630,11 +530,6 @@ def senior_r3():
         dish_table_1 = dishes.query.filter_by(restaurant_id = 3).all()  
     return render_template("senior_r3.html",dish_table=dish_table_1)
 #senior_r4
-# @app.route("/senior_add4",methods=["GET","POST"])
-# def senior_add4():
-  
-#     return redirect(url_for('senior_r4'))
-
 @app.route("/senior_delete4/<senior_d>")
 def senior_delete4(senior_d):    
     temp=dishes.query.filter_by(list_id=senior_d).first()
@@ -654,8 +549,8 @@ def senior_delete4(senior_d):
 @app.route("/senior_r4",methods=["GET","POST"])
 def senior_r4():
     dish_table_1 = dishes.query.filter_by(restaurant_id=4).all()
-    if request.method == "POST":#add部分
-        #生成新的id
+    if request.method == "POST":#add part
+        #form new id
         dish_list = dishes.query.filter_by(restaurant_id=4).all()
         max_id = 0
         for z in dish_list:
@@ -685,7 +580,7 @@ def senior_r4():
             flash("successfully create one meal!")  
         dish_table_1 = dishes.query.filter_by(restaurant_id = 4).all()
     return render_template("senior_r4.html",dish_table=dish_table_1)
-#senior部分结束
+#senior part 
 
 #the normal parts start，4 functions in total
 @app.route("/normal_r1")
@@ -707,7 +602,7 @@ def normal_r3():
 def normal_r4():
     dish_table = dishes.query.filter_by(restaurant_id=4).all()
     return render_template("normal_r4.html",dish_table=dish_table)
-#normal部分结束
+#normal part end
 
 db.drop_all()
 db.create_all()
