@@ -56,7 +56,7 @@ After thorough discussion, our team made the choice and the specification inform
  
 
  ## ER diagram 
-![image](ER.png)
+![image](ER_Diagram.png)
 
 **Common User**: The common users who receive service from this application. This table stores the username and password collected from front-end and the ID is automatically generated. 
 
