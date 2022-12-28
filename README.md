@@ -56,7 +56,7 @@ After thorough discussion, our team made the choice and the specification inform
  
 
  ## ER diagram 
-![image](er.png)
+![image](ER.png)
 
 **Common User**: The common users who receive service from this application. This table stores the username and password collected from front-end and the ID is automatically generated. 
 
@@ -92,6 +92,8 @@ The program will provide the following service:
 - app.py: The main back-end program, including database establishment, data storage, management, and interaction with the front pages, having several functions and data. 
 
 **Front-end**
+
+In [templates](3170project/templates),
 - normal_login.html: The login page for common users which provides the function of reading and checking the username and password. 
 - create_account.html: The common registry page for common users which provides the function of recording new user’s information and check whether re-entered password is the same. 
 - senior_login.html: The login page for senior users, including the function of reading and checking the username and password. 
@@ -101,9 +103,11 @@ The program will provide the following service:
 - senior_r(1-4).html: The management interface for senior users where managers can delete dishes and add new dishes’ information (containing image uploading)
 - comment.html: The detailed dish page for common user, including dish information, comment-adding module and comment presenting part. 
 
+In [css](3170project/static/css),
+- login_css.css and resta_css.css are used for page decoration.
+
 **Other materials**
-- images folder contains 6 pictures, 4 restaurants photos used in normal/senior r(1-4).html, 1 logo and 1 login background picture used in normal_login/senior_login/create_account.html. 
-uploads folder contains 32 initial meals pictures which can collect new photos uploaded by senior users. 
+- In [static](3170project/static), [images](3170project/static/images) contains 6 pictures, 4 restaurants photos used in normal/senior r(1-4).html, 1 logo and 1 login background picture used in normal_login/senior_login/create_account.html. [uploads](3170project/static/uploads)  contains 32 initial meals pictures which can collect new photos uploaded by senior users. 
 
 
 ## Functionality Implementation
