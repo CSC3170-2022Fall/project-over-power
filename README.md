@@ -59,11 +59,17 @@ After thorough discussion, our team made the choice and the specification inform
 ![image](https://user-images.githubusercontent.com/118099930/208231245-96c3f7ec-3ee0-4c27-87a6-89e2e822c142.png)
 
 **Common User**: The common users who receive service from this application. This table stores the username and password collected from front-end and the ID is automatically generated. 
+
 **Preference**: Users’ information about the dietary preference. Application will recommend some dishes in the main interface according to users’ choices. 
+
 **Senior User**: The administrator of a specific restaurant. Information about his restaurant id should be included.
+
 **Restaurants**: provide various types of dishes. Each restaurant has its ID, name, opening hours, meal style, rate and average price. 
+
 **Rate**: records the rate in several aspects for each restaurant.
+
 **Dish**: Every restaurant provides various types of dishes. Every dish has its corresponding restaurant, its name, its ID, its price, and food’s taste and type.  
+
 **Comments**: records of comments added by the user for specific dishes. This should include the comment's actual content, the time the comment is added, the user's name of comment, and its corresponding dish's ID.
 
 
@@ -71,13 +77,14 @@ After thorough discussion, our team made the choice and the specification inform
 The task of our team project is to develop an online rating and browsing website that includes several restaurants. The web page was constructed under Flask framework and programmed with python language. The front end used html language, CSS and java script. This website includes two kinds of modes: the common user mode and the senior user mode.
 The program will provide the following service:
 1. For a new user: create an account (only available for common user). After that, they can set their preference. Then they can enter their main page (The rest parts are the same as the normal user)
-2. For a normal user who already has their accounts (their preference has been set previously): They can log in to their account and enter the main page.
 
-After all, the user can choose from one of the three branches:
-1. Choose one of the links to the four restaurants and enter the restaurant’s main page. User then can view all the dishes provided and descriptions of the restaurant. They can click on one of the dishes and view the comments of others or add the user’s comment.
-2. Check the dishes recommended by the system on the right side of the main page
-3. Use the search box to search for the dishes you want and enter the corresponding dish page. The users are then free to view or add comments of the dish
-3.For a senior user, they can enter ‘senior user’ mode and log in to senior account. They are then free to enter the main page of the user’s restaurant to add or delete dishes. Editing of dishes includes submitting or modifying prices, pictures and descriptions of dishes
+2. For a normal user who already has their accounts (their preference has been set previously): They can log in to their account and enter the main page.
+    After all, the user can choose from one of the three branches:
+    1. Choose one of the links to the four restaurants and enter the restaurant’s main page. User then can view all the dishes provided and descriptions of the restaurant. They can click on one of the dishes and view the comments of others or add the user’s comment.
+    2. Check the dishes recommended by the system on the right side of the main page
+    3. Use the search box to search for the dishes you want and enter the corresponding dish page. The users are then free to view or add comments of the dish
+
+3. For a senior user, they can enter ‘senior user’ mode and log in to senior account. They are then free to enter the main page of the user’s restaurant to add or delete dishes. Editing of dishes includes submitting or modifying prices, pictures and descriptions of dishes
 
 
 ## File structure
@@ -95,7 +102,7 @@ After all, the user can choose from one of the three branches:
 - comment.html: The detailed dish page for common user, including dish information, comment-adding module and comment presenting part. 
 
 **Other materials**
-- images folder contains 6 pictures, 4 restaurants photos used in normal/senior r(1-4).html , 1 logo and 1 login background picture used in normal_login/senior_login/create_account.html. 
+- images folder contains 6 pictures, 4 restaurants photos used in normal/senior r(1-4).html, 1 logo and 1 login background picture used in normal_login/senior_login/create_account.html. 
 uploads folder contains 32 initial meals pictures which can collect new photos uploaded by senior users. 
 
 
@@ -116,7 +123,7 @@ Following is the core function we have realized in our program
 - The back end scores all dishes according to user preferences. It iterates through the dishes, retrieving the style and flavor of each dish in the database, adding two points for style matches and one point for flavor matches. Finally, back end sends the information of the three dishes with the highest total score to the front end. They will be displayed on the normal user main page (info.html) after matching pictures.
 
 4. **Search mechanism**: (on info.html)
-- This feature is mainly implemented on the front end and uses java- script to handle fuzzy search. The user enters the fragment of the- dish name in the search bar of the main page to find the relevant- dishes at the bottom. Click on the menu and you will enter the dish- page(comment.html)
+- This feature is mainly implemented on the front end and uses java- script to handle fuzzy search. The user enters the fragment of the dish name in the search bar of the main page to find the relevant- dishes at the bottom. Click on the menu and you will enter the dish page(comment.html)
 
 5. **Add rating to the restaurant. Add comment and display comment**: (normal_r1(r1-r4).html->comment.html)
 - There are display boxes of four restaurants in the main page. Click to enter the main page of the four restaurants (normal.html). In the main page, you can see the introduction of the restaurant and the list of all dishes in the restaurant. You can rate the restaurant here as well. Click the list of dishes to enter the relevant dish page (comment.html).
