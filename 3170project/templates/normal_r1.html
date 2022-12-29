@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Good Hunter Menu</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">
+    </head>
+
+    <body>       
+
+        <div class="top">
+            <div class="logo_top">
+                <img src="/static/images/logo.png" height="49">
+            </div>
+        </div>
+
+        <div class="active_1">
+            <a class="home" href="{{url_for('main')}}">Home</a>
+        </div>
+
+        <div class="log_out">
+            <a class="out" href="{{url_for('common_register')}}">Log Out</a>
+        </div>
+
+
+        <div class="left_1">
+            <div class="resta_div">
+                <div class="resta_div_sub">
+                    <p class="title_text">Good Hunter</p>
+                    <p class="point">4.8</p>
+                </div>
+                <div class="resta_div_sub">
+                    <img src="/static/images/R1.jpg" width="200" height="200" />
+                    <span class="description">
+                        <p class="dp">It is always filled with mouthwatering aroma and a great atmosphere. If you can't get your reservations, at least ordering take-out is still an option.</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="resta_div">
+                <p class="title_text">Rating</p>
+
+                <div class="rate_1" id="rating_e">
+                    <input type="radio" name="rating_e" value="5" id="1_5"><label for="1_5">☆</label>
+                    <input type="radio" name="rating_e" value="4" id="1_4"><label for="1_4">☆</label>
+                    <input type="radio" name="rating_e" value="3" id="1_3"><label for="1_3">☆</label>
+                    <input type="radio" name="rating_e" value="2" id="1_2"><label for="1_2">☆</label>
+                    <input type="radio" name="rating_e" value="1" id="1_1"><label for="1_1">☆</label> 
+                    <p class="rate_text">Environment</p>
+                </div>
+    
+                <div class="rate_1" id="rating_s">
+                    <input type="radio" name="rating_s" value="5" id="2_5"><label for="2_5">☆</label>
+                    <input type="radio" name="rating_s" value="4" id="2_4"><label for="2_4">☆</label>
+                    <input type="radio" name="rating_s" value="3" id="2_3"><label for="2_3">☆</label>
+                    <input type="radio" name="rating_s" value="2" id="2_2"><label for="2_2">☆</label>
+                    <input type="radio" name="rating_s" value="1" id="2_1"><label for="2_1">☆</label> 
+                    <p class="rate_text">Service</p>
+                </div>
+    
+                <div class="rate_1" id="rating_p">
+                    <input type="radio" name="rating_p" value="5" id="3_5"><label for="3_5">☆</label>
+                    <input type="radio" name="rating_p" value="4" id="3_4"><label for="3_4">☆</label>
+                    <input type="radio" name="rating_p" value="3" id="3_3"><label for="3_3">☆</label>
+                    <input type="radio" name="rating_p" value="2" id="3_2"><label for="3_2">☆</label>
+                    <input type="radio" name="rating_p" value="1" id="3_1"><label for="3_1">☆</label> 
+                    <p class="rate_text">Price</p>
+                </div>
+    
+                <div class="rate_1" id="rating_e">
+                    <input type="radio" name="rating_t" value="5" id="4_5"><label for="4_5">☆</label>
+                    <input type="radio" name="rating_t" value="4" id="4_4"><label for="4_4">☆</label>
+                    <input type="radio" name="rating_t" value="3" id="4_3"><label for="4_3">☆</label>
+                    <input type="radio" name="rating_t" value="2" id="4_2"><label for="4_2">☆</label>
+                    <input type="radio" name="rating_t" value="1" id="4_1"><label for="4_1">☆</label> 
+                    <p class="rate_text">Taste</p>
+                </div>
+            </div>
+            
+
+
+        </div>
+
+        <div class="right">
+            {% for i in dish_table%}   <!--dish list of whose restaurant_id == 1 in dishes-->
+            <div class="dish_div_1" onclick="window.location.href='{{url_for("comment", normal_send=i.list_id)}}'">    <!--link to comment page-->
+                <div class="dish_div_sub">
+                    <p class="title_text">{{i.list_name}}</p>
+                    <p class="price">{{i.info_price}}</p>
+                </div>
+                <div class="dish_div_sub">
+                    <img alt="image not found" src="{{i.img_path}}" width="150" height="150">    <!--full path of the image-->
+                    <span class="description">
+                        <p class="dp">{{i.info_description}}</p>
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </body>
+
+</html>

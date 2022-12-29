@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">
+    <title>About the Dish</title>
+    <style>
+      .dish{
+        width: 800px;
+        height: 250px;
+        background-color: rgb(243, 239, 234);
+        border: 2px solid;
+        border-image: linear-gradient(to left,rgba(87, 87, 87), rgba(0, 255, 221)) 1;
+        border-radius: 10px;
+        margin: 20px;
+        padding: 15px;
+      }
+      .dish_text{
+        margin: 0px 0px 10px 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        color: #000000;
+        align-items: center;
+        text-align: left;
+      }
+      .dish_sub {
+        display: flex;
+        flex-direction: row;
+      }
+      .dp {
+        margin: 0px 0px 0px 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: #000000;
+      }
+      span.description {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+        margin: 0px;
+      }
+      /* CSS styles for the Dish Review Form */
+      .review {
+        width: 400px;
+        height: 50px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        margin: 20px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        animation: fadein 0.5s;
+      }
+
+      .review p {
+        font-size: 16px;
+        color: #555;
+        margin: 0;
+      }
+
+      @keyframes fadein {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .comt{
+        position: absolute;
+        top: 40%;
+        right: 40%;
+        width: 400px;
+        height: 200px;
+      }
+      .time{
+        font-size: 5px;
+        position: relative;
+        bottom: 0;
+        right: 0;
+      }
+      .name{
+        font-weight: bold;
+        font-style: oblique;
+        color: rgb(38, 87, 87);
+        font-size: 20px;
+        position: relative;
+        top:0;
+        left: 0;
+      }
+      .content{
+        font-size: 18px;
+        font-style: inherit;
+        color: rgb(120, 89, 49);
+      }
+
+      .submit-button {
+        background-image: linear-gradient(to right, #348F50 0%, #56B4D3  51%, #348F50  100%);
+        border: none;
+        color: white;            
+        margin: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        transition: 0.5s;
+        background-size: 200% auto;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+        font-size: 16px;
+      }
+
+      .submit-button:hover {
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="log_out">
+    <a class="out" href="{{url_for('common_register')}}">Log Out</a>
+  </div>
+
+    <div class="dish">
+      <div class="dish_sub">
+        <p class="dish_text">{{dish_table.list_name}}</p>
+    </div>
+    <div class="dish_sub">
+      <img src="{{dish_table.img_path}}"  width="200" height="200">
+      <span class="description">
+          <p class="dp">{{dish_table.info_description}}</p>
+      </span>
+    </div>
+    </div>    
+      <!-- 过往的评价 -->
+      {% for i in comment_table%}
+      <div class="review">
+          <p class="name" >{{i.comment_user_name}}</p>
+          <p class="content">{{i.content}}</p>
+          <p class="time">{{i.Comment_Time}}</p>
+      </div>
+      {% endfor %}
+
+      <form class="comt" method="post">
+        <label for="review">Comment: </label>
+        <br>
+        <textarea id="review" name="comment_send" rows="4" cols="50"></textarea>
+        <br>
+<!--         <input type="submit" value="Submit" name = "comment_send" onclick="location.reload ();"> -->        
+         <input class="submit-button" type="submit" value="Submit" >
+
+      </form> 
+    
+</body>
+<script>
+ 
+</script>
+</html>

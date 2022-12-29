@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Advisor: Main Page</title>
+    <style>
+
+        .r{
+            width: 500px;
+            height: 250px;
+            background-color: rgb(243, 239, 234);
+            border: 2px solid;
+            border-image: linear-gradient(to left,rgba(87, 87, 87), rgba(0, 255, 221)) 1;
+            border-radius: 10px;
+            margin: 20px;
+            padding:15px;
+        }
+        .title_text{
+            margin: 0px 0px 10px 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            color: #000000;
+            align-items: center;
+            text-align: left;
+        }
+        .r_sub {
+            display: flex;
+            flex-direction: row;
+        }
+        .dp {
+            margin: 0px 0px 0px 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            color: #000000;
+        }
+        span.description {
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .r:hover{
+            animation-duration: 1s;
+            box-shadow: 5px 5px 10px 5px #ccc;
+        }
+        .r1,.r2,.r3,.r4{
+            float: left;
+        }
+        .r3{
+            clear:left;
+        }
+        .resta{
+            text-align: center;
+        }
+        .title{
+            font-size: xx-large;
+            font-style: oblique;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .t{
+            border: solid black 5px;
+        }
+        .center{
+            text-align: center;
+        }
+        
+        #myInput {
+            background-image: url('https://static.runoob.com/images/mix/searchicon.png'); 
+            background-position: 10px 12px; 
+            background-repeat: no-repeat; 
+            width: 100%; 
+            font-size: 16px;
+            padding: 12px 20px 12px 40px; 
+            border: 1px solid #ddd;
+            margin-bottom: 12px; 
+        }
+
+        #myUL {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #myUL li a {
+            border: 1px solid #ddd; 
+            margin-top: -1px; 
+            background-color: #f6f6f6; 
+            padding: 12px; 
+            text-decoration: none; 
+            font-size: 18px; 
+            color: black;
+            display: block; 
+        }
+        
+        #myUL li a:hover:not(.header) {
+            background-color: #eee; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="title resta">Restaurants</div>
+
+    <div class="r1 r" onclick="window.location.href='{{url_for("normal_r1")}}'">
+        <div class="r_sub">
+            <p class="title_text">Good Hunter</p>
+        </div>
+        <div class="r_sub">
+            <img src="{{ url_for('static',filename ='/images/R1.jpg') }}"  width="200" height="200">
+            <span class="description">
+                <p class="dp">It is always filled with mouthwatering aroma and a great atmosphere. If you can't get your reservations, at least ordering take-out is still an option.</p>
+            </span>
+        </div>
+    </div>
+
+    <div class="r2 r" onclick="window.location.href='{{url_for("normal_r2")}}'">
+        <div class="r_sub">
+            <p class="title_text">Wanmin Restaurant</p>
+        </div>
+        <div class="r_sub">
+            <img src="{{ url_for('static',filename ='/images/R2.jpg') }}"  width="200" height="200">
+            <span class="description">
+                <p class="dp">Some say that the goal of this restaurant is to keep everyone on earth well-fed, while others believe that it strives to unify all regional cuisine of the world. Either way, with its unique dishes, it is surely a place worth visiting.</p>
+            </span>
+        </div>
+        
+    </div>
+    <div class="r3 r" onclick="window.location.href='{{url_for("normal_r3")}}'">
+        <div class="r_sub">
+            <p class="title_text">Shimura's</p>
+        </div>
+        <div class="r_sub">
+            <img src="{{ url_for('static',filename ='/images/R3.jpg') }}"  width="200" height="200">
+            <span class="description">
+                <p class="dp">They say that this is one of the most popular food stores in the shopping district. Though the boss was never able to make it big despite a lifetime of work, he was at last able to gain a little relief of his own here in the shopping district.</p>
+            </span>
+        </div>
+    
+    </div>
+    <div class="r4 r" onclick="window.location.href='{{url_for("normal_r4")}}'">
+        <div class="r_sub">
+            <p class="title_text">Lambad's Tavern</p>
+        </div>
+        <div class="r_sub">
+            <img src="{{ url_for('static',filename ='/images/R4.jpg') }}"  width="200" height="200">
+            <span class="description">
+                <p class="dp">Its owner, Lambad, claims to be a legendary sailor who used to sail far and wide. It is rather difficult to tell how exaggerated the claim is, but judging from the food sold in the tavern, at least the part about cuisines seems credible.</p>
+            </span>
+        </div>
+        
+    </div>
+    <div class="center">
+        <p class="title">Dish Recommendations:</p>
+        <div class="recommand">
+            <div class="remd_meal">
+                <p class="meal_name">{{dish_name_1}}</p>
+            </div>
+            <div class="meal">
+                <img id="img1" src="{{dish_path_1}}" width="140" height="140" />
+            </div>
+        </div>
+        <div class="recommand">
+            <div class="remd_meal">
+                <p class="meal_name">{{dish_name_2}}</p>
+            </div>
+            <div class="meal">
+                <img id="img2"  src="{{dish_path_2}}" width="140" height="140" />
+            </div>
+        </div>
+        <div class="recommand">
+            <div class="remd_meal">
+                <p class="meal_name">{{dish_name_3}}</p>
+            </div>
+            <div class="meal">
+                <img id="img3" src="{{dish_path_3}}" width="140" height="140" />
+            </div>
+        </div>
+    </div>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search...">
+ 
+  
+    <ul id="myUL">
+        {% for i in a1%}
+        <li><a href="{{url_for("comment", normal_send=i.list_id)}}">{{i.list_name}}</a></li>
+        {%endfor%}
+    </ul>
+
+</body>
+<script>
+    
+
+
+function myFunction() {
+  // 声明变量
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('myInput');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName('li');
+ 
+  // 循环遍历所有列表项，并隐藏那些与搜索查询不匹配的项
+
+  for (i = 0; i < li.length; i++) {
+    li[i].style.display = "none";
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+
+
+</script>
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Normal User Login</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename ='css/login_css.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename ='css/resta_css.css') }}">
+    </head>
+
+    <body>       
+        <div class="top">
+            <div class="logo_top">
+                <img src="/static/images/logo.png" height="49">
+            </div>
+        </div>
+         
+        <div class="login_div">
+            
+            <div class="login_div_sub">
+            <label class="title_text">Welcome to Food Advisor!</label>
+            </div>
+
+            <form method="post">
+                <div class="login_div_sub">
+                    <span class="ico"><label>Username </label><input type="text" name="username"></span>
+                </div>
+                <div class="login_div_sub">
+                    <span class="ico"><label>Password </label><input type="password" name="password"><br></span>
+                </div>
+                <div class="login_div_sub">
+                    <input type="submit" value="Sign in">
+                </div>
+
+            </form>
+            <div style="color: red">
+                 {% for massage in get_flashed_messages() %}
+                     {{ massage }}
+                 {% endfor %}
+            </div>
+            <div class="link_text">
+                {#<a href="/templates/senior_login.html" style="text-decoration:none">I am a senior user</a>#}
+                <a href="{{ url_for("senior_register")}}">I am a senior user</a>
+            </div>
+            <div class="link_text">
+                {#<a href="/templates/create_account.html" style="text-decoration:none">Create an account</a>#}
+                <a href="{{ url_for("create_account")}}">Create an account</a>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
