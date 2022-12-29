@@ -202,4 +202,4 @@ Following is the core function we have realized in our program
 [Presentation Slides](presentation_slides.pdf)
 
 ## Presentation Video
-[https://cuhko365-my.sharepoint.com/:v:/g/personal/119010529_link_cuhk_edu_cn/ETo4RxJ_dBBOsfau4Ocgvu8BrKr-b59kgajuVVd9Lc0aDQ?e=QuVt5c](https://cuhko365-my.sharepoint.com/:v:/g/personal/119010529_link_cuhk_edu_cn/ERl8VNz-Qg9Cl3Lb_3h8fBsBq9bACD4LI_PG9rBKmPjhFA?e=jEdVOs)
+[The OneDrive Link for the Video](https://cuhko365-my.sharepoint.com/:v:/g/personal/119010529_link_cuhk_edu_cn/ERl8VNz-Qg9Cl3Lb_3h8fBsBq9bACD4LI_PG9rBKmPjhFA?e=jEdVOs)
